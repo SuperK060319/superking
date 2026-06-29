@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>SuperKing 的 CC 安装小课</title>
+    <meta name="description" content="一份微信可打开的 Claude Code 安装手册：从准备环境到跑出第一个作品。" />
+    <meta name="theme-color" content="#10100e" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2310100e'/%3E%3Cpath d='M25 31h30l20 19-20 19H25l19-19z' fill='%23d7442f'/%3E%3C/svg%3E"
+    />
+    <style>
+:root {
+  --charcoal: #10100e;
+  --ink: #f7f0df;
+  --muted: #b7ab91;
+  --quiet: #776f60;
+  --paper: #f7f0df;
+  --paper-2: #eadfc7;
+  --red: #d7442f;
+  --green: #3e6f52;
+  --brass: #cfa24a;
+  --blue: #8fb1c7;
+  --line: rgba(247, 240, 223, 0.14);
+  --shadow: rgba(0, 0, 0, 0.34);
+  --mono: "Cascadia Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Segoe UI", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+  background:
+    linear-gradient(rgba(247, 240, 223, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 240, 223, 0.028) 1px, transparent 1px),
+    linear-gradient(135deg, #10100e 0%, #17140f 46%, #221e18 100%);
+  background-size: 34px 34px, 34px 34px, auto;
+  overflow: hidden;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(215, 68, 47, 0.42);
+}
+
+.topline {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 30;
+  height: 3px;
+  background: rgba(247, 240, 223, 0.08);
+}
+
+#bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--red), var(--brass), var(--green));
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chapter-rail {
+  position: fixed;
+  left: 22px;
+  top: 22px;
+  bottom: 22px;
+  z-index: 20;
+  width: 106px;
+  padding: 18px 14px;
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(16, 16, 14, 0.72);
+  box-shadow: 0 18px 60px var(--shadow);
+}
+
+.chapter-rail strong {
+  color: var(--paper);
+  font-size: 15px;
+}
+
+.chapter-rail span,
+.chapter-rail output {
+  color: var(--quiet);
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.chapter-rail output {
+  margin-top: auto;
+  color: var(--brass);
+}
+
+.back {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 35;
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid rgba(247, 240, 223, 0.16);
+  border-radius: 8px;
+  color: var(--muted);
+  background: rgba(16, 16, 14, 0.64);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+body:not([data-step="0"]) .back {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back:hover,
+.back:focus-visible {
+  color: var(--paper);
+  border-color: rgba(247, 240, 223, 0.38);
+}
+
+#deck {
+  position: fixed;
+  inset: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 62px 34px 56px 164px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(0, 28px, 0) scale(0.985);
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.5s;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+
+.slide.past {
+  transform: translate3d(0, -24px, 0) scale(0.99);
+}
+
+.inner {
+  width: min(760px, 100%);
+  margin: auto;
+}
+
+.inner::before {
+  content: attr(data-mark);
+}
+
+.eyebrow,
+.step-no {
+  margin: 0 0 24px;
+  color: var(--brass);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  max-width: 760px;
+  color: var(--paper);
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: clamp(36px, 6.8vw, 72px);
+  line-height: 1.08;
+}
+
+h2 {
+  font-size: clamp(30px, 5.4vw, 52px);
+  line-height: 1.18;
+}
+
+.lead,
+.body,
+.if,
+.wechat-note {
+  max-width: 680px;
+  color: var(--muted);
+  font-size: clamp(16px, 2.5vw, 19px);
+  line-height: 1.9;
+}
+
+.lead {
+  margin: 24px 0 0;
+}
+
+.body {
+  margin: 18px 0 0;
+}
+
+.body strong,
+.if strong {
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.wechat-note {
+  margin: 20px 0 0;
+  color: var(--quiet);
+  font-size: 13px;
+}
+
+.cmd {
+  position: relative;
+  margin-top: 22px;
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 16px 18px 20px;
+  border: 1px solid rgba(247, 240, 223, 0.18);
+  border-left: 5px solid var(--red);
+  background:
+    linear-gradient(90deg, rgba(215, 68, 47, 0.1), transparent 42%),
+    #171714;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+}
+
+.cmd.say {
+  border-left-color: var(--green);
+  background:
+    linear-gradient(90deg, rgba(62, 111, 82, 0.16), transparent 48%),
+    #171714;
+}
+
+.prompt,
+.cmd code {
+  font-family: var(--mono);
+}
+
+.prompt {
+  color: var(--brass);
+}
+
+.cmd code {
+  min-width: 0;
+  color: var(--paper);
+  font-size: clamp(13px, 2.1vw, 16px);
+  line-height: 1.65;
+  word-break: break-word;
+}
+
+.tag {
+  position: absolute;
+  top: -11px;
+  left: 16px;
+  padding: 2px 8px;
+  color: #15130f;
+  background: var(--brass);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.copy {
+  min-width: 66px;
+  min-height: 38px;
+  border: 1px solid rgba(247, 240, 223, 0.18);
+  border-radius: 7px;
+  color: var(--paper);
+  background: rgba(247, 240, 223, 0.06);
+  cursor: pointer;
+}
+
+.copy:hover,
+.copy:focus-visible {
+  border-color: var(--brass);
+}
+
+.copy.ok {
+  color: #15130f;
+  background: var(--brass);
+  border-color: var(--brass);
+}
+
+.if {
+  margin: 18px 0 0;
+  color: var(--quiet);
+  font-size: 14px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.links a {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: 1px solid rgba(143, 177, 199, 0.38);
+  border-radius: 8px;
+  color: var(--blue);
+  text-decoration: none;
+  background: rgba(143, 177, 199, 0.07);
+}
+
+.next {
+  min-height: 50px;
+  margin-top: 34px;
+  padding: 0 34px;
+  border: 0;
+  border-radius: 8px;
+  color: #15130f;
+  background: var(--paper);
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.2);
+  transition: transform 0.16s ease, filter 0.16s ease;
+}
+
+.next.primary {
+  background: var(--red);
+  color: #fff7ed;
+}
+
+.next:hover,
+.next:focus-visible {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.next:active {
+  transform: translateY(1px);
+}
+
+.hero,
+.finale {
+  position: relative;
+}
+
+.hero::after,
+.finale::after {
+  content: "CC";
+  position: absolute;
+  right: 0;
+  top: -52px;
+  z-index: -1;
+  color: rgba(247, 240, 223, 0.045);
+  font-family: var(--mono);
+  font-size: clamp(150px, 24vw, 280px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+@media (max-width: 720px) {
+  body {
+    overflow: hidden;
+  }
+
+  .chapter-rail {
+    left: 14px;
+    right: 14px;
+    top: 14px;
+    bottom: auto;
+    width: auto;
+    min-height: 58px;
+    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .chapter-rail span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .chapter-rail output {
+    margin-top: 0;
+  }
+
+  .back {
+    top: auto;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .slide {
+    padding: 96px 18px 80px;
+    align-items: start;
+  }
+
+  .inner {
+    padding-top: 20px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 12vw, 54px);
+  }
+
+  h2 {
+    font-size: clamp(28px, 9vw, 42px);
+  }
+
+  .cmd {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding-right: 14px;
+  }
+
+  .copy {
+    grid-column: 1 / -1;
+    justify-self: start;
+    min-width: 96px;
+  }
+
+  .next {
+    width: 100%;
+  }
+
+  .links a {
+    flex: 1 1 140px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+    </style>
+  </head>
+  <body data-step="0">
+    <div class="topline" aria-hidden="true">
+      <span id="bar"></span>
+    </div>
+
+    <button class="back" id="back" type="button" aria-label="上一步">上一页</button>
+
+    <aside class="chapter-rail" aria-label="课程进度">
+      <strong>SuperKing</strong>
+      <span>CC 安装小课</span>
+      <output id="count" aria-live="polite">00 / 08</output>
+    </aside>
+
+    <main id="deck" aria-label="Claude Code 安装教程">
+      <section class="slide active" data-chapter="开场">
+        <div class="inner hero">
+          <p class="eyebrow">给微信里的朋友</p>
+          <h1>今晚把 CC 装好，明天就让它替你做第一个网页。</h1>
+          <p class="lead">CC 就是 Claude Code。不会写代码也没关系，这份手册只要求你会复制、粘贴、回车。</p>
+          <button class="next primary" type="button" data-next>开始安装</button>
+          <p class="wechat-note">页面不依赖国外字体、CDN 或图片，发到微信也能正常打开。</p>
+        </div>
+      </section>
+
+      <section class="slide" data-chapter="准备">
+        <div class="inner">
+          <p class="step-no">STEP 1 / 8</p>
+          <h2>先确认你有一个终端</h2>
+          <p class="body">Windows 按 <strong>Win + R</strong>，输入 <strong>powershell</strong> 回车。Mac 打开「启动台」，搜索 <strong>终端</strong>。</p>
+          <p class="body">后面的命令都在这里输入。看到黑色或白色命令窗口就算过关。</p>
+          <button class="next" type="button" data-next>我打开了</button>
+        </div>
+      </section>
+
+      <section class="slide" data-chapter="Node">
+        <div class="inner">
+          <p class="step-no">STEP 2 / 8</p>
+          <h2>检查 Node.js</h2>
+          <p class="body">复制下面这行到终端。如果出现类似 <strong>v20.11.0</strong> 的数字，直接下一步。</p>
+          <div class="cmd" data-copy="node --version">
+            <span class="prompt">$</span>
+            <code>node --version</code>
+            <button class="copy" type="button">复制</button>
+          </div>
+          <p class="if">提示找不到命令？先装 Node.js LTS。官网打不开时，用国内镜像下载 LTS 安装包。</p>
+          <div class="links">
+            <a href="https://nodejs.org/zh-cn" target="_blank" rel="noopener">Node.js 官网</a>
+            <a href="https://npmmirror.com/mirrors/node/" target="_blank" rel="noopener">国内镜像</a>
+          </div>
+          <button class="next" type="button" data-next>Node 好了</button>
+        </div>
+      </section>
+
+      <section class="slide" data-chapter="安装 CC">
+        <div class="inner">
+          <p class="step-no">STEP 3 / 8</p>
+          <h2>安装 Claude Code</h2>
+          <p class="body">优先用系统自带安装方式。访问海外慢时，改用 npm 路线，配国内镜像会稳一点。</p>
+          <div class="cmd" data-copy="winget install Anthropic.ClaudeCode">
+            <span class="tag">Windows</span>
+            <span class="prompt">$</span>
+            <code>winget install Anthropic.ClaudeCode</code>
+            <button class="copy" type="button">复制</button>
+          </div>
+          <div class="cmd" data-copy="brew install --cask claude-code">
+            <span class="tag">Mac</span>
+            <span class="prompt">$</span>
+            <code>brew install --cask claude-code</code>
+            <button class="copy" type="button">复制</button>
+          </div>
+          <p class="if">没有 brew 的 Mac 用户，先去 brew.sh 安装 Homebrew；Windows 找不到 winget，先更新微软商店里的「应用安装程序」。</p>
+          <button class="next" type="button" data-next>安装命令跑完了</button>
+        </div>
+      </section>
+
+      <section class="slide" data-chapter="备用">
+        <div class="inner">
+          <p class="step-no">STEP 4 / 8</p>
+          <h2>如果上一步卡住，就走 npm 备用路线</h2>
+          <p class="body">这条路线更适合国内网络。先切 npm 镜像，再安装 CC。</p>
+          <div class="cmd" data-copy="npm config set registry https://registry.npmmirror.com">
+            <span class="tag">1</span>
+            <span class="prompt">$</span>
+            <code>npm config set registry https://registry.npmmirror.com</code>
+            <button class="copy" type="button">复制</button>
+          </div>
+          <div class="cmd" data-copy="npm install -g @anthropic-ai/claude-code">
+            <span class="tag">2</span>
+            <span class="prompt">$</span>
+            <code>npm install -g @anthropic-ai/claude-code</code>
+            <button class="copy" type="button">复制</button>
+          </div>
+          <p class="if">安装后输入 <strong>claude --version</strong>。能看到版本号，就说明 CC 已经在电脑里了。</p>
+          <button class="next" type="button" data-next>看到版本号了</button>
+        </div>
+      </section>
+
+      <section class="slide" data-chapter="钥匙">
+        <div class="inner">
+          <p class="step-no">STEP 5 / 8</p>
+          <h2>准备一把 API 钥匙</h2>
+          <p class="body">如果你能直接使用 Claude 官方账号，就按官方登录走。国内网络不稳时，可以先用 DeepSeek 作为模型供应商。</p>
+          <p class="body">打开 DeepSeek 开放平台，注册，进入 <strong>API Keys</strong>，创建一把新钥匙。复制后马上保存，因为它通常只完整显示一次。</p>
+          <div class="links">
+            <a href="https://platform.deepseek.com" target="_blank" rel="noopener">DeepSeek 开放平台</a>
+          </div>
+          <p class="if">建议先充值少量金额测试。不要把 API Key 发到群里，也不要截图给别人。</p>
+          <button class="next" type="button" data-next>钥匙存好了</button>
+        </div>
+      </section>
+
+      <section class="slide" data-chapter="切换">
+        <div class="inner">
+          <p class="step-no">STEP 6 / 8</p>
+          <h2>把模型切到可用的线路</h2>
+          <p class="body">如果你用 DeepSeek，推荐装一个模型切换工具，比如 CC Switch。它的作用很简单：把 CC 的请求转到你配置好的供应商。</p>
+          <div class="cmd" data-copy="brew tap farion1231/ccswitch && brew install --cask cc-switch">
+            <span class="tag">Mac</span>
+            <span class="prompt">$</span>
+            <code>brew tap farion1231/ccswitch &amp;&amp; brew install --cask cc-switch</code>
+            <button class="copy" type="button">复制</button>
+          </div>
+          <p class="if">Windows 用户下载 .msi 安装包。GitHub 打不开时，找发你这份教程的人要国内网盘包。</p>
+          <div class="links">
+            <a href="https://github.com/farion1231/ccswitch/releases" target="_blank" rel="noopener">CC Switch Releases</a>
+          </div>
+          <button class="next" type="button" data-next>线路配置好了</button>
+        </div>
+      </section>
+
+      <section class="slide" data-chapter="启动">
+        <div class="inner">
+          <p class="step-no">STEP 7 / 8</p>
+          <h2>启动 CC</h2>
+          <p class="body">在桌面新建一个文件夹，叫 <strong>my-first-site</strong>。终端输入 <strong>cd</strong> 加一个空格，把文件夹拖进终端，再回车。</p>
+          <div class="cmd" data-copy="claude">
+            <span class="prompt">$</span>
+            <code>claude</code>
+            <button class="copy" type="button">复制</button>
+          </div>
+          <p class="if">第一次启动遇到选择项，先按默认选。进入对话界面后，输入 <strong>/model</strong>，确认使用你刚才配置好的模型。</p>
+          <button class="next" type="button" data-next>我进去了</button>
+        </div>
+      </section>
+
+      <section class="slide" data-chapter="作品">
+        <div class="inner">
+          <p class="step-no">STEP 8 / 8</p>
+          <h2>让它做第一个作品</h2>
+          <p class="body">把下面这句话粘进去。它会生成一个可以双击打开的网页文件。</p>
+          <div class="cmd say" data-copy="帮我做一个自我介绍网页，用单个 HTML 文件完成，页面要适合发到微信里打开。做完告诉我文件在哪里。">
+            <span class="prompt">»</span>
+            <code>帮我做一个自我介绍网页，用单个 HTML 文件完成，页面要适合发到微信里打开。做完告诉我文件在哪里。</code>
+            <button class="copy" type="button">复制</button>
+          </div>
+          <p class="if">等它写完，打开文件夹，双击生成的 .html。看到页面，就算真正完成。</p>
+          <button class="next" type="button" data-next>我看到网页了</button>
+        </div>
+      </section>
+
+      <section class="slide" data-chapter="结束">
+        <div class="inner finale">
+          <p class="eyebrow">收工</p>
+          <h2>你不是在学一个软件，你是在给自己装一个会干活的同事。</h2>
+          <p class="lead">下一步，把你平时重复做的事情写成一句话交给它：改文案、做网页、整理表格、写脚本。先让它做小事，越用越准。</p>
+          <button class="next primary" type="button" data-restart>再看一遍</button>
+        </div>
+      </section>
+    </main>
+
+    <script>
+(() => {
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  const bar = document.getElementById("bar");
+  const count = document.getElementById("count");
+  const back = document.getElementById("back");
+  const total = slides.length;
+  let current = 0;
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  function setStep(next) {
+    if (next < 0 || next >= total || next === current) return;
+
+    slides[current].classList.remove("active");
+    slides[current].classList.toggle("past", next > current);
+    slides[next].classList.remove("past");
+    slides[next].classList.add("active");
+
+    current = next;
+    document.body.dataset.step = String(current);
+    bar.style.width = `${(current / (total - 1)) * 100}%`;
+    count.value = `${String(current).padStart(2, "0")} / ${String(total - 1).padStart(2, "0")}`;
+    count.textContent = count.value;
+    slides[current].scrollTop = 0;
+  }
+
+  function copyText(text, button) {
+    const done = () => {
+      button.textContent = "已复制";
+      button.classList.add("ok");
+      window.setTimeout(() => {
+        button.textContent = "复制";
+        button.classList.remove("ok");
+      }, 1500);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      return;
+    }
+
+    fallbackCopy(text, done);
+  }
+
+  function fallbackCopy(text, done) {
+    const field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.left = "-9999px";
+    document.body.appendChild(field);
+    field.select();
+    field.setSelectionRange(0, field.value.length);
+
+    try {
+      document.execCommand("copy");
+      done();
+    } finally {
+      document.body.removeChild(field);
+    }
+  }
+
+  count.value = `00 / ${String(total - 1).padStart(2, "0")}`;
+  count.textContent = count.value;
+
+  document.querySelectorAll("[data-next]").forEach((button) => {
+    button.addEventListener("click", () => setStep(current + 1));
+  });
+
+  document.querySelectorAll("[data-restart]").forEach((button) => {
+    button.addEventListener("click", () => setStep(0));
+  });
+
+  document.querySelectorAll(".copy").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const command = button.closest(".cmd").dataset.copy;
+      copyText(command, button);
+    });
+  });
+
+  back.addEventListener("click", () => setStep(current - 1));
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setStep(current + 1);
+    }
+
+    if (event.key === "ArrowLeft" || event.key === "ArrowUp" || event.key === "Backspace") {
+      event.preventDefault();
+      setStep(current - 1);
+    }
+  });
+
+  window.addEventListener(
+    "touchstart",
+    (event) => {
+      const [touch] = event.changedTouches;
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "touchend",
+    (event) => {
+      const [touch] = event.changedTouches;
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+
+      if (Math.abs(dx) < 56 || Math.abs(dx) < Math.abs(dy) * 1.4) return;
+      setStep(dx < 0 ? current + 1 : current - 1);
+    },
+    { passive: true }
+  );
+})();
+
+    </script>
+  </body>
+</html>

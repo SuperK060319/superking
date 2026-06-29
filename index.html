@@ -1,1076 +1,769 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="format-detection" content="telephone=no" />
-    <title>SuperKing · 严匡正</title>
-    <style>
-        /* ============================================
-           RESET & VARIABLES
-           ============================================ */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Super Kinge个人能力报告</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #5c6b73;
+      --line: #d8e0e6;
+      --paper: #fbfcf8;
+      --panel: #ffffff;
+      --green: #1d7a5f;
+      --amber: #d58a1f;
+      --blue: #2d6f9f;
+      --red: #b84a3a;
+      --soft-green: #e8f4ef;
+      --soft-amber: #fff1db;
+      --soft-blue: #eaf2f8;
+      --shadow: 0 16px 40px rgba(23, 32, 42, 0.08);
+    }
 
-        :root {
-            --bg: #08080c;
-            --bg-surface: rgba(255,255,255,0.025);
-            --bg-elevated: rgba(255,255,255,0.05);
-            --border: rgba(255,255,255,0.06);
-            --border-hover: rgba(249,115,22,0.3);
-            --text: #e4e4e7;
-            --text-secondary: #a1a1aa;
-            --text-tertiary: #71717a;
-            --orange: #f97316;
-            --orange-dim: rgba(249,115,22,0.12);
-            --orange-glow: rgba(249,115,22,0.06);
-            --amber: #fbbf24;
-            --white: #ffffff;
-            --radius: 16px;
-            --radius-sm: 10px;
-            --max-width: 960px;
-            --nav-height: 56px;
-        }
+    * { box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            -webkit-text-size-adjust: 100%;
-        }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(29, 122, 95, 0.06) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(45, 111, 159, 0.05) 1px, transparent 1px),
+        var(--paper);
+      background-size: 36px 36px;
+      line-height: 1.68;
+      letter-spacing: 0;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.75;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-        }
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 36px 0 72px;
+    }
 
-        /* ============================================
-           BACKGROUND ATMOSPHERE
-           ============================================ */
-        .bg-atmosphere {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-        .bg-atmosphere .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(140px);
-            opacity: 0.10;
-            animation: orbFloat 24s ease-in-out infinite;
-        }
-        .bg-atmosphere .orb:nth-child(1) {
-            width: 600px; height: 600px;
-            background: var(--orange);
-            top: -15%; left: -20%;
-            animation-delay: 0s;
-        }
-        .bg-atmosphere .orb:nth-child(2) {
-            width: 450px; height: 450px;
-            background: #8b5cf6;
-            bottom: -12%; right: -15%;
-            animation-delay: -9s;
-        }
-        .bg-atmosphere .orb:nth-child(3) {
-            width: 350px; height: 350px;
-            background: var(--amber);
-            top: 55%; left: 60%;
-            animation-delay: -17s;
-        }
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0,0) scale(1); }
-            33%  { transform: translate(36px,-48px) scale(1.12); }
-            66%  { transform: translate(-24px,28px) scale(0.88); }
-        }
+    .hero {
+      min-height: 72vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+      gap: 36px;
+      align-items: center;
+      padding: 36px 0 48px;
+      border-bottom: 1px solid var(--line);
+    }
 
-        /* 微颗粒纹理 */
-        .grain {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 700;
+    }
 
-        /* ============================================
-           LAYOUT
-           ============================================ */
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 28px;
-            position: relative;
-            z-index: 1;
-        }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(29, 122, 95, 0.12);
+    }
 
-        /* ============================================
-           NAVIGATION
-           ============================================ */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            height: var(--nav-height);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(8,8,12,0.72);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-        }
-        .nav .logo {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--white);
-            letter-spacing: -0.01em;
-        }
-        .nav .logo span { color: var(--orange); }
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 500;
-            transition: color 0.25s;
-            letter-spacing: 0.02em;
-        }
-        .nav-links a:hover,
-        .nav-links a:active { color: var(--white); }
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: 0;
+      max-width: 760px;
+    }
 
-        @media (max-width: 540px) {
-            .nav-links { gap: 18px; }
-            .nav-links a { font-size: 0.82rem; }
-            .nav .logo { font-size: 0.95rem; }
-        }
+    .subtitle {
+      margin: 22px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.7;
+    }
 
-        /* ============================================
-           SECTION COMMONS
-           ============================================ */
-        .section {
-            padding: 72px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .section:last-of-type { border-bottom: none; }
+    .identity {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
 
-        .section-label {
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.22em;
-            color: var(--orange);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--white);
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
-            line-height: 1.25;
-        }
-        .section-desc {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.8;
-            max-width: 600px;
-        }
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.76);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #2d3b43;
+    }
 
-        @media (max-width: 600px) {
-            .section { padding: 52px 0; }
-            .section-title { font-size: 1.55rem; }
-            .section-desc { font-size: 0.92rem; }
-        }
+    .hero-visual {
+      position: relative;
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+    }
 
-        /* ============================================
-           HERO
-           ============================================ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 100px 0 80px;
-            position: relative;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-        /* Hero 专属光晕 */
-        .hero-light {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-55%);
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(249,115,22,0.10) 0%, transparent 70%);
-            pointer-events: none;
-            animation: heroPulse 6s ease-in-out infinite;
-        }
-        @keyframes heroPulse {
-            0%, 100% { opacity: 0.5; transform: translate(-50%,-55%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%,-55%) scale(1.15); }
-        }
-        /* 几何线条装饰 */
-        .hero-geo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            width: 320px;
-            height: 320px;
-            border: 1px solid rgba(249,115,22,0.08);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: geoSpin 40s linear infinite;
-        }
-        .hero-geo::after {
-            content: '';
-            position: absolute;
-            top: -1px; left: 50%;
-            transform: translateX(-50%);
-            width: 40px; height: 2px;
-            background: rgba(249,115,22,0.25);
-        }
-        @keyframes geoSpin {
-            from { transform: translate(-50%,-50%) rotate(0deg); }
-            to   { transform: translate(-50%,-50%) rotate(360deg); }
-        }
+    .radar {
+      width: min(420px, 100%);
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, transparent 0 18%, rgba(29, 122, 95, 0.08) 18% 19%, transparent 19% 38%, rgba(45, 111, 159, 0.08) 38% 39%, transparent 39% 58%, rgba(213, 138, 31, 0.1) 58% 59%, transparent 59%),
+        rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
 
-        .hero .hero-label {
-            display: inline-block;
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            color: var(--orange);
-            font-weight: 500;
-            margin-bottom: 28px;
-            position: relative;
-            z-index: 1;
-        }
-        .hero .hero-headline {
-            font-size: clamp(2.8rem, 8vw, 5.5rem);
-            font-weight: 900;
-            letter-spacing: -0.035em;
-            line-height: 1.08;
-            color: var(--white);
-            position: relative;
-            z-index: 1;
-            margin-bottom: 8px;
-        }
-        .hero .hero-headline .hl {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--amber) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero .hero-sub {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-            letter-spacing: 0.06em;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 42px;
-        }
-        .hero .hero-sub strong { color: var(--white); font-weight: 600; }
-        .hero .hero-ctas {
-            display: flex;
-            gap: 14px;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-        .hero .cta-primary,
-        .hero .cta-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 13px 28px;
-            border-radius: 50px;
-            font-size: 0.92rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            letter-spacing: 0.02em;
-        }
-        .hero .cta-primary {
-            background: var(--orange);
-            color: #fff;
-            border: none;
-        }
-        .hero .cta-primary:hover { background: #ea580c; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(249,115,22,0.3); }
-        .hero .cta-ghost {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-        .hero .cta-ghost:hover { border-color: var(--border-hover); background: var(--orange-dim); color: var(--white); }
+    .radar svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
 
-        @media (max-width: 600px) {
-            .hero { padding: 80px 0 64px; min-height: 90vh; }
-            .hero .hero-headline { font-size: 2.4rem; }
-            .hero .hero-sub { font-size: 0.95rem; }
-            .hero-geo { width: 220px; height: 220px; }
-            .hero-light { width: 320px; height: 320px; }
-        }
+    .legend {
+      position: absolute;
+      right: 6px;
+      bottom: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
 
-        /* ============================================
-           ARGUMENT CARDS (Why Action Matters)
-           ============================================ */
-        .arg-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 36px;
-        }
-        @media (max-width: 720px) {
-            .arg-grid { grid-template-columns: 1fr; }
-        }
-        .arg-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px 26px 28px;
-            transition: all 0.35s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .arg-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--orange), transparent);
-            opacity: 0;
-            transition: opacity 0.35s;
-        }
-        .arg-card:hover::before { opacity: 1; }
-        .arg-card:hover {
-            border-color: var(--border-hover);
-            background: rgba(255,255,255,0.04);
-            transform: translateY(-3px);
-        }
-        .arg-card .arg-num {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            color: var(--orange);
-            margin-bottom: 14px;
-        }
-        .arg-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 10px;
-            letter-spacing: -0.01em;
-        }
-        .arg-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
-        .arg-card .arg-evidence {
-            margin-top: 14px;
-            padding-top: 14px;
-            border-top: 1px solid var(--border);
-            font-size: 0.82rem;
-            color: var(--text-tertiary);
-            line-height: 1.6;
-        }
+    section {
+      padding: 54px 0 0;
+    }
 
-        /* ============================================
-           PROJECT CARDS (What I'm Building)
-           ============================================ */
-        .project-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-top: 36px;
-        }
-        .project-card {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 28px;
-            align-items: center;
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 28px 30px;
-            transition: all 0.35s ease;
-            text-decoration: none;
-            color: inherit;
-            cursor: default;
-        }
-        .project-card:hover {
-            border-color: var(--border-hover);
-            background: rgba(255,255,255,0.035);
-            transform: translateX(4px);
-        }
-        .project-card .pc-visual {
-            width: 120px;
-            height: 80px;
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .pc-visual.pcv-1 { background: linear-gradient(135deg, rgba(249,115,22,0.18), rgba(251,191,36,0.08)); }
-        .pc-visual.pcv-2 { background: linear-gradient(135deg, rgba(139,92,246,0.14), rgba(249,115,22,0.06)); }
-        .pc-visual.pcv-3 { background: linear-gradient(135deg, rgba(251,191,36,0.12), rgba(249,115,22,0.12)); }
-        .project-card .pc-info .pc-tag {
-            display: inline-block;
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: var(--orange);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .project-card .pc-info h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 4px;
-            letter-spacing: -0.01em;
-        }
-        .project-card .pc-info p {
-            color: var(--text-secondary);
-            font-size: 0.88rem;
-            line-height: 1.6;
-        }
-        .project-card .pc-info .pc-stat {
-            color: var(--amber);
-            font-weight: 700;
-        }
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
 
-        @media (max-width: 600px) {
-            .project-card {
-                grid-template-columns: 1fr;
-                gap: 16px;
-                padding: 24px 20px;
-            }
-            .project-card .pc-visual { width: 100%; height: 60px; font-size: 1.6rem; }
-        }
+    h2 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
 
-        /* ============================================
-           BELIEF QUOTE
-           ============================================ */
-        .belief-block {
-            text-align: center;
-            padding: 32px 0;
-        }
-        .belief-block .motto {
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            font-weight: 800;
-            line-height: 1.25;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--white) 0%, var(--orange) 50%, var(--amber) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
-        }
-        .belief-block .motto-cn {
-            font-size: 1.2rem;
-            color: var(--amber);
-            font-weight: 500;
-            margin-bottom: 28px;
-        }
-        .belief-block .expression {
-            max-width: 520px;
-            margin: 0 auto;
-            color: var(--text-tertiary);
-            font-size: 0.9rem;
-            line-height: 1.9;
-        }
+    .section-note {
+      margin: 0;
+      color: var(--muted);
+      max-width: 520px;
+      font-size: 15px;
+      text-align: right;
+    }
 
-        @media (max-width: 600px) {
-            .belief-block .motto { font-size: 1.5rem; }
-            .belief-block .motto-cn { font-size: 1rem; }
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
 
-        /* ============================================
-           CAPABILITY QUADRANTS
-           ============================================ */
-        .cap-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 36px;
-        }
-        @media (max-width: 600px) {
-            .cap-grid { grid-template-columns: 1fr; }
-        }
-        .cap-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 28px 26px;
-            transition: all 0.35s ease;
-        }
-        .cap-card:hover {
-            border-color: var(--border-hover);
-            background: rgba(255,255,255,0.035);
-        }
-        .cap-card .cap-icon {
-            font-size: 1.6rem;
-            margin-bottom: 12px;
-        }
-        .cap-card h4 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 6px;
-            letter-spacing: -0.01em;
-        }
-        .cap-card p {
-            color: var(--text-secondary);
-            font-size: 0.88rem;
-            line-height: 1.65;
-        }
+    .two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-        /* ============================================
-           TIMELINE (Now / Next)
-           ============================================ */
-        .timeline {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            margin-top: 36px;
-            position: relative;
-        }
-        /* 连接线 (桌面端横向) */
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 22px;
-            left: 16.67%;
-            right: 16.67%;
-            height: 1px;
-            background: var(--border);
-            z-index: 0;
-        }
-        @media (max-width: 720px) {
-            .timeline {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-            .timeline::before {
-                top: 0; bottom: 0;
-                left: 22px;
-                right: auto;
-                width: 1px;
-                height: auto;
-            }
-        }
-        .tl-stage {
-            position: relative;
-            z-index: 1;
-            padding: 0 20px 20px 0;
-        }
-        @media (max-width: 720px) {
-            .tl-stage { padding: 0 0 28px 46px; }
-            .tl-stage:last-child { padding-bottom: 0; }
-        }
-        .tl-stage .tl-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--orange);
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 0 14px rgba(249,115,22,0.4);
-        }
-        .tl-stage .tl-label {
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--orange);
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .tl-stage h4 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 10px;
-            letter-spacing: -0.01em;
-        }
-        .tl-stage ul {
-            list-style: none;
-        }
-        .tl-stage ul li {
-            color: var(--text-secondary);
-            font-size: 0.88rem;
-            line-height: 1.7;
-            padding-left: 14px;
-            position: relative;
-        }
-        .tl-stage ul li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--text-tertiary);
-        }
+    .panel {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 10px 26px rgba(23, 32, 42, 0.05);
+    }
 
-        /* ============================================
-           CONTACT
-           ============================================ */
-        .contact-section {
-            text-align: center;
-            padding: 72px 0 40px;
-            border-bottom: none;
-        }
-        .contact-section .connect-intro {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.8;
-            max-width: 440px;
-            margin: 0 auto 32px;
-        }
-        .qr-wrapper {
-            width: 164px;
-            height: 164px;
-            margin: 0 auto 20px;
-            background: #18181b;
-            border: 2px dashed #3f3f46;
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-tertiary);
-            font-size: 0.82rem;
-            transition: all 0.35s;
-            overflow: hidden;
-        }
-        .qr-wrapper:hover {
-            border-color: var(--orange);
-            border-style: solid;
-        }
-        .qr-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .contact-section .location {
-            color: var(--text-tertiary);
-            font-size: 0.85rem;
-            margin-bottom: 28px;
-        }
-        .contact-links {
-            display: flex;
-            gap: 14px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .contact-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 22px;
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        .contact-links a:hover {
-            border-color: var(--border-hover);
-            background: var(--orange-dim);
-            color: var(--white);
-        }
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      line-height: 1.35;
+    }
 
-        /* ============================================
-           FOOTER
-           ============================================ */
-        .site-footer {
-            text-align: center;
-            padding: 24px 0 48px;
-            color: var(--text-tertiary);
-            font-size: 0.78rem;
-            letter-spacing: 0.04em;
-            border-top: 1px solid var(--border);
-        }
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+    }
 
-        /* ============================================
-           SCROLL REVEAL
-           ============================================ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
-                        transform 0.7s cubic-bezier(0.22,1,0.36,1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .accent-green { border-top: 5px solid var(--green); }
+    .accent-amber { border-top: 5px solid var(--amber); }
+    .accent-blue { border-top: 5px solid var(--blue); }
+    .accent-red { border-top: 5px solid var(--red); }
 
-        /* 延迟序列 */
-        .reveal-d1 { transition-delay: 0.05s; }
-        .reveal-d2 { transition-delay: 0.12s; }
-        .reveal-d3 { transition-delay: 0.19s; }
-        .reveal-d4 { transition-delay: 0.26s; }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
 
-        /* ============================================
-           RESPONSIVE FINE-TUNING
-           ============================================ */
-        @media (max-width: 400px) {
-            .container { padding: 0 18px; }
-            .hero .hero-headline { font-size: 2rem; }
-            .hero .cta-primary,
-            .hero .cta-ghost { padding: 11px 22px; font-size: 0.85rem; }
-            .arg-card { padding: 24px 20px; }
-            .cap-card { padding: 22px 20px; }
-        }
-    </style>
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+      min-height: 120px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 30px;
+      line-height: 1.1;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      position: relative;
+      margin-top: 8px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .step-num {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--soft-blue);
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .step h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .step p { margin: 0; color: var(--muted); }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 780px;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f2f6f5;
+      color: #2a3b36;
+      font-size: 14px;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .quote {
+      background: #17202a;
+      color: #f8fbf6;
+      border-radius: 18px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 180px;
+      gap: 22px;
+      align-items: center;
+      margin-top: 18px;
+      overflow: hidden;
+    }
+
+    .quote p {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.65;
+    }
+
+    .quote small {
+      color: #b9c8c1;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .mini-graphic {
+      width: 180px;
+      height: 180px;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .service {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
+      border-radius: 12px;
+    }
+
+    .service b {
+      color: var(--green);
+    }
+
+    .service p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-visual {
+        min-height: 300px;
+      }
+
+      .grid,
+      .two,
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-note {
+        text-align: left;
+        margin-top: 10px;
+      }
+
+      .quote {
+        grid-template-columns: 1fr;
+      }
+
+      .service {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+      .hero {
+        min-height: auto;
+        page-break-after: avoid;
+      }
+      .panel, .metric, .step, .table-wrap, .quote {
+        box-shadow: none;
+      }
+      section {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <!-- ============ 背景氛围 ============ -->
-    <div class="bg-atmosphere" aria-hidden="true">
-        <div class="orb"></div>
-        <div class="orb"></div>
-        <div class="orb"></div>
-    </div>
-    <div class="grain" aria-hidden="true"></div>
-
-    <!-- ============ 导航 ============ -->
-    <nav class="nav" role="navigation" aria-label="主导航">
-        <div class="container">
-            <a href="#hero" class="logo">Super<span>King</span></a>
-            <ul class="nav-links">
-                <li><a href="#action">行动</a></li>
-                <li><a href="#building">在建</a></li>
-                <li><a href="#capability">能力</a></li>
-                <li><a href="#connect">链接</a></li>
-            </ul>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>老板对接版个人能力报告</div>
+        <h1>严匡正<br />SuperKing</h1>
+        <p class="subtitle">
+          一个正在把校园实践、内容传播、AI工作流和组织协作整合起来的年轻执行者。
+          我擅长把混乱的信息、想法和流程，整理成能执行、能传播、能复盘的交付物。
+        </p>
+        <div class="identity">
+          <span class="pill">广东中山</span>
+          <span class="pill">电材251</span>
+          <span class="pill">创新创业学院成员</span>
+          <span class="pill">创业俱乐部部长</span>
+          <span class="pill">新媒体运营中心成员</span>
+          <span class="pill">滴滴/美团校园大使经历</span>
         </div>
-    </nav>
-
-    <main>
-
-        <!-- ============ ① HERO ============ -->
-        <section id="hero" class="hero">
-            <div class="hero-light" aria-hidden="true"></div>
-            <div class="hero-geo" aria-hidden="true"></div>
-
-            <div class="hero-label reveal">SuperKing · 严匡正</div>
-
-            <h1 class="hero-headline reveal reveal-d1">
-                迷茫的解药<br>是<span class="hl">行动</span>
-            </h1>
-
-            <p class="hero-sub reveal reveal-d2">
-                <strong>大一 · 已在路上</strong> &nbsp;|&nbsp; 佛山 · 中山
-            </p>
-
-            <div class="hero-ctas reveal reveal-d3">
-                <a href="#action" class="cta-primary">看看我做了什么 ↘</a>
-                <a href="#connect" class="cta-ghost">链接我 →</a>
-            </div>
-        </section>
-
-        <!-- ============ ② 行动即答案 ============ -->
-        <section id="action" class="section">
-            <div class="container">
-                <div class="section-label reveal">Why Action Matters</div>
-                <h2 class="section-title reveal reveal-d1">行动即答案</h2>
-                <p class="section-desc reveal reveal-d1">
-                    方向不是想出来的，是试出来的。每一次行动都是对世界的一次小型实验。
-                </p>
-
-                <div class="arg-grid">
-                    <div class="arg-card reveal reveal-d2">
-                        <div class="arg-num">01</div>
-                        <h3>试出来的方向</h3>
-                        <p>不做选择题，做证明题。</p>
-                        <div class="arg-evidence">
-                            餐饮 · 销售 · 外卖 · 摄影——六份兼职，六次小型社会实验。每一段都在回答同一个问题：我能做到什么。
-                        </div>
-                    </div>
-
-                    <div class="arg-card reveal reveal-d3">
-                        <div class="arg-num">02</div>
-                        <h3>输出即建造</h3>
-                        <p>表达不是为了被看见，是为了被理解。</p>
-                        <div class="arg-evidence">
-                            15 天 100W+ 播放，帮同龄人在迷茫中找到方向。内容不是产品，是世界观的外化。
-                        </div>
-                    </div>
-
-                    <div class="arg-card reveal reveal-d4">
-                        <div class="arg-num">03</div>
-                        <h3>系统带来复利</h3>
-                        <p>一次行动是火花，持续行动是引擎。</p>
-                        <div class="arg-evidence">
-                            纳斯达克定投 + 持续阅读 + 原则体系——复利不只发生在金钱里，也发生在思想里。
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ ③ 正在建造 ============ -->
-        <section id="building" class="section">
-            <div class="container">
-                <div class="section-label reveal">What I'm Building</div>
-                <h2 class="section-title reveal reveal-d1">正在建造</h2>
-                <p class="section-desc reveal reveal-d1">
-                    此刻的我，同时在三条线上推进。
-                </p>
-
-                <div class="project-list">
-                    <div class="project-card reveal reveal-d2">
-                        <div class="pc-visual pcv-1" aria-hidden="true">🎬</div>
-                        <div class="pc-info">
-                            <div class="pc-tag">内容创作</div>
-                            <h3>个人图文 IP</h3>
-                            <p>
-                                校园生活 · 成长思考 · 迷茫对话。<br>
-                                <span class="pc-stat">15天 100W+ 播放</span> · 单篇最高 <span class="pc-stat">79W+</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="project-card reveal reveal-d3">
-                        <div class="pc-visual pcv-2" aria-hidden="true">🤝</div>
-                        <div class="pc-info">
-                            <div class="pc-tag">校园网络</div>
-                            <h3>滴滴 × 美团 双大使</h3>
-                            <p>
-                                连接校园与产业，在学生群体中建立真实的品牌影响力。
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="project-card reveal reveal-d4">
-                        <div class="pc-visual pcv-3" aria-hidden="true">🏛</div>
-                        <div class="pc-info">
-                            <div class="pc-tag">社群运营</div>
-                            <h3>创业俱乐部 · 部长</h3>
-                            <p>
-                                广轻创新创业促进会成员。建造一个创业者能找到彼此的地方。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ ④ 信念 ============ -->
-        <section class="section">
-            <div class="container">
-                <div class="belief-block reveal">
-                    <div class="motto">All things work together<br>for my good.</div>
-                    <div class="motto-cn">凡是一切皆有利于我</div>
-                    <p class="expression reveal reveal-d1">
-                        表达是向世界输出观点的过程，展示着你对世界的看法，是你的宇宙观、世界观的显现。
-                        同时，它也是你向内寻找自己的过程，传递着你对待自我的态度，是你的人生观与价值观的外化。
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ ⑤ 能力象限 ============ -->
-        <section id="capability" class="section">
-            <div class="container">
-                <div class="section-label reveal">Capability</div>
-                <h2 class="section-title reveal reveal-d1">可迁移资产</h2>
-                <p class="section-desc reveal reveal-d1">
-                    不是技能列表，而是无论做什么都用得上的底层能力。
-                </p>
-
-                <div class="cap-grid">
-                    <div class="cap-card reveal reveal-d2">
-                        <div class="cap-icon">🧭</div>
-                        <h4>方向感</h4>
-                        <p>走过 6 个国家、32 座国内城市。地理边界即是认知边界——每多走一步，就多一分对世界的判断力。</p>
-                    </div>
-                    <div class="cap-card reveal reveal-d2">
-                        <div class="cap-icon">🗣️</div>
-                        <h4>表达力</h4>
-                        <p>图文 IP 从 0 到 100W+。内容判断、选题嗅觉、社群对话——表达是 21 世纪最被低估的复利资产。</p>
-                    </div>
-                    <div class="cap-card reveal reveal-d3">
-                        <div class="cap-icon">🧱</div>
-                        <h4>执行力</h4>
-                        <p>大一完成六种职业方向试错。不等"准备好"，先下场。行动本身就是最好的调研。</p>
-                    </div>
-                    <div class="cap-card reveal reveal-d3">
-                        <div class="cap-icon">📚</div>
-                        <h4>思想系统</h4>
-                        <p>10 本底层经典持续输入——从《穷爸爸富爸爸》到《思考快与慢》，从经济学到心理学。输入质量决定输出上限。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ ⑥ NOW / NEXT ============ -->
-        <section class="section">
-            <div class="container">
-                <div class="section-label reveal">Now / Next</div>
-                <h2 class="section-title reveal reveal-d1">时间线</h2>
-                <p class="section-desc reveal reveal-d1">
-                    建造不是一口气完成的事。它在每一个当下发生。
-                </p>
-
-                <div class="timeline">
-                    <div class="tl-stage reveal reveal-d2">
-                        <div class="tl-dot"></div>
-                        <div class="tl-label">Now</div>
-                        <h4>此刻</h4>
-                        <ul>
-                            <li>大一在读</li>
-                            <li>运营个人图文 IP</li>
-                            <li>滴滴 / 美团校园大使</li>
-                            <li>考驾照中</li>
-                        </ul>
-                    </div>
-                    <div class="tl-stage reveal reveal-d3">
-                        <div class="tl-dot"></div>
-                        <div class="tl-label">Next</div>
-                        <h4>下一步</h4>
-                        <ul>
-                            <li>骑行北上跨省</li>
-                            <li>单人旅行历练</li>
-                            <li>大三前实现经济自由</li>
-                        </ul>
-                    </div>
-                    <div class="tl-stage reveal reveal-d4">
-                        <div class="tl-dot"></div>
-                        <div class="tl-label">Long</div>
-                        <h4>长期</h4>
-                        <ul>
-                            <li>毕业前完成原始积累</li>
-                            <li>持续放大个人影响力</li>
-                            <li>帮助更多人走出迷茫</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- 原则条 -->
-                <div class="belief-block reveal" style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);">
-                    <p style="color: var(--text-tertiary); font-size: 0.85rem; margin-bottom: 16px;">我的原则</p>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.9; max-width: 500px; margin: 0 auto 6px;">
-                        <strong style="color: var(--white);">交友：</strong>真诚 · 积极乐观 · 长期主义
-                    </p>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.9; max-width: 500px; margin: 0 auto;">
-                        <strong style="color: var(--white);">处事：</strong>不接受突发紧急安排（人命关天除外）· 守时
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ ⑦ 链接 ============ -->
-        <section id="connect" class="contact-section">
-            <div class="container">
-                <div class="section-label reveal">Connect</div>
-                <h2 class="section-title reveal reveal-d1">欢迎链接</h2>
-                <p class="connect-intro reveal reveal-d1">
-                    我只是一个小白，向大家多多学习。<br>如果你也在建造什么——欢迎链接。
-                </p>
-
-                <div class="qr-wrapper reveal reveal-d2">
-                    <img src="wechat-qrcode.png" alt="微信二维码 - SuperKing 严匡正" />
-                </div>
-                <p class="location reveal reveal-d2">扫一扫，加我为朋友 · 广东 中山 / 佛山</p>
-
-                <div class="contact-links reveal reveal-d3">
-                    <a href="mailto:yankuangzheng@example.com">📧 邮件</a>
-                    <a href="#hero">🏠 回到顶部</a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ============ FOOTER ============ -->
-    <footer class="site-footer">
-        <div class="container">
-            © SuperKing · 严匡正 &nbsp;—&nbsp; 迷茫的解药是行动
+      </div>
+      <div class="hero-visual" aria-label="能力雷达图">
+        <div class="radar">
+          <svg viewBox="0 0 420 420" role="img" aria-label="严匡正能力地图">
+            <defs>
+              <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#17202a" flood-opacity="0.12"/>
+              </filter>
+            </defs>
+            <line x1="210" y1="24" x2="210" y2="396" stroke="#d8e0e6" stroke-width="1"/>
+            <line x1="24" y1="210" x2="396" y2="210" stroke="#d8e0e6" stroke-width="1"/>
+            <line x1="78" y1="78" x2="342" y2="342" stroke="#d8e0e6" stroke-width="1"/>
+            <line x1="342" y1="78" x2="78" y2="342" stroke="#d8e0e6" stroke-width="1"/>
+            <polygon points="210,60 326,132 324,278 210,344 96,282 92,134" fill="rgba(29,122,95,0.18)" stroke="#1d7a5f" stroke-width="3" filter="url(#softShadow)"/>
+            <circle cx="210" cy="60" r="7" fill="#1d7a5f"/>
+            <circle cx="326" cy="132" r="7" fill="#d58a1f"/>
+            <circle cx="324" cy="278" r="7" fill="#2d6f9f"/>
+            <circle cx="210" cy="344" r="7" fill="#b84a3a"/>
+            <circle cx="96" cy="282" r="7" fill="#1d7a5f"/>
+            <circle cx="92" cy="134" r="7" fill="#d58a1f"/>
+            <text x="210" y="40" text-anchor="middle" font-size="15" fill="#17202a" font-weight="700">AI工作流</text>
+            <text x="352" y="128" text-anchor="start" font-size="15" fill="#17202a" font-weight="700">内容传播</text>
+            <text x="348" y="286" text-anchor="start" font-size="15" fill="#17202a" font-weight="700">校园市场</text>
+            <text x="210" y="376" text-anchor="middle" font-size="15" fill="#17202a" font-weight="700">组织协作</text>
+            <text x="72" y="292" text-anchor="end" font-size="15" fill="#17202a" font-weight="700">项目交付</text>
+            <text x="68" y="132" text-anchor="end" font-size="15" fill="#17202a" font-weight="700">表达复盘</text>
+          </svg>
         </div>
+        <div class="legend">关键词：实干、利他、长期主义、反馈、标准化、产品化</div>
+      </div>
+    </header>
+
+    <section>
+      <div class="section-title">
+        <h2>一、老板为什么可以关注我</h2>
+        <p class="section-note">不是传统简历，而是从“能不能解决问题、能不能持续交付”来判断。</p>
+      </div>
+      <div class="metrics">
+        <div class="metric">
+          <strong>100W+</strong>
+          <span>个人图文号 15 天播放量，单篇最高 79W+，证明有内容测试与传播经验。</span>
+        </div>
+        <div class="metric">
+          <strong>7天</strong>
+          <span>可执行的老板 AI 助理 MVP 试运行周期，先跑通，再标准化。</span>
+        </div>
+        <div class="metric">
+          <strong>3类</strong>
+          <span>校园组织、老板个人、小团队工作流，是当前最适合落地的服务场景。</span>
+        </div>
+        <div class="metric">
+          <strong>4项</strong>
+          <span>内容、AI、校园市场、组织协作，可以组合成真实交付能力。</span>
+        </div>
+      </div>
+      <div class="quote">
+        <div>
+          <p>我适合被用在“从 0 到 1 跑通流程”的位置：先理解真实需求，再做轻量原型，最后把有效流程沉淀成模板、SOP 和可复制服务。</p>
+          <small>适合试合作，不适合只听我讲概念。给我一个真实场景，我更容易证明价值。</small>
+        </div>
+        <svg class="mini-graphic" viewBox="0 0 180 180" aria-hidden="true">
+          <rect x="18" y="20" width="144" height="34" rx="8" fill="#e8f4ef"/>
+          <rect x="18" y="72" width="144" height="34" rx="8" fill="#fff1db"/>
+          <rect x="18" y="124" width="144" height="34" rx="8" fill="#eaf2f8"/>
+          <path d="M90 54 L90 72 M90 106 L90 124" stroke="#f8fbf6" stroke-width="8" stroke-linecap="round"/>
+          <path d="M90 54 L90 72 M90 106 L90 124" stroke="#1d7a5f" stroke-width="3" stroke-linecap="round"/>
+          <text x="90" y="42" text-anchor="middle" font-size="13" fill="#17202a" font-weight="700">需求</text>
+          <text x="90" y="94" text-anchor="middle" font-size="13" fill="#17202a" font-weight="700">原型</text>
+          <text x="90" y="146" text-anchor="middle" font-size="13" fill="#17202a" font-weight="700">复用</text>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>二、我能解决的具体问题</h2>
+        <p class="section-note">以下不是兴趣标签，而是可以转成项目任务的能力模块。</p>
+      </div>
+      <div class="grid">
+        <article class="panel accent-green">
+          <h3>AI 工作流部署</h3>
+          <p>把老板的消息、项目、日程、会议、客户沟通整理成可追踪流程，先做 7 天 MVP，再沉淀模板库、提示词库和 SOP。</p>
+        </article>
+        <article class="panel accent-amber">
+          <h3>内容表达与传播</h3>
+          <p>有图文号 15 天 100W+ 播放经验，也能把复杂内容转成口播脚本、教程、推文、案例复盘和对外介绍页。</p>
+        </article>
+        <article class="panel accent-blue">
+          <h3>校园市场与用户触达</h3>
+          <p>做过滴滴/美团校园大使，理解扫楼、地推、社群、学生用户心理和校园推广中的负反馈处理。</p>
+        </article>
+        <article class="panel accent-red">
+          <h3>组织与服务意识</h3>
+          <p>做过创业俱乐部部长，也在校园组织材料中多次体现出流程设计、用户照看、反馈收集和活动组织意识。</p>
+        </article>
+        <article class="panel accent-green">
+          <h3>技术转译能力</h3>
+          <p>能把微信聊天记录导出、AI Skill、3D 互动网页、图像还原提示词等复杂操作写成新人能看懂的流程文档。</p>
+        </article>
+        <article class="panel accent-amber">
+          <h3>项目复盘与标准化</h3>
+          <p>习惯把一次项目拆解成经验、踩坑、提示词、交付物和下一次可复用的流程，适合参与从试错到标准化的阶段。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>三、可验证经历与材料</h2>
+        <p class="section-note">老板判断一个年轻人，不只看他说什么，更看他已经做过什么。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>材料/经历</th>
+              <th>说明</th>
+              <th>可证明能力</th>
+              <th>老板可如何使用</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>个人图文号 15 天 100W+ 播放</td>
+              <td>单篇最高 79W+，说明有内容测试、选题、传播和平台反馈经验。</td>
+              <td>内容敏感度、传播意识、反馈迭代</td>
+              <td>让他参与内容选题、案例包装、老板 IP/项目传播。</td>
+            </tr>
+            <tr>
+              <td>老板 AI 助理部署方案</td>
+              <td>提出“老板个人 AI 助理 → 7 天 MVP → 标准化交付 → 团队部署”的路径。</td>
+              <td>工作流理解、MVP 思维、标准化交付</td>
+              <td>给一个真实老板工作流，试跑 7 天，看是否能节省时间。</td>
+            </tr>
+            <tr>
+              <td>3D 互动网页总结</td>
+              <td>把视频抽帧、帧校准、绿幕抠像、交互验证、视觉反馈写成可复用提示词和流程。</td>
+              <td>技术拆解、审美要求、验证意识</td>
+              <td>让他做 AI 视觉、网页展示、产品 Demo 的流程复盘。</td>
+            </tr>
+            <tr>
+              <td>微信聊天记录提取到 AI 分析教程</td>
+              <td>能把复杂工具链写成步骤化教程，并提醒隐私边界和最终交付文件。</td>
+              <td>信息整理、教程化、隐私意识</td>
+              <td>用于社群/客户/项目聊天记录分析、机会提炼、行动计划整理。</td>
+            </tr>
+            <tr>
+              <td>扫楼增长方案</td>
+              <td>能区分市场负反馈、用户无需求和执行者能力问题，并设计宣讲与分层机制。</td>
+              <td>销售理解、地推经验、心理抗压</td>
+              <td>适合做校园渠道、线下推广、私域引流与一线反馈收集。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>四、最适合的合作场景</h2>
+        <p class="section-note">建议从轻量真实任务开始，不要一开始放到纯战略讨论里。</p>
+      </div>
+      <div class="service-list">
+        <div class="service">
+          <b>场景 1｜老板 AI 助理 MVP</b>
+          <p>整理老板每天的消息、项目、日程、会议和客户沟通，输出早间简报、风险提醒、会议卡片和晚间复盘。周期建议 7 天。</p>
+        </div>
+        <div class="service">
+          <b>场景 2｜社群/项目消息分析</b>
+          <p>把微信群、课程群、项目群、客户沟通导出为文本，再用 AI 提炼重点、机会、行动计划和高频问题。</p>
+        </div>
+        <div class="service">
+          <b>场景 3｜内容与案例包装</b>
+          <p>把老板的项目、观点、客户案例整理成短视频脚本、图文、推文、落地页和对外介绍材料。</p>
+        </div>
+        <div class="service">
+          <b>场景 4｜校园渠道与学生团队</b>
+          <p>适合参与大学生用户触达、校园活动、学生团队招募、社群答疑和线下推广反馈收集。</p>
+        </div>
+        <div class="service">
+          <b>场景 5｜AI Demo 与展示页</b>
+          <p>根据产品或项目素材，制作可展示的网页、互动页、说明书和教程，帮助别人快速理解项目价值。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>五、推荐的 7 天试合作方式</h2>
+        <p class="section-note">用结果判断，不靠面试印象。</p>
+      </div>
+      <div class="timeline">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <h3>需求访谈</h3>
+            <p>了解老板当前最烦的 3 类问题：消息太多、项目太乱、客户跟进断、内容输出慢、团队协作低效等。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <h3>信息源梳理</h3>
+            <p>整理微信群、飞书、文档、日程、项目表、客户沟通记录，形成信息源清单和高频任务清单。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <h3>轻量原型</h3>
+            <p>先不做重开发，用现有工具生成每日简报、项目进度、会议纪要、客户跟进建议等可见输出。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <h3>真实试运行</h3>
+            <p>连续 3-4 天跑真实数据，看老板是否愿意每天打开，是否节省时间，是否减少遗漏。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div>
+            <h3>复盘与标准化</h3>
+            <p>输出复盘报告：节省了什么、漏掉了什么、下一步怎么标准化、哪些模板可以复用到团队。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>六、我的工作方式</h2>
+        <p class="section-note">这些原则决定我适合承担什么角色，也说明我的边界。</p>
+      </div>
+      <div class="grid two">
+        <article class="panel accent-green">
+          <h3>先跑通，再包装</h3>
+          <p>我更相信真实使用反馈。一个能被老板每天打开的粗糙简报，比一个没人用的完整系统更有价值。</p>
+        </article>
+        <article class="panel accent-blue">
+          <h3>先轻量，再系统</h3>
+          <p>早期不追求重开发，优先用现成工具跑出结果，再判断是否值得工程化、产品化。</p>
+        </article>
+        <article class="panel accent-amber">
+          <h3>先提效，再产品化</h3>
+          <p>如果一个流程对一个老板真实有用，再把它沉淀成模板、SOP、培训手册和可复制服务包。</p>
+        </article>
+        <article class="panel accent-red">
+          <h3>先交付，再证明</h3>
+          <p>我不适合只做抽象讨论。最好给我真实材料、真实任务、真实 deadline，用交付物判断我。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>七、当前最值得投入我的位置</h2>
+        <p class="section-note">用人要放在合适的位置。以下是我现阶段最可能产生价值的岗位形态。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>岗位形态</th>
+              <th>适配度</th>
+              <th>原因</th>
+              <th>可交付结果</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AI 工作流助理</td>
+              <td>高</td>
+              <td>已有老板 AI 助理方案、工具教程、流程拆解经验。</td>
+              <td>简报、看板、会议纪要、客户跟进、SOP。</td>
+            </tr>
+            <tr>
+              <td>内容与案例助理</td>
+              <td>高</td>
+              <td>有个人 IP 脚本、爆款图文、网页介绍页、新媒体材料经验。</td>
+              <td>短视频脚本、图文、项目复盘、宣传页。</td>
+            </tr>
+            <tr>
+              <td>校园市场负责人助理</td>
+              <td>高</td>
+              <td>有滴滴/美团校园大使和扫楼增长方案经验。</td>
+              <td>地推话术、社群增长、学生团队管理、反馈表。</td>
+            </tr>
+            <tr>
+              <td>社群/训练营运营助理</td>
+              <td>中高</td>
+              <td>有校园组织服务意识和用户照看思路，但还需要更多商业社群实战。</td>
+              <td>答疑库、群规、活动流程、用户反馈、老带新机制。</td>
+            </tr>
+            <tr>
+              <td>独立产品负责人</td>
+              <td>中</td>
+              <td>有产品化意识，但还需要更多真实客户和收钱闭环。</td>
+              <td>适合从小 MVP 开始，不宜一开始独立扛完整业务。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>八、给老板的使用建议</h2>
+        <p class="section-note">如果要快速判断我是否值得长期合作，可以这样安排。</p>
+      </div>
+      <div class="grid">
+        <article class="panel accent-green">
+          <h3>给一个真实问题</h3>
+          <p>不要只让我“研究 AI”。给一段聊天记录、一个项目、一场活动、一套客户跟进流程，我可以先整理出可执行方案。</p>
+        </article>
+        <article class="panel accent-amber">
+          <h3>给明确交付标准</h3>
+          <p>例如：每天 9 点前给简报、会议后 30 分钟出纪要、3 天内完成案例页、7 天内跑出 MVP。</p>
+        </article>
+        <article class="panel accent-blue">
+          <h3>用复盘判断潜力</h3>
+          <p>看我不仅是否完成任务，还要看我能不能说清楚问题、改进点、下一次 SOP 和可复制模板。</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        备注：本报告基于严匡正已有个人材料整理，不包含手机号、邮箱等隐私信息。正式对外发送时，可在页尾补充联系方式、作品链接或二维码。
+      </p>
     </footer>
-
-    <!-- ============ SCROLL REVEAL ============ -->
-    <script>
-    (function() {
-        var observer;
-        var revealed = new Set();
-
-        function init() {
-            if ('IntersectionObserver' in window) {
-                observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            revealed.add(entry.target);
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-
-                document.querySelectorAll('.reveal').forEach(function(el) {
-                    observer.observe(el);
-                });
-            } else {
-                // 降级：不支持 IntersectionObserver 时直接全部显示
-                document.querySelectorAll('.reveal').forEach(function(el) {
-                    el.classList.add('visible');
-                });
-            }
-        }
-
-        // 微信 X5 内核在 DOM ready 后可能需要延迟初始化
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
-        } else {
-            init();
-        }
-
-        // 锚点平滑滚动降级（iOS Safari 老版本不支持 CSS scroll-behavior）
-        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-            anchor.addEventListener('click', function(e) {
-                var targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                var target = document.querySelector(targetId);
-                if (target) {
-                    e.preventDefault();
-                    var navHeight = 56;
-                    var top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 12;
-                    try {
-                        window.scrollTo({ top: top, behavior: 'smooth' });
-                    } catch (err) {
-                        window.scrollTo(0, top);
-                    }
-                }
-            });
-        });
-    })();
-    </script>
-
+  </main>
 </body>
 </html>

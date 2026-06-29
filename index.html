@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Super Kinge个人能力报告</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #5c6b73;
+      --line: #d8e0e6;
+      --paper: #fbfcf8;
+      --panel: #ffffff;
+      --green: #1d7a5f;
+      --amber: #d58a1f;
+      --blue: #2d6f9f;
+      --red: #b84a3a;
+      --soft-green: #e8f4ef;
+      --soft-amber: #fff1db;
+      --soft-blue: #eaf2f8;
+      --shadow: 0 16px 40px rgba(23, 32, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(29, 122, 95, 0.06) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(45, 111, 159, 0.05) 1px, transparent 1px),
+        var(--paper);
+      background-size: 36px 36px;
+      line-height: 1.68;
+      letter-spacing: 0;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 36px 0 72px;
+    }
+
+    .hero {
+      min-height: 72vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+      gap: 36px;
+      align-items: center;
+      padding: 36px 0 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(29, 122, 95, 0.12);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: 0;
+      max-width: 760px;
+    }
+
+    .subtitle {
+      margin: 22px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+    .identity {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.76);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #2d3b43;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+    }
+
+    .radar {
+      width: min(420px, 100%);
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, transparent 0 18%, rgba(29, 122, 95, 0.08) 18% 19%, transparent 19% 38%, rgba(45, 111, 159, 0.08) 38% 39%, transparent 39% 58%, rgba(213, 138, 31, 0.1) 58% 59%, transparent 59%),
+        rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .radar svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .legend {
+      position: absolute;
+      right: 6px;
+      bottom: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 54px 0 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .section-note {
+      margin: 0;
+      color: var(--muted);
+      max-width: 520px;
+      font-size: 15px;
+      text-align: right;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 10px 26px rgba(23, 32, 42, 0.05);
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      line-height: 1.35;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .accent-green { border-top: 5px solid var(--green); }
+    .accent-amber { border-top: 5px solid var(--amber); }
+    .accent-blue { border-top: 5px solid var(--blue); }
+    .accent-red { border-top: 5px solid var(--red); }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+      min-height: 120px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 30px;
+      line-height: 1.1;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      position: relative;
+      margin-top: 8px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .step-num {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--soft-blue);
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .step h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .step p { margin: 0; color: var(--muted); }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 780px;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f2f6f5;
+      color: #2a3b36;
+      font-size: 14px;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .quote {
+      background: #17202a;
+      color: #f8fbf6;
+      border-radius: 18px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 180px;
+      gap: 22px;
+      align-items: center;
+      margin-top: 18px;
+      overflow: hidden;
+    }
+
+    .quote p {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.65;
+    }
+
+    .quote small {
+      color: #b9c8c1;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .mini-graphic {
+      width: 180px;
+      height: 180px;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .service {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
+      border-radius: 12px;
+    }
+
+    .service b {
+      color: var(--green);
+    }
+
+    .service p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-visual {
+        min-height: 300px;
+      }
+
+      .grid,
+      .two,
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-note {
+        text-align: left;
+        margin-top: 10px;
+      }
+
+      .quote {
+        grid-template-columns: 1fr;
+      }
+
+      .service {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+      .hero {
+        min-height: auto;
+        page-break-after: avoid;
+      }
+      .panel, .metric, .step, .table-wrap, .quote {
+        box-shadow: none;
+      }
+      section {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>老板对接版个人能力报告</div>
+        <h1>严匡正<br />SuperKing</h1>
+        <p class="subtitle">
+          一个正在把校园实践、内容传播、AI工作流和组织协作整合起来的年轻执行者。
+          我擅长把混乱的信息、想法和流程，整理成能执行、能传播、能复盘的交付物。
+        </p>
+        <div class="identity">
+          <span class="pill">广东中山</span>
+          <span class="pill">电材251</span>
+          <span class="pill">创新创业学院成员</span>
+          <span class="pill">创业俱乐部部长</span>
+          <span class="pill">新媒体运营中心成员</span>
+          <span class="pill">滴滴/美团校园大使经历</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="能力雷达图">
+        <div class="radar">
+          <svg viewBox="0 0 420 420" role="img" aria-label="严匡正能力地图">
+            <defs>
+              <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#17202a" flood-opacity="0.12"/>
+              </filter>
+            </defs>
+            <line x1="210" y1="24" x2="210" y2="396" stroke="#d8e0e6" stroke-width="1"/>
+            <line x1="24" y1="210" x2="396" y2="210" stroke="#d8e0e6" stroke-width="1"/>
+            <line x1="78" y1="78" x2="342" y2="342" stroke="#d8e0e6" stroke-width="1"/>
+            <line x1="342" y1="78" x2="78" y2="342" stroke="#d8e0e6" stroke-width="1"/>
+            <polygon points="210,60 326,132 324,278 210,344 96,282 92,134" fill="rgba(29,122,95,0.18)" stroke="#1d7a5f" stroke-width="3" filter="url(#softShadow)"/>
+            <circle cx="210" cy="60" r="7" fill="#1d7a5f"/>
+            <circle cx="326" cy="132" r="7" fill="#d58a1f"/>
+            <circle cx="324" cy="278" r="7" fill="#2d6f9f"/>
+            <circle cx="210" cy="344" r="7" fill="#b84a3a"/>
+            <circle cx="96" cy="282" r="7" fill="#1d7a5f"/>
+            <circle cx="92" cy="134" r="7" fill="#d58a1f"/>
+            <text x="210" y="40" text-anchor="middle" font-size="15" fill="#17202a" font-weight="700">AI工作流</text>
+            <text x="352" y="128" text-anchor="start" font-size="15" fill="#17202a" font-weight="700">内容传播</text>
+            <text x="348" y="286" text-anchor="start" font-size="15" fill="#17202a" font-weight="700">校园市场</text>
+            <text x="210" y="376" text-anchor="middle" font-size="15" fill="#17202a" font-weight="700">组织协作</text>
+            <text x="72" y="292" text-anchor="end" font-size="15" fill="#17202a" font-weight="700">项目交付</text>
+            <text x="68" y="132" text-anchor="end" font-size="15" fill="#17202a" font-weight="700">表达复盘</text>
+          </svg>
+        </div>
+        <div class="legend">关键词：实干、利他、长期主义、反馈、标准化、产品化</div>
+      </div>
+    </header>
+
+    <section>
+      <div class="section-title">
+        <h2>一、老板为什么可以关注我</h2>
+        <p class="section-note">不是传统简历，而是从“能不能解决问题、能不能持续交付”来判断。</p>
+      </div>
+      <div class="metrics">
+        <div class="metric">
+          <strong>100W+</strong>
+          <span>个人图文号 15 天播放量，单篇最高 79W+，证明有内容测试与传播经验。</span>
+        </div>
+        <div class="metric">
+          <strong>7天</strong>
+          <span>可执行的老板 AI 助理 MVP 试运行周期，先跑通，再标准化。</span>
+        </div>
+        <div class="metric">
+          <strong>3类</strong>
+          <span>校园组织、老板个人、小团队工作流，是当前最适合落地的服务场景。</span>
+        </div>
+        <div class="metric">
+          <strong>4项</strong>
+          <span>内容、AI、校园市场、组织协作，可以组合成真实交付能力。</span>
+        </div>
+      </div>
+      <div class="quote">
+        <div>
+          <p>我适合被用在“从 0 到 1 跑通流程”的位置：先理解真实需求，再做轻量原型，最后把有效流程沉淀成模板、SOP 和可复制服务。</p>
+          <small>适合试合作，不适合只听我讲概念。给我一个真实场景，我更容易证明价值。</small>
+        </div>
+        <svg class="mini-graphic" viewBox="0 0 180 180" aria-hidden="true">
+          <rect x="18" y="20" width="144" height="34" rx="8" fill="#e8f4ef"/>
+          <rect x="18" y="72" width="144" height="34" rx="8" fill="#fff1db"/>
+          <rect x="18" y="124" width="144" height="34" rx="8" fill="#eaf2f8"/>
+          <path d="M90 54 L90 72 M90 106 L90 124" stroke="#f8fbf6" stroke-width="8" stroke-linecap="round"/>
+          <path d="M90 54 L90 72 M90 106 L90 124" stroke="#1d7a5f" stroke-width="3" stroke-linecap="round"/>
+          <text x="90" y="42" text-anchor="middle" font-size="13" fill="#17202a" font-weight="700">需求</text>
+          <text x="90" y="94" text-anchor="middle" font-size="13" fill="#17202a" font-weight="700">原型</text>
+          <text x="90" y="146" text-anchor="middle" font-size="13" fill="#17202a" font-weight="700">复用</text>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>二、我能解决的具体问题</h2>
+        <p class="section-note">以下不是兴趣标签，而是可以转成项目任务的能力模块。</p>
+      </div>
+      <div class="grid">
+        <article class="panel accent-green">
+          <h3>AI 工作流部署</h3>
+          <p>把老板的消息、项目、日程、会议、客户沟通整理成可追踪流程，先做 7 天 MVP，再沉淀模板库、提示词库和 SOP。</p>
+        </article>
+        <article class="panel accent-amber">
+          <h3>内容表达与传播</h3>
+          <p>有图文号 15 天 100W+ 播放经验，也能把复杂内容转成口播脚本、教程、推文、案例复盘和对外介绍页。</p>
+        </article>
+        <article class="panel accent-blue">
+          <h3>校园市场与用户触达</h3>
+          <p>做过滴滴/美团校园大使，理解扫楼、地推、社群、学生用户心理和校园推广中的负反馈处理。</p>
+        </article>
+        <article class="panel accent-red">
+          <h3>组织与服务意识</h3>
+          <p>做过创业俱乐部部长，也在校园组织材料中多次体现出流程设计、用户照看、反馈收集和活动组织意识。</p>
+        </article>
+        <article class="panel accent-green">
+          <h3>技术转译能力</h3>
+          <p>能把微信聊天记录导出、AI Skill、3D 互动网页、图像还原提示词等复杂操作写成新人能看懂的流程文档。</p>
+        </article>
+        <article class="panel accent-amber">
+          <h3>项目复盘与标准化</h3>
+          <p>习惯把一次项目拆解成经验、踩坑、提示词、交付物和下一次可复用的流程，适合参与从试错到标准化的阶段。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>三、可验证经历与材料</h2>
+        <p class="section-note">老板判断一个年轻人，不只看他说什么，更看他已经做过什么。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>材料/经历</th>
+              <th>说明</th>
+              <th>可证明能力</th>
+              <th>老板可如何使用</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>个人图文号 15 天 100W+ 播放</td>
+              <td>单篇最高 79W+，说明有内容测试、选题、传播和平台反馈经验。</td>
+              <td>内容敏感度、传播意识、反馈迭代</td>
+              <td>让他参与内容选题、案例包装、老板 IP/项目传播。</td>
+            </tr>
+            <tr>
+              <td>老板 AI 助理部署方案</td>
+              <td>提出“老板个人 AI 助理 → 7 天 MVP → 标准化交付 → 团队部署”的路径。</td>
+              <td>工作流理解、MVP 思维、标准化交付</td>
+              <td>给一个真实老板工作流，试跑 7 天，看是否能节省时间。</td>
+            </tr>
+            <tr>
+              <td>3D 互动网页总结</td>
+              <td>把视频抽帧、帧校准、绿幕抠像、交互验证、视觉反馈写成可复用提示词和流程。</td>
+              <td>技术拆解、审美要求、验证意识</td>
+              <td>让他做 AI 视觉、网页展示、产品 Demo 的流程复盘。</td>
+            </tr>
+            <tr>
+              <td>微信聊天记录提取到 AI 分析教程</td>
+              <td>能把复杂工具链写成步骤化教程，并提醒隐私边界和最终交付文件。</td>
+              <td>信息整理、教程化、隐私意识</td>
+              <td>用于社群/客户/项目聊天记录分析、机会提炼、行动计划整理。</td>
+            </tr>
+            <tr>
+              <td>扫楼增长方案</td>
+              <td>能区分市场负反馈、用户无需求和执行者能力问题，并设计宣讲与分层机制。</td>
+              <td>销售理解、地推经验、心理抗压</td>
+              <td>适合做校园渠道、线下推广、私域引流与一线反馈收集。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>四、最适合的合作场景</h2>
+        <p class="section-note">建议从轻量真实任务开始，不要一开始放到纯战略讨论里。</p>
+      </div>
+      <div class="service-list">
+        <div class="service">
+          <b>场景 1｜老板 AI 助理 MVP</b>
+          <p>整理老板每天的消息、项目、日程、会议和客户沟通，输出早间简报、风险提醒、会议卡片和晚间复盘。周期建议 7 天。</p>
+        </div>
+        <div class="service">
+          <b>场景 2｜社群/项目消息分析</b>
+          <p>把微信群、课程群、项目群、客户沟通导出为文本，再用 AI 提炼重点、机会、行动计划和高频问题。</p>
+        </div>
+        <div class="service">
+          <b>场景 3｜内容与案例包装</b>
+          <p>把老板的项目、观点、客户案例整理成短视频脚本、图文、推文、落地页和对外介绍材料。</p>
+        </div>
+        <div class="service">
+          <b>场景 4｜校园渠道与学生团队</b>
+          <p>适合参与大学生用户触达、校园活动、学生团队招募、社群答疑和线下推广反馈收集。</p>
+        </div>
+        <div class="service">
+          <b>场景 5｜AI Demo 与展示页</b>
+          <p>根据产品或项目素材，制作可展示的网页、互动页、说明书和教程，帮助别人快速理解项目价值。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>五、推荐的 7 天试合作方式</h2>
+        <p class="section-note">用结果判断，不靠面试印象。</p>
+      </div>
+      <div class="timeline">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <h3>需求访谈</h3>
+            <p>了解老板当前最烦的 3 类问题：消息太多、项目太乱、客户跟进断、内容输出慢、团队协作低效等。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <h3>信息源梳理</h3>
+            <p>整理微信群、飞书、文档、日程、项目表、客户沟通记录，形成信息源清单和高频任务清单。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <h3>轻量原型</h3>
+            <p>先不做重开发，用现有工具生成每日简报、项目进度、会议纪要、客户跟进建议等可见输出。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <h3>真实试运行</h3>
+            <p>连续 3-4 天跑真实数据，看老板是否愿意每天打开，是否节省时间，是否减少遗漏。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div>
+            <h3>复盘与标准化</h3>
+            <p>输出复盘报告：节省了什么、漏掉了什么、下一步怎么标准化、哪些模板可以复用到团队。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>六、我的工作方式</h2>
+        <p class="section-note">这些原则决定我适合承担什么角色，也说明我的边界。</p>
+      </div>
+      <div class="grid two">
+        <article class="panel accent-green">
+          <h3>先跑通，再包装</h3>
+          <p>我更相信真实使用反馈。一个能被老板每天打开的粗糙简报，比一个没人用的完整系统更有价值。</p>
+        </article>
+        <article class="panel accent-blue">
+          <h3>先轻量，再系统</h3>
+          <p>早期不追求重开发，优先用现成工具跑出结果，再判断是否值得工程化、产品化。</p>
+        </article>
+        <article class="panel accent-amber">
+          <h3>先提效，再产品化</h3>
+          <p>如果一个流程对一个老板真实有用，再把它沉淀成模板、SOP、培训手册和可复制服务包。</p>
+        </article>
+        <article class="panel accent-red">
+          <h3>先交付，再证明</h3>
+          <p>我不适合只做抽象讨论。最好给我真实材料、真实任务、真实 deadline，用交付物判断我。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>七、当前最值得投入我的位置</h2>
+        <p class="section-note">用人要放在合适的位置。以下是我现阶段最可能产生价值的岗位形态。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>岗位形态</th>
+              <th>适配度</th>
+              <th>原因</th>
+              <th>可交付结果</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AI 工作流助理</td>
+              <td>高</td>
+              <td>已有老板 AI 助理方案、工具教程、流程拆解经验。</td>
+              <td>简报、看板、会议纪要、客户跟进、SOP。</td>
+            </tr>
+            <tr>
+              <td>内容与案例助理</td>
+              <td>高</td>
+              <td>有个人 IP 脚本、爆款图文、网页介绍页、新媒体材料经验。</td>
+              <td>短视频脚本、图文、项目复盘、宣传页。</td>
+            </tr>
+            <tr>
+              <td>校园市场负责人助理</td>
+              <td>高</td>
+              <td>有滴滴/美团校园大使和扫楼增长方案经验。</td>
+              <td>地推话术、社群增长、学生团队管理、反馈表。</td>
+            </tr>
+            <tr>
+              <td>社群/训练营运营助理</td>
+              <td>中高</td>
+              <td>有校园组织服务意识和用户照看思路，但还需要更多商业社群实战。</td>
+              <td>答疑库、群规、活动流程、用户反馈、老带新机制。</td>
+            </tr>
+            <tr>
+              <td>独立产品负责人</td>
+              <td>中</td>
+              <td>有产品化意识，但还需要更多真实客户和收钱闭环。</td>
+              <td>适合从小 MVP 开始，不宜一开始独立扛完整业务。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>八、给老板的使用建议</h2>
+        <p class="section-note">如果要快速判断我是否值得长期合作，可以这样安排。</p>
+      </div>
+      <div class="grid">
+        <article class="panel accent-green">
+          <h3>给一个真实问题</h3>
+          <p>不要只让我“研究 AI”。给一段聊天记录、一个项目、一场活动、一套客户跟进流程，我可以先整理出可执行方案。</p>
+        </article>
+        <article class="panel accent-amber">
+          <h3>给明确交付标准</h3>
+          <p>例如：每天 9 点前给简报、会议后 30 分钟出纪要、3 天内完成案例页、7 天内跑出 MVP。</p>
+        </article>
+        <article class="panel accent-blue">
+          <h3>用复盘判断潜力</h3>
+          <p>看我不仅是否完成任务，还要看我能不能说清楚问题、改进点、下一次 SOP 和可复制模板。</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        备注：本报告基于严匡正已有个人材料整理，不包含手机号、邮箱等隐私信息。正式对外发送时，可在页尾补充联系方式、作品链接或二维码。
+      </p>
+    </footer>
+  </main>
+</body>
+</html>

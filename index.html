@@ -203,34 +203,169 @@
 
     .hero-visual {
       position: relative;
-      min-height: 420px;
+      min-height: 520px;
       display: grid;
       place-items: center;
     }
 
-    .radar {
-      width: min(420px, 100%);
-      aspect-ratio: 1;
+    .capability-system {
+      position: relative;
+      width: min(520px, 100%);
+      min-height: 520px;
+      overflow: visible;
+    }
+
+    .motion-field {
+      position: absolute;
+      inset: 76px;
       border: 1px solid var(--line);
       border-radius: 50%;
       background:
-        radial-gradient(circle, transparent 0 18%, rgba(29, 122, 95, 0.08) 18% 19%, transparent 19% 38%, rgba(45, 111, 159, 0.08) 38% 39%, transparent 39% 58%, rgba(213, 138, 31, 0.1) 58% 59%, transparent 59%),
+        radial-gradient(circle at center, rgba(29, 122, 95, 0.16) 0 2px, transparent 3px),
+        radial-gradient(circle, transparent 0 28%, rgba(29, 122, 95, 0.12) 28% 29%, transparent 29% 54%, rgba(45, 111, 159, 0.1) 54% 55%, transparent 55%),
         rgba(255, 255, 255, 0.78);
       box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
     }
 
-    .radar svg {
-      width: 100%;
-      height: 100%;
+    .motion-field::before,
+    .motion-field::after {
+      content: "";
+      position: absolute;
+      inset: 16%;
+      border-radius: 50%;
+      border: 1px dashed rgba(29, 122, 95, 0.34);
+      animation: systemSpin 26s linear infinite;
+    }
+
+    .motion-field::after {
+      inset: 28%;
+      border-color: rgba(213, 138, 31, 0.34);
+      animation-duration: 18s;
+      animation-direction: reverse;
+    }
+
+    .system-line {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 72%;
+      height: 1px;
+      transform-origin: left center;
+      background: linear-gradient(90deg, transparent, rgba(29, 122, 95, 0.34), transparent);
+    }
+
+    .system-line:nth-child(1) { transform: rotate(0deg); }
+    .system-line:nth-child(2) { transform: rotate(60deg); }
+    .system-line:nth-child(3) { transform: rotate(120deg); }
+
+    .system-core {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 150px;
+      min-height: 150px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.96), rgba(232, 244, 239, 0.88) 52%, rgba(29, 122, 95, 0.22));
+      border: 1px solid rgba(29, 122, 95, 0.24);
+      box-shadow: 0 18px 42px rgba(23, 32, 42, 0.12);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 22px;
+      z-index: 3;
+      animation: corePulse 4s ease-in-out infinite;
+    }
+
+    .system-core span {
       display: block;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .system-core strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .signal-dot {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 8px rgba(29, 122, 95, 0.12);
+      animation: nodePulse 2.8s ease-in-out infinite;
+    }
+
+    .dot-ai { left: 50%; top: 12%; background: var(--green); }
+    .dot-content { right: 12%; top: 32%; background: var(--amber); animation-delay: 0.3s; }
+    .dot-market { right: 20%; bottom: 22%; background: var(--blue); animation-delay: 0.6s; }
+    .dot-org { left: 50%; bottom: 12%; background: var(--red); animation-delay: 0.9s; }
+    .dot-delivery { left: 19%; bottom: 23%; background: var(--green); animation-delay: 1.2s; }
+    .dot-expression { left: 13%; top: 32%; background: var(--amber); animation-delay: 1.5s; }
+
+    .ability-card {
+      position: absolute;
+      width: 156px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 12px 28px rgba(23, 32, 42, 0.08);
+      z-index: 4;
+      animation: cardFloat 5.6s ease-in-out infinite;
+    }
+
+    .ability-card b {
+      display: block;
+      font-size: 15px;
+      line-height: 1.35;
+      color: var(--ink);
+    }
+
+    .ability-card span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .card-ai { left: 50%; top: 0; transform: translateX(-50%); border-top: 4px solid var(--green); }
+    .card-content { right: 0; top: 104px; border-top: 4px solid var(--amber); animation-delay: 0.2s; }
+    .card-market { right: 8px; bottom: 112px; border-top: 4px solid var(--blue); animation-delay: 0.4s; }
+    .card-org { left: 50%; bottom: 0; transform: translateX(-50%); border-top: 4px solid var(--red); animation-delay: 0.6s; }
+    .card-delivery { left: 0; bottom: 112px; border-top: 4px solid var(--green); animation-delay: 0.8s; }
+    .card-expression { left: 0; top: 104px; border-top: 4px solid var(--amber); animation-delay: 1s; }
+
+    @keyframes systemSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes corePulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.035); }
+    }
+
+    @keyframes nodePulse {
+      0%, 100% { transform: scale(1); opacity: 0.78; }
+      50% { transform: scale(1.28); opacity: 1; }
+    }
+
+    @keyframes cardFloat {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -8px; }
     }
 
     .legend {
       position: absolute;
-      right: 6px;
-      bottom: 8px;
+      right: 12px;
+      bottom: 22px;
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid var(--line);
       padding: 12px 14px;
@@ -572,7 +707,56 @@
       }
 
       .hero-visual {
-        min-height: 300px;
+        min-height: auto;
+        padding-top: 8px;
+      }
+
+      .capability-system {
+        min-height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .motion-field {
+        position: relative;
+        inset: auto;
+        width: min(280px, 100%);
+        aspect-ratio: 1;
+        margin: 0 auto 8px;
+      }
+
+      .system-core {
+        width: 128px;
+        min-height: 128px;
+      }
+
+      .system-core strong {
+        font-size: 16px;
+      }
+
+      .ability-card,
+      .card-ai,
+      .card-content,
+      .card-market,
+      .card-org,
+      .card-delivery,
+      .card-expression {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        transform: none;
+        animation: none;
+      }
+
+      .legend {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin-top: 10px;
       }
 
       .grid,
@@ -647,6 +831,17 @@
       }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     @media print {
       body {
         background: #fff;
@@ -705,32 +900,49 @@
           <span class="pill">滴滴/美团校园大使经历</span>
         </div>
       </div>
-      <div class="hero-visual" aria-label="能力雷达图">
-        <div class="radar">
-          <svg viewBox="0 0 420 420" role="img" aria-label="严匡正能力地图">
-            <defs>
-              <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#17202a" flood-opacity="0.12"/>
-              </filter>
-            </defs>
-            <line x1="210" y1="24" x2="210" y2="396" stroke="#d8e0e6" stroke-width="1"/>
-            <line x1="24" y1="210" x2="396" y2="210" stroke="#d8e0e6" stroke-width="1"/>
-            <line x1="78" y1="78" x2="342" y2="342" stroke="#d8e0e6" stroke-width="1"/>
-            <line x1="342" y1="78" x2="78" y2="342" stroke="#d8e0e6" stroke-width="1"/>
-            <polygon points="210,60 326,132 324,278 210,344 96,282 92,134" fill="rgba(29,122,95,0.18)" stroke="#1d7a5f" stroke-width="3" filter="url(#softShadow)"/>
-            <circle cx="210" cy="60" r="7" fill="#1d7a5f"/>
-            <circle cx="326" cy="132" r="7" fill="#d58a1f"/>
-            <circle cx="324" cy="278" r="7" fill="#2d6f9f"/>
-            <circle cx="210" cy="344" r="7" fill="#b84a3a"/>
-            <circle cx="96" cy="282" r="7" fill="#1d7a5f"/>
-            <circle cx="92" cy="134" r="7" fill="#d58a1f"/>
-            <text x="210" y="40" text-anchor="middle" font-size="15" fill="#17202a" font-weight="700">AI工作流</text>
-            <text x="352" y="128" text-anchor="start" font-size="15" fill="#17202a" font-weight="700">内容传播</text>
-            <text x="348" y="286" text-anchor="start" font-size="15" fill="#17202a" font-weight="700">校园市场</text>
-            <text x="210" y="376" text-anchor="middle" font-size="15" fill="#17202a" font-weight="700">组织协作</text>
-            <text x="72" y="292" text-anchor="end" font-size="15" fill="#17202a" font-weight="700">项目交付</text>
-            <text x="68" y="132" text-anchor="end" font-size="15" fill="#17202a" font-weight="700">表达复盘</text>
-          </svg>
+      <div class="hero-visual" aria-label="动态能力系统图">
+        <div class="capability-system">
+          <div class="motion-field" aria-hidden="true">
+            <span class="system-line"></span>
+            <span class="system-line"></span>
+            <span class="system-line"></span>
+            <span class="signal-dot dot-ai"></span>
+            <span class="signal-dot dot-content"></span>
+            <span class="signal-dot dot-market"></span>
+            <span class="signal-dot dot-org"></span>
+            <span class="signal-dot dot-delivery"></span>
+            <span class="signal-dot dot-expression"></span>
+            <div class="system-core">
+              <div>
+                <span>SuperKing</span>
+                <strong>AI × 内容 × 组织</strong>
+              </div>
+            </div>
+          </div>
+          <div class="ability-card card-ai">
+            <b>AI工作流</b>
+            <span>信息整理、自动化、SOP</span>
+          </div>
+          <div class="ability-card card-content">
+            <b>内容传播</b>
+            <span>选题、脚本、图文表达</span>
+          </div>
+          <div class="ability-card card-market">
+            <b>校园市场</b>
+            <span>触达、增长、用户反馈</span>
+          </div>
+          <div class="ability-card card-org">
+            <b>组织协作</b>
+            <span>规则、服务、复盘机制</span>
+          </div>
+          <div class="ability-card card-delivery">
+            <b>项目交付</b>
+            <span>从混乱到可执行方案</span>
+          </div>
+          <div class="ability-card card-expression">
+            <b>表达复盘</b>
+            <span>把经历变成作品资产</span>
+          </div>
         </div>
         <div class="legend">关键词：实干、利他、长期主义、反馈、标准化、产品化</div>
       </div>

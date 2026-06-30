@@ -23,6 +23,10 @@
 
     * { box-sizing: border-box; }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
@@ -34,6 +38,96 @@
       background-size: 36px 36px;
       line-height: 1.68;
       letter-spacing: 0;
+    }
+
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: rgba(216, 224, 230, 0.72);
+      z-index: 20;
+    }
+
+    .reading-progress span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--amber), var(--blue));
+      transition: width 0.16s ease;
+    }
+
+    .report-nav {
+      position: sticky;
+      top: 0;
+      z-index: 15;
+      margin-bottom: 18px;
+      padding: 10px 0 0;
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-shell {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr) 72px;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 14px;
+      border: 1px solid rgba(216, 224, 230, 0.92);
+      border-radius: 14px;
+      background: rgba(251, 252, 248, 0.9);
+      box-shadow: 0 12px 30px rgba(23, 32, 42, 0.07);
+    }
+
+    .nav-label {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a {
+      flex: 0 0 auto;
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #2d3b43;
+      background: rgba(255, 255, 255, 0.76);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: color 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+    }
+
+    .nav-links a.is-active {
+      color: #fff;
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .nav-links a:focus-visible {
+      outline: 3px solid rgba(45, 111, 159, 0.3);
+      outline-offset: 2px;
+    }
+
+    .nav-percent {
+      text-align: right;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
     }
 
     .page {
@@ -142,6 +236,7 @@
 
     section {
       padding: 54px 0 0;
+      scroll-margin-top: 96px;
     }
 
     .section-title {
@@ -503,6 +598,20 @@
       .work-links {
         grid-template-columns: 1fr;
       }
+
+      .report-nav {
+        top: 0;
+        margin-bottom: 8px;
+      }
+
+      .nav-shell {
+        grid-template-columns: 1fr 64px;
+        gap: 10px;
+      }
+
+      .nav-label {
+        grid-column: 1 / -1;
+      }
     }
 
     @media print {
@@ -527,7 +636,25 @@
   </style>
 </head>
 <body>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
   <main class="page">
+    <nav class="report-nav" aria-label="报告目录">
+      <div class="nav-shell">
+        <div class="nav-label">报告目录</div>
+        <div class="nav-links" id="reportNav">
+          <a href="#why">关注理由</a>
+          <a href="#problems">解决问题</a>
+          <a href="#proof">验证材料</a>
+          <a href="#scenes">合作场景</a>
+          <a href="#trial">7天试合作</a>
+          <a href="#workflow">工作方式</a>
+          <a href="#roles">投入位置</a>
+          <a href="#advice">使用建议</a>
+          <a href="#works">作品联系</a>
+        </div>
+        <div class="nav-percent" id="navPercent">0%</div>
+      </div>
+    </nav>
     <header class="hero">
       <div>
         <div class="eyebrow"><span class="dot"></span>老板对接版个人能力报告</div>
@@ -576,7 +703,7 @@
       </div>
     </header>
 
-    <section>
+    <section id="why">
       <div class="section-title">
         <h2>一、老板为什么可以关注我</h2>
         <p class="section-note">不是传统简历，而是从“能不能解决问题、能不能持续交付”来判断。</p>
@@ -617,7 +744,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="problems">
       <div class="section-title">
         <h2>二、我能解决的具体问题</h2>
         <p class="section-note">以下不是兴趣标签，而是可以转成项目任务的能力模块。</p>
@@ -650,7 +777,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="proof">
       <div class="section-title">
         <h2>三、可验证经历与材料</h2>
         <p class="section-note">老板判断一个年轻人，不只看他说什么，更看他已经做过什么。</p>
@@ -701,7 +828,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="scenes">
       <div class="section-title">
         <h2>四、最适合的合作场景</h2>
         <p class="section-note">建议从轻量真实任务开始，不要一开始放到纯战略讨论里。</p>
@@ -730,7 +857,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="trial">
       <div class="section-title">
         <h2>五、推荐的 7 天试合作方式</h2>
         <p class="section-note">用结果判断，不靠面试印象。</p>
@@ -774,7 +901,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="workflow">
       <div class="section-title">
         <h2>六、我的工作方式</h2>
         <p class="section-note">这些原则决定我适合承担什么角色，也说明我的边界。</p>
@@ -799,7 +926,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="roles">
       <div class="section-title">
         <h2>七、当前最值得投入我的位置</h2>
         <p class="section-note">用人要放在合适的位置。以下是我现阶段最可能产生价值的岗位形态。</p>
@@ -850,7 +977,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="advice">
       <div class="section-title">
         <h2>八、给老板的使用建议</h2>
         <p class="section-note">如果要快速判断我是否值得长期合作，可以这样安排。</p>
@@ -871,7 +998,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="works">
       <div class="section-title">
         <h2>九、作品链接与联系方式</h2>
         <p class="section-note">把能直接打开的作品入口放在这里，方便快速判断我的表达、交付和工具使用能力。</p>
@@ -885,14 +1012,6 @@
               <p>当前这份老板对接版网页，用来展示我的能力结构、可交付场景和合作方式。</p>
             </div>
             <a href="https://superk060319.github.io/superking/" target="_blank" rel="noopener">打开报告</a>
-          </article>
-          <article class="work-card">
-            <div>
-              <span class="work-meta">工具教程</span>
-              <h3>Claude Code 微信安装手册</h3>
-              <p>面向微信场景制作的安装说明页，体现我把复杂工具讲清楚、做成可传播教程的能力。</p>
-            </div>
-            <a href="cc-install-guide.html" target="_blank" rel="noopener">查看教程</a>
           </article>
           <article class="work-card">
             <div>
@@ -930,5 +1049,36 @@
       </p>
     </footer>
   </main>
+  <script>
+    const progressEl = document.getElementById("readingProgress");
+    const percentEl = document.getElementById("navPercent");
+    const navLinks = Array.from(document.querySelectorAll("#reportNav a"));
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    function updateReadingState() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const percent = maxScroll > 0 ? Math.min(100, Math.max(0, (scrollTop / maxScroll) * 100)) : 0;
+      progressEl.style.width = `${percent}%`;
+      percentEl.textContent = `${Math.round(percent)}%`;
+
+      let activeId = sections[0]?.id;
+      for (const section of sections) {
+        const top = section.getBoundingClientRect().top;
+        if (top <= 130) activeId = section.id;
+      }
+
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${activeId}`;
+        link.classList.toggle("is-active", isActive);
+      });
+    }
+
+    window.addEventListener("scroll", updateReadingState, { passive: true });
+    window.addEventListener("resize", updateReadingState);
+    updateReadingState();
+  </script>
 </body>
 </html>

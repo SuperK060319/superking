@@ -123,6 +123,23 @@ canvas#stars {
   font-size: clamp(18px, 2vw, 25px);
 }
 
+.fusion-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.fusion-switch a {
+  color: #06101b;
+  background: #eef7ff;
+  border-radius: 999px;
+  padding: 9px 13px;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
 .dimension {
   padding: 70px 0 40px;
   border-top: 1px solid var(--line);

@@ -351,6 +351,113 @@
       color: var(--muted);
     }
 
+    .links-contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .work-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .work-card {
+      min-height: 170px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 26px rgba(23, 32, 42, 0.05);
+    }
+
+    .work-meta {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 12px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--soft-green);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .work-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .work-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .work-card a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 38px;
+      margin-top: 16px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .work-card a:focus-visible {
+      outline: 3px solid rgba(45, 111, 159, 0.32);
+      outline-offset: 3px;
+    }
+
+    .contact-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      background: #f7faf7;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      box-shadow: 0 10px 26px rgba(23, 32, 42, 0.05);
+    }
+
+    .qr-frame {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 10px;
+    }
+
+    .qr-frame img {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .contact-card h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
     .footer {
       margin-top: 64px;
       padding-top: 24px;
@@ -389,6 +496,11 @@
       }
 
       .service {
+        grid-template-columns: 1fr;
+      }
+
+      .links-contact,
+      .work-links {
         grid-template-columns: 1fr;
       }
     }
@@ -759,9 +871,62 @@
       </div>
     </section>
 
+    <section>
+      <div class="section-title">
+        <h2>九、作品链接与联系方式</h2>
+        <p class="section-note">把能直接打开的作品入口放在这里，方便快速判断我的表达、交付和工具使用能力。</p>
+      </div>
+      <div class="links-contact">
+        <div class="work-links">
+          <article class="work-card">
+            <div>
+              <span class="work-meta">个人报告</span>
+              <h3>Super Kinge 个人能力报告</h3>
+              <p>当前这份老板对接版网页，用来展示我的能力结构、可交付场景和合作方式。</p>
+            </div>
+            <a href="https://superk060319.github.io/superking/" target="_blank" rel="noopener">打开报告</a>
+          </article>
+          <article class="work-card">
+            <div>
+              <span class="work-meta">工具教程</span>
+              <h3>Claude Code 微信安装手册</h3>
+              <p>面向微信场景制作的安装说明页，体现我把复杂工具讲清楚、做成可传播教程的能力。</p>
+            </div>
+            <a href="cc-install-guide.html" target="_blank" rel="noopener">查看教程</a>
+          </article>
+          <article class="work-card">
+            <div>
+              <span class="work-meta">网页项目</span>
+              <h3>SuperKing 个人介绍网页</h3>
+              <p>早期个人介绍网页项目，包含个人身份、经历、内容成果、兴趣和联系方式等模块。</p>
+            </div>
+            <a href="https://gitee.com/superking913060ykz/my-intro" target="_blank" rel="noopener">查看项目仓库</a>
+          </article>
+          <article class="work-card">
+            <div>
+              <span class="work-meta">源码托管</span>
+              <h3>GitHub Pages 发布仓库</h3>
+              <p>当前网页的托管仓库，后续可继续补充作品、案例页、教程页和项目 Demo。</p>
+            </div>
+            <a href="https://github.com/SuperK060319/superking" target="_blank" rel="noopener">查看源码</a>
+          </article>
+        </div>
+        <aside class="contact-card">
+          <div>
+            <h3>微信联系</h3>
+            <p>扫码添加我，适合进一步沟通合作、项目试跑、AI 工作流部署或内容共创。</p>
+          </div>
+          <div class="qr-frame">
+            <img src="wechat-qrcode.png" alt="SuperKing 微信二维码" />
+          </div>
+          <p>微信名：SuperKing<br />地区：Guangdong Zhongshan</p>
+        </aside>
+      </div>
+    </section>
+
     <footer class="footer">
       <p>
-        备注：本报告基于严匡正已有个人材料整理，不包含手机号、邮箱等隐私信息。正式对外发送时，可在页尾补充联系方式、作品链接或二维码。
+        备注：本报告基于严匡正已有个人材料整理，不包含手机号、邮箱等隐私信息。作品链接和二维码用于对外沟通时快速建立信任与后续联系。
       </p>
     </footer>
   </main>

@@ -250,6 +250,53 @@
       line-height: 1.7;
     }
 
+    .identity-line {
+      margin: 18px 0 0;
+      max-width: 760px;
+      color: #e8f1ff;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .hero-claim {
+      margin: 26px 0 0;
+      max-width: 780px;
+      padding: 18px 20px;
+      border: 1px solid rgba(159, 231, 255, 0.28);
+      border-left: 4px solid #9fe7ff;
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(159, 231, 255, 0.14), rgba(143, 96, 207, 0.1)),
+        rgba(255, 255, 255, 0.06);
+      color: #f7fbff;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.32;
+      font-weight: 800;
+      box-shadow: 0 20px 54px rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(16px);
+    }
+
+    .focus-words {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .glow-word {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 11px;
+      border: 1px solid rgba(159, 231, 255, 0.3);
+      border-radius: 999px;
+      background: rgba(159, 231, 255, 0.1);
+      color: #f7fbff;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 0 26px rgba(103, 176, 255, 0.16);
+    }
+
     .identity {
       display: flex;
       flex-wrap: wrap;
@@ -480,6 +527,23 @@
       text-align: right;
     }
 
+    .statement {
+      margin: 0 0 18px;
+      padding: 18px 20px;
+      border: 1px solid rgba(159, 231, 255, 0.22);
+      border-left: 4px solid #9fe7ff;
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(159, 231, 255, 0.12), rgba(143, 96, 207, 0.1)),
+        rgba(5, 8, 22, 0.64);
+      color: #f7fbff;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.55;
+      font-weight: 800;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(14px);
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -507,6 +571,19 @@
     .panel p {
       margin: 0;
       color: var(--muted);
+    }
+
+    .panel .proof-line,
+    .work-card .proof-line {
+      margin-top: 12px;
+      color: #21495f;
+      font-weight: 800;
+    }
+
+    .panel .proof-line::before,
+    .work-card .proof-line::before {
+      content: "证明：";
+      color: var(--green);
     }
 
     .accent-green { border-top: 5px solid var(--green); }
@@ -776,6 +853,14 @@
       font-size: 14px;
     }
 
+    .footer-manifest {
+      margin: 0 0 12px;
+      color: #f7fbff;
+      font-size: 20px;
+      line-height: 1.55;
+      font-weight: 800;
+    }
+
     @media (max-width: 860px) {
       .hero {
         grid-template-columns: 1fr;
@@ -968,9 +1053,20 @@
         <div class="eyebrow"><span class="dot"></span>个人介绍 · 能力地图 · 作品入口</div>
         <h1>严匡正<br />SuperKing</h1>
         <p class="subtitle">
-          一个正在把校园实践、内容传播、AI 工作流、组织协作和个人表达整合起来的人。
-          我希望把自己的经历、能力、审美和作品，沉淀成一个长期可更新的个人系统。
+          一个从机器人工程、销售和校园市场实践里长出来的人，正在转向 AI 工作流、内容产品和组织成长。
         </p>
+        <p class="identity-line">
+          我不想只做一个“会用工具的人”，而是想把自己的输入、输出、项目、审美和判断力，训练成一个长期可迁移的个人系统。
+        </p>
+        <p class="hero-claim">我正在建立一个属于自己的 AI × 内容 × 组织成长系统。</p>
+        <div class="focus-words" aria-label="核心关键词">
+          <span class="glow-word">AI工作流</span>
+          <span class="glow-word">内容表达</span>
+          <span class="glow-word">组织协作</span>
+          <span class="glow-word">长期成长</span>
+          <span class="glow-word">作品化</span>
+          <span class="glow-word">独立系统</span>
+        </div>
         <div class="identity">
           <span class="pill">广东中山</span>
           <span class="pill">电材251</span>
@@ -1033,6 +1129,7 @@
         <h2>一、我是谁</h2>
         <p class="section-note">这不是传统简历，而是一个让别人快速理解我的入口。</p>
       </div>
+      <p class="statement">我不想只留下标签，而是留下可被验证、可被复盘、可被持续更新的作品。</p>
       <div class="metrics">
         <div class="metric">
           <strong>100W+</strong>
@@ -1074,30 +1171,37 @@
         <h2>二、我的能力结构</h2>
         <p class="section-note">以下不是兴趣标签，而是我正在长期积累的能力模块。</p>
       </div>
+      <p class="statement">把混乱变成系统，把想法变成作品，把反馈变成下一次行动。</p>
       <div class="grid">
         <article class="panel accent-green">
           <h3>AI 工作流部署</h3>
           <p>把信息、任务、项目、资料和聊天记录整理成可追踪流程，沉淀模板库、提示词库和 SOP。</p>
+          <p class="proof-line">我能把信息整理成可执行系统。</p>
         </article>
         <article class="panel accent-amber">
           <h3>内容表达与传播</h3>
           <p>有图文号 15 天 100W+ 播放经验，也能把复杂内容转成口播脚本、教程、推文、案例复盘和对外介绍页。</p>
+          <p class="proof-line">我能把经历和观点转成别人愿意看的内容。</p>
         </article>
         <article class="panel accent-blue">
           <h3>校园市场与用户触达</h3>
           <p>做过滴滴/美团校园大使，理解扫楼、地推、社群、学生用户心理和校园推广中的负反馈处理。</p>
+          <p class="proof-line">我接触过真实人群和真实反馈。</p>
         </article>
         <article class="panel accent-red">
           <h3>组织与服务意识</h3>
           <p>做过创业俱乐部部长，也在校园组织材料中多次体现出流程设计、用户照看、反馈收集和活动组织意识。</p>
+          <p class="proof-line">我知道规则、服务和文化会影响一个组织的状态。</p>
         </article>
         <article class="panel accent-green">
           <h3>技术转译能力</h3>
           <p>能把微信聊天记录导出、AI Skill、3D 互动网页、图像还原提示词等复杂操作写成新人能看懂的流程文档。</p>
+          <p class="proof-line">我能把复杂工具变成普通人能跟着做的步骤。</p>
         </article>
         <article class="panel accent-amber">
           <h3>项目复盘与标准化</h3>
           <p>习惯把一次项目拆解成经验、踩坑、提示词、交付物和下一次可复用的流程，适合参与从试错到标准化的阶段。</p>
+          <p class="proof-line">我能把一次经验沉淀成下一次可复用的方法。</p>
         </article>
       </div>
     </section>
@@ -1107,6 +1211,7 @@
         <h2>三、可验证经历与材料</h2>
         <p class="section-note">了解一个人，不只看他说什么，也要看他已经做过什么。</p>
       </div>
+      <p class="statement">经历本身不是重点，重点是每段经历有没有变成更清晰的判断力。</p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -1114,7 +1219,7 @@
               <th>材料/经历</th>
               <th>说明</th>
               <th>可证明能力</th>
-              <th>这段经历说明什么</th>
+              <th>我从中学到什么</th>
             </tr>
           </thead>
           <tbody>
@@ -1122,31 +1227,31 @@
               <td>个人图文号 15 天 100W+ 播放</td>
               <td>单篇最高 79W+，说明有内容测试、选题、传播和平台反馈经验。</td>
               <td>内容敏感度、传播意识、反馈迭代</td>
-              <td>我对平台反馈、选题传播和用户注意力有真实体感。</td>
+              <td><strong>我学到：</strong>内容不是自我表达而已，它要接受平台、用户和传播结果的检验。</td>
             </tr>
             <tr>
               <td>AI 工作流部署方案</td>
               <td>提出“个人信息整理 → 7 天验证 → 标准化模板 → 团队协作”的路径。</td>
               <td>工作流理解、MVP 思维、标准化交付</td>
-              <td>我正在把 AI 从聊天工具变成个人和组织的工作系统。</td>
+              <td><strong>我学到：</strong>AI 的价值不在炫技，而在能不能稳定进入一个人的真实流程。</td>
             </tr>
             <tr>
               <td>3D 互动网页总结</td>
               <td>把视频抽帧、帧校准、绿幕抠像、交互验证、视觉反馈写成可复用提示词和流程。</td>
               <td>技术拆解、审美要求、验证意识</td>
-              <td>我愿意把审美、技术和表达结合成可展示的网页作品。</td>
+              <td><strong>我学到：</strong>技术最后要变成别人看得见、感受得到、愿意继续看的东西。</td>
             </tr>
             <tr>
               <td>微信聊天记录提取到 AI 分析教程</td>
               <td>能把复杂工具链写成步骤化教程，并提醒隐私边界和最终交付文件。</td>
               <td>信息整理、教程化、隐私意识</td>
-              <td>我能把复杂工具链拆成普通人能跟着做的步骤。</td>
+              <td><strong>我学到：</strong>真正理解一个工具，意味着我能把它讲到别人也能完成。</td>
             </tr>
             <tr>
               <td>扫楼增长方案</td>
               <td>能区分市场负反馈、用户无需求和执行者能力问题，并设计宣讲与分层机制。</td>
               <td>销售理解、地推经验、心理抗压</td>
-              <td>我接触过一线推广，也知道真实反馈不会永远好听。</td>
+              <td><strong>我学到：</strong>真实世界不会按想象配合我，抗拒、拒绝和负反馈都是训练。</td>
             </tr>
           </tbody>
         </table>
@@ -1158,6 +1263,7 @@
         <h2>四、我正在做的事</h2>
         <p class="section-note">这些方向组成了我现在的行动半径，也决定了别人如何认识我。</p>
       </div>
+      <p class="statement">我现在做的事，都在指向同一个目标：让自己拥有离开任何组织也能继续生长的能力。</p>
       <div class="service-list">
         <div class="service">
           <b>方向 1｜个人 AI 工作流</b>
@@ -1187,39 +1293,40 @@
         <h2>五、我的成长路径</h2>
         <p class="section-note">我更相信用持续输入、真实行动和复盘反馈来塑造自己。</p>
       </div>
+      <p class="statement">输入不是目的，输出和反馈才是成长真正发生的地方。</p>
       <div class="timeline">
         <div class="step">
           <div class="step-num">01</div>
           <div>
-            <h3>建立输入系统</h3>
+            <h3>输入｜建立输入系统</h3>
             <p>持续阅读、观察、记录和研究，把零散信息沉淀成自己的素材库、问题库和判断框架。</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">02</div>
           <div>
-            <h3>进入真实场景</h3>
+            <h3>实践｜进入真实场景</h3>
             <p>通过校园组织、市场推广、内容账号和 AI 项目接触真实反馈，不只停留在想法里。</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">03</div>
           <div>
-            <h3>做出可见作品</h3>
+            <h3>作品｜做出可见结果</h3>
             <p>把想法转成网页、脚本、图文、教程、流程文档和项目 Demo，让别人能直接看到结果。</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">04</div>
           <div>
-            <h3>接受外部反馈</h3>
+            <h3>反馈｜接受外部校正</h3>
             <p>用播放量、转发、社群反馈、项目结果和他人评价来校正自己，而不是只在自我感觉里打转。</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">05</div>
           <div>
-            <h3>形成个人系统</h3>
+            <h3>系统｜形成个人方法</h3>
             <p>把有效经验沉淀成方法论、模板、SOP、作品集和长期更新的个人介绍页。</p>
           </div>
         </div>
@@ -1231,6 +1338,7 @@
         <h2>六、我的做事方式</h2>
         <p class="section-note">这些原则决定我如何学习、执行、复盘和输出。</p>
       </div>
+      <p class="statement">先做出来，再让世界修正我。</p>
       <div class="grid two">
         <article class="panel accent-green">
           <h3>先跑通，再包装</h3>
@@ -1256,6 +1364,7 @@
         <h2>七、我的角色画像</h2>
         <p class="section-note">这些不是固定职业标签，而是我目前最容易进入状态的角色。</p>
       </div>
+      <p class="statement">我不是在寻找一个固定标签，而是在训练几种能长期迁移的能力组合。</p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -1307,6 +1416,7 @@
         <h2>八、适合找我聊什么</h2>
         <p class="section-note">如果你想认识我，可以从这些话题进入。</p>
       </div>
+      <p class="statement">比起寒暄，我更喜欢聊真实问题、真实经历和能变成行动的想法。</p>
       <div class="grid">
         <article class="panel accent-green">
           <h3>AI 与个人系统</h3>
@@ -1328,6 +1438,7 @@
         <h2>九、作品链接与联系方式</h2>
         <p class="section-note">把能直接打开的作品入口放在这里，方便快速判断我的表达、交付和工具使用能力。</p>
       </div>
+      <p class="statement">作品不是装饰，它是我把抽象能力变成可见结果的证据。</p>
       <div class="links-contact">
         <div class="work-links">
           <article class="work-card">
@@ -1335,6 +1446,7 @@
               <span class="work-meta">个人报告</span>
               <h3>SuperKing 个人介绍页</h3>
               <p>当前这份长期更新的个人网页，用来展示我的能力结构、经历材料、审美方向和作品入口。</p>
+              <p class="proof-line">我能把个人经历整理成一个可持续更新的展示系统。</p>
             </div>
             <a href="https://superk060319.github.io/superking/" target="_blank" rel="noopener">打开报告</a>
           </article>
@@ -1343,6 +1455,7 @@
               <span class="work-meta">网页项目</span>
               <h3>SuperKing 个人介绍网页</h3>
               <p>早期个人介绍网页项目，包含个人身份、经历、内容成果、兴趣和联系方式等模块。</p>
+              <p class="proof-line">我会用网页把个人信息做成可传播的作品。</p>
             </div>
             <a href="https://gitee.com/superking913060ykz/my-intro" target="_blank" rel="noopener">查看项目仓库</a>
           </article>
@@ -1351,6 +1464,7 @@
               <span class="work-meta">源码托管</span>
               <h3>GitHub Pages 发布仓库</h3>
               <p>当前网页的托管仓库，后续可继续补充作品、案例页、教程页和项目 Demo。</p>
+              <p class="proof-line">我能把作品发布到公开链接，并持续迭代。</p>
             </div>
             <a href="https://github.com/SuperK060319/superking" target="_blank" rel="noopener">查看源码</a>
           </article>
@@ -1369,8 +1483,11 @@
     </section>
 
     <footer class="footer">
+      <p class="footer-manifest">
+        我希望未来无论进入任何组织，都能带着自己的系统、作品和判断力离开。
+      </p>
       <p>
-        备注：本报告基于严匡正已有个人材料整理，不包含手机号、邮箱等隐私信息。作品链接和二维码用于对外沟通时快速建立信任与后续联系。
+        备注：本页面基于严匡正已有个人材料整理，不包含手机号、邮箱等隐私信息。作品链接和二维码用于对外沟通时快速建立信任与后续联系。
       </p>
     </footer>
   </main>

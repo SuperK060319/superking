@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SuperKing 个人主页 Demo 预览库</title>
+  <link rel="stylesheet" href="./demo.css" />
+</head>
+<body>
+  <canvas id="stars"></canvas>
+  <div class="mist" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <nav class="topbar">
+      <div class="brand">SuperKing Demo Lab</div>
+      <div class="tabs">
+        <a href="#hero">首屏</a>
+        <a href="#works">作品</a>
+        <a href="#text">文字</a>
+        <a href="#life">生活</a>
+        <a href="#architecture">60点架构</a>
+        <a href="../index.html">返回正式页</a>
+      </div>
+    </nav>
+
+    <header class="intro">
+      <div>
+        <small>not final / for visual judgement</small>
+        <h1>把个人介绍做成一个可进入的世界。</h1>
+        <p>这不是最终网站，而是 4 个核心维度、12 个可融合方向的低成本预览。你只需要判断：喜欢、不喜欢、哪里有感觉、哪里不对。</p>
+      </div>
+    </header>
+
+    <section class="dimension" id="hero">
+      <div class="dimension-head">
+        <h2>维度一：首屏身份</h2>
+        <p>目标：别人打开页面 5 秒内知道你不是普通简历，而是一个正在建立 AI、内容、组织成长系统的人。</p>
+      </div>
+
+      <article class="demo hero-cosmos">
+        <div>
+          <span class="demo-tag">Hero A / 宇宙宣言</span>
+          <h3 class="big-title">AI × 内容 × 组织成长系统</h3>
+          <p class="lead">我正在把真实经历、工具能力、内容表达和组织协作，训练成一个长期可迁移的个人系统。</p>
+        </div>
+        <div class="orbit" aria-label="ability orbit">
+          <span>AI工作流</span><span>内容表达</span><span>组织成长</span><span>项目交付</span>
+        </div>
+      </article>
+
+      <article class="demo hero-city">
+        <div>
+          <span class="demo-tag">Hero B / 城市观察者</span>
+          <h3 class="big-title">在真实世界里训练判断力。</h3>
+          <p class="lead">城市、展馆、社群、课堂、项目，都是我的输入场。我更相信现场、反馈和作品，而不是停留在想法里。</p>
+        </div>
+        <div class="photo-stage">
+          <div class="photo-main"><img src="../assets/personal/city_night_01.jpg" alt="city night" /></div>
+          <div class="photo-float"><img src="../assets/personal/city_observer_01.jpg" alt="gallery" /></div>
+        </div>
+      </article>
+
+      <article class="demo hero-archive">
+        <div>
+          <span class="demo-tag">Hero C / 成长档案</span>
+          <h3 class="big-title">把经历沉淀成可复用资产。</h3>
+          <p class="lead">我不是只想证明自己做过什么，而是想让每一次输入、行动、反馈，都进入一个持续升级的个人档案。</p>
+        </div>
+        <div class="timeline">
+          <div><b>输入</b><span>城市、社群、课程、真实任务</span></div>
+          <div><b>输出</b><span>图文、脚本、网页、教程、Demo</span></div>
+          <div><b>反馈</b><span>播放量、用户问题、项目结果、协作体验</span></div>
+          <div><b>系统</b><span>SOP、模板、作品集、长期主页</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="dimension" id="works">
+      <div class="dimension-head">
+        <h2>维度二：作品展陈</h2>
+        <p>目标：借鉴 Codrops / Cenee 的展陈感，把作品从“链接列表”升级成“可浏览的证据”。</p>
+      </div>
+
+      <article class="demo gallery">
+        <span class="demo-tag">Works A / 横向展览</span>
+        <div class="gallery-strip">
+          <figure class="gallery-card"><img src="../assets/personal/garden_frame_01.jpg" alt="" /><figcaption>个人主页系统</figcaption></figure>
+          <figure class="gallery-card"><img src="../assets/personal/city_observer_02.jpg" alt="" /><figcaption>AI 工作流教程</figcaption></figure>
+          <figure class="gallery-card"><img src="../assets/personal/artifact_01.jpg" alt="" /><figcaption>内容复盘档案</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="demo case-wall">
+        <span class="demo-tag">Works B / 案例证据墙</span>
+        <div class="case-grid">
+          <div class="case"><p>传播验证</p><strong>79W+</strong><span>单篇图文最高播放</span></div>
+          <div class="case"><p>系统交付</p><strong>AI SOP</strong><span>把复杂流程写成新人能执行的教程</span></div>
+          <div class="case"><p>长期方向</p><strong>个人系统</strong><span>把资料、作品、复盘放入长期更新结构</span></div>
+        </div>
+      </article>
+
+      <article class="demo lab-grid">
+        <span class="demo-tag">Works C / 实验室笔记</span>
+        <div class="lab-grid-inner">
+          <div class="lab-card"><b>正在实验</b><p>AI 工具如何进入真实生活流程，而不是停留在炫技。</p></div>
+          <div class="lab-card"><b>正在沉淀</b><p>把聊天记录、经历、项目、想法整理成可检索材料。</p></div>
+          <div class="lab-card"><b>正在表达</b><p>用网页、图文、短视频和教程，把能力变成别人能看见的作品。</p></div>
+          <div class="lab-card"><b>正在连接</b><p>围绕成长、组织、教育、AI 找到更适配的协作对象。</p></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="dimension" id="text">
+      <div class="dimension-head">
+        <h2>维度三：文字叙事</h2>
+        <p>目标：解决“文字太单薄”的问题。不是堆字，而是让关键判断句像标题一样有重量。</p>
+      </div>
+
+      <article class="demo text-editorial">
+        <span class="demo-tag">Text A / Typewolf 式编辑感</span>
+        <div class="editorial-layout">
+          <h3 class="drop-title">我不想只做会用工具的人。</h3>
+          <p class="lead">我更想训练一种底层能力：把模糊想法变成结构，把真实经历变成作品，把外部反馈变成下一次行动。AI、内容、组织只是入口，真正重要的是形成自己的输入输出系统。</p>
+        </div>
+      </article>
+
+      <article class="demo text-statement">
+        <span class="demo-tag">Text B / 大判断句</span>
+        <div class="quote-wall">
+          <div class="quote">输入不是目的，输出和反馈才是成长真正发生的地方。</div>
+          <div class="quote">作品不是装饰，它是抽象能力变成可见结果的证据。</div>
+          <div class="quote">我希望未来无论进入任何组织，都能带着自己的系统离开。</div>
+        </div>
+      </article>
+
+      <article class="demo text-index">
+        <span class="demo-tag">Text C / 认知索引卡</span>
+        <div class="index-grid">
+          <div class="index-card"><small>01 / 输入</small><h3>从真实世界取材</h3><p>课堂、城市、项目、社群，不做空想式成长。</p></div>
+          <div class="index-card"><small>02 / 输出</small><h3>用作品验证判断</h3><p>网页、教程、图文、脚本都是可复盘证据。</p></div>
+          <div class="index-card"><small>03 / 系统</small><h3>把经验变成资产</h3><p>把有效经验沉淀成 SOP、模板和长期主页。</p></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="dimension" id="life">
+      <div class="dimension-head">
+        <h2>维度四：生活素材</h2>
+        <p>目标：用你的旅行和生活素材建立记忆点，但不变成朋友圈相册。</p>
+      </div>
+
+      <article class="demo life-grid">
+        <span class="demo-tag">Life A / 生活拼贴</span>
+        <div class="life-mosaic">
+          <div class="life-tile"><img src="../assets/personal/forest_path_01.jpg" alt="" /><b>去现场</b></div>
+          <div class="life-tile"><img src="../assets/personal/river_city_01.jpg" alt="" /><b>看城市</b></div>
+          <div class="life-tile"><img src="../assets/personal/garden_water_01.jpg" alt="" /><b>留安静</b></div>
+          <div class="life-tile"><img src="../assets/personal/city_night_02.jpg" alt="" /><b>继续走</b></div>
+        </div>
+      </article>
+
+      <article class="demo life-essay">
+        <span class="demo-tag">Life B / 图文短章</span>
+        <div class="essay-split">
+          <div class="essay-photo"><img src="../assets/personal/mountain_lake_01.jpg" alt="" /></div>
+          <div class="essay-copy">
+            <h3 class="big-title">生活不是背景，是判断力的来源。</h3>
+            <p class="lead">我会被城市、路、展馆、山水吸引，因为这些地方让我从屏幕里出来。很多判断不是想出来的，是在真实场景里被训练出来的。</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="demo life-map">
+        <span class="demo-tag">Life C / 个人地图</span>
+        <div class="map-line">
+          <div class="map-point"><b>城市</b><p>观察商业、传播、组织和人群。</p></div>
+          <div class="map-point"><b>展馆</b><p>训练审美、结构和长期感。</p></div>
+          <div class="map-point"><b>山水</b><p>让节奏慢下来，保留感知力。</p></div>
+          <div class="map-point"><b>夜路</b><p>把想法带回行动，把行动带回作品。</p></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="arch" id="architecture">
+      <div class="dimension-head">
+        <h2>60 点网站架构表</h2>
+        <p>这是后续打磨清单，不是一次做完。每一项都能被单独讨论、单独改、单独验收。</p>
+      </div>
+      <div class="arch-grid">
+        <div class="arch-item"><b>01 首屏主张</b><p>一句话说明你是谁和你正在建立什么系统。</p></div>
+        <div class="arch-item"><b>02 首屏气质</b><p>星空动态保留，但要慢、暗、克制。</p></div>
+        <div class="arch-item"><b>03 身份关键词</b><p>AI、内容、组织、成长、作品化只保留最强词。</p></div>
+        <div class="arch-item"><b>04 第一屏留白</b><p>不要把全部经历塞在首屏。</p></div>
+        <div class="arch-item"><b>05 头像策略</b><p>少用证件照，多用剪影、远景或风格化个人图。</p></div>
+        <div class="arch-item"><b>06 动效节奏</b><p>动效服务沉浸，不抢文字。</p></div>
+        <div class="arch-item"><b>07 导航结构</b><p>目录像个人档案索引，而不是普通菜单。</p></div>
+        <div class="arch-item"><b>08 阅读进度</b><p>保留现有进度条，增强长期报告感。</p></div>
+        <div class="arch-item"><b>09 色彩系统</b><p>深黑、幽蓝、紫、少量青绿和琥珀。</p></div>
+        <div class="arch-item"><b>10 字体层级</b><p>关键判断句要大，解释文字要收。</p></div>
+        <div class="arch-item"><b>11 作品入口</b><p>作品必须像展品，而不是链接列表。</p></div>
+        <div class="arch-item"><b>12 作品卡片</b><p>每张卡片包含作品名、证明点、下一步链接。</p></div>
+        <div class="arch-item"><b>13 成果数字</b><p>79W+ 等数字要作为证据，不要堆 KPI。</p></div>
+        <div class="arch-item"><b>14 案例详情</b><p>每个作品未来都能展开成独立案例页。</p></div>
+        <div class="arch-item"><b>15 AI 工作流</b><p>用流程图表达，不要只写“会用 AI”。</p></div>
+        <div class="arch-item"><b>16 内容能力</b><p>展示选题、脚本、分发、复盘全过程。</p></div>
+        <div class="arch-item"><b>17 组织经验</b><p>表达你如何连接人、服务人、协调任务。</p></div>
+        <div class="arch-item"><b>18 成长方法</b><p>输入、行动、反馈、沉淀形成闭环。</p></div>
+        <div class="arch-item"><b>19 个人系统</b><p>这是整站主线，所有模块围绕它展开。</p></div>
+        <div class="arch-item"><b>20 生活素材</b><p>生活图做气质，不做相册。</p></div>
+        <div class="arch-item"><b>21 城市观察</b><p>城市图对应“现场感”和“外部世界”。</p></div>
+        <div class="arch-item"><b>22 展馆素材</b><p>展馆图对应“输入、审美、结构”。</p></div>
+        <div class="arch-item"><b>23 山水素材</b><p>山水图对应“成长、节奏、长期主义”。</p></div>
+        <div class="arch-item"><b>24 夜景素材</b><p>夜景图对应“行动、探索、未来感”。</p></div>
+        <div class="arch-item"><b>25 隐私边界</b><p>不放微信截图、定位、评论、他人清晰正脸。</p></div>
+        <div class="arch-item"><b>26 文案语气</b><p>不要奉承老板，面向所有想了解你的人。</p></div>
+        <div class="arch-item"><b>27 重点句</b><p>每个 section 只保留一句最有穿透力的话。</p></div>
+        <div class="arch-item"><b>28 长文处理</b><p>长文拆成判断句、证据、解释三层。</p></div>
+        <div class="arch-item"><b>29 目录体验</b><p>目录要让人知道自己看到哪里。</p></div>
+        <div class="arch-item"><b>30 移动端首屏</b><p>手机上标题不能遮挡关键词和图像。</p></div>
+        <div class="arch-item"><b>31 图片比例</b><p>统一横图、竖图、封面图使用规则。</p></div>
+        <div class="arch-item"><b>32 图片调色</b><p>公开素材要压暗、降噪、统一冷色基调。</p></div>
+        <div class="arch-item"><b>33 悬停反馈</b><p>作品卡 hover 时显示“我学到什么”。</p></div>
+        <div class="arch-item"><b>34 滚动动效</b><p>借鉴 Paymark，轻微位移和透明度即可。</p></div>
+        <div class="arch-item"><b>35 章节过渡</b><p>用图片或大句子过渡，不靠装饰线。</p></div>
+        <div class="arch-item"><b>36 雷达图保留</b><p>如果保留，必须解决文字遮挡和视觉简陋。</p></div>
+        <div class="arch-item"><b>37 能力模型</b><p>能力图从“评分”改为“系统关系”。</p></div>
+        <div class="arch-item"><b>38 个人记忆点</b><p>发疯感、行动感、城市感可以保留，但要高级化。</p></div>
+        <div class="arch-item"><b>39 作品链接</b><p>每个链接要解释为什么值得点。</p></div>
+        <div class="arch-item"><b>40 二维码</b><p>二维码放底部，不破坏主视觉。</p></div>
+        <div class="arch-item"><b>41 GitHub 入口</b><p>作为技术可信度证据，不放得太突兀。</p></div>
+        <div class="arch-item"><b>42 教程仓库</b><p>Claude 微信安装手册单独仓库，不混入个人主页主体。</p></div>
+        <div class="arch-item"><b>43 交互强度</b><p>不要为了炫技导致页面难读。</p></div>
+        <div class="arch-item"><b>44 加载速度</b><p>图片压缩，动画用 CSS/canvas，不上重库。</p></div>
+        <div class="arch-item"><b>45 可维护性</b><p>正式版要拆 CSS、JS、数据文件，方便长期更新。</p></div>
+        <div class="arch-item"><b>46 页面深度</b><p>首页只讲总览，深内容进入二级页。</p></div>
+        <div class="arch-item"><b>47 叙事顺序</b><p>先气质，再能力，再证据，再联系。</p></div>
+        <div class="arch-item"><b>48 目标受众</b><p>面向同学、合作方、导师、朋友、陌生访客。</p></div>
+        <div class="arch-item"><b>49 可验证性</b><p>每个重要判断至少配一个经历或作品。</p></div>
+        <div class="arch-item"><b>50 非简历化</b><p>少写岗位匹配，多写个人系统和作品资产。</p></div>
+        <div class="arch-item"><b>51 首页长度</b><p>控制在能完整读完，不变成长报告。</p></div>
+        <div class="arch-item"><b>52 页脚宣言</b><p>保留“带着自己的系统离开任何组织”的主线。</p></div>
+        <div class="arch-item"><b>53 版本记录</b><p>后续每次改版记录原因和变化。</p></div>
+        <div class="arch-item"><b>54 Demo 流程</b><p>先确认风格，再确认结构，再进入正式实现。</p></div>
+        <div class="arch-item"><b>55 审核方式</b><p>你只判断喜欢/不喜欢/哪里不对，我负责翻译成修改项。</p></div>
+        <div class="arch-item"><b>56 参考站用途</b><p>IVRESS 学沉浸，Paymark 学动效，Codrops 学展陈，Typewolf 学文字。</p></div>
+        <div class="arch-item"><b>57 融合原则</b><p>不能像拼贴，要围绕“个人系统”统一。</p></div>
+        <div class="arch-item"><b>58 风险控制</b><p>避免太玄、太暗、太像模板、太像作品集公司站。</p></div>
+        <div class="arch-item"><b>59 最终验收</b><p>看完后能记住你是谁、做过什么、正在走向哪里。</p></div>
+        <div class="arch-item"><b>60 下一步</b><p>从 12 个 demo 中选 3-5 个元素融合成正式方案。</p></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./demo.js"></script>
+</body>
+</html>

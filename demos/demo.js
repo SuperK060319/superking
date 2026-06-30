@@ -124,13 +124,40 @@ function installPointerEffects() {
 
 installPointerEffects();
 
+function installFusionScrollMotion() {
+  if (!document.body.classList.contains("fusion-body")) return;
+
+  const movingItems = [
+    ".fusion-section .section-copy",
+    ".system-map",
+    ".works-stage",
+    ".statement",
+    ".thin-proof div",
+    ".space-end h2",
+    ".space-end .fusion-lead"
+  ];
+
+  document.querySelectorAll(movingItems.join(",")).forEach((el) => {
+    el.classList.add("motion-ready");
+  });
+}
+
+installFusionScrollMotion();
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.animate([
+    if (!entry.isIntersecting) return;
+
+    if (entry.target.classList.contains("motion-ready")) {
+      entry.target.classList.add("is-visible");
+      return;
+    }
+
+    entry.target.animate([
       { opacity: 0, transform: "translateY(18px)" },
       { opacity: 1, transform: "translateY(0)" }
     ], { duration: 520, easing: "cubic-bezier(.2,.8,.2,1)", fill: "both" });
   });
 }, { threshold: 0.16 });
 
-document.querySelectorAll(".demo, .arch-item").forEach((el) => observer.observe(el));
+document.querySelectorAll(".demo, .arch-item, .motion-ready").forEach((el) => observer.observe(el));

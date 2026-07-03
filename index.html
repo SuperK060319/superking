@@ -792,6 +792,68 @@
       background: #f7f7f7;
     }
 
+    .tutorial-section {
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: clamp(22px, 4vw, 48px);
+      align-items: stretch;
+      margin: 0 0 34px;
+      padding: clamp(18px, 3vw, 28px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 82% 12%, rgba(130, 200, 216, .13), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.048), rgba(255,255,255,.014));
+    }
+
+    .tutorial-copy {
+      align-self: center;
+    }
+
+    .tutorial-copy h3 {
+      margin: 14px 0;
+      color: #f1dca9;
+      font-family: var(--display);
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.1;
+    }
+
+    .tutorial-copy p {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .tutorial-copy a {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 18px;
+      color: #090909;
+      background: linear-gradient(135deg, #f3d076, #a86a2c);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .tutorial-frame {
+      min-height: 640px;
+      overflow: hidden;
+      border: 1px solid rgba(240,193,90,.22);
+      border-radius: 18px;
+      background: #09090b;
+      box-shadow: 0 28px 90px rgba(0,0,0,.38);
+    }
+
+    .tutorial-frame iframe {
+      width: 100%;
+      height: 640px;
+      display: block;
+      border: 0;
+      background: #09090b;
+    }
+
     .work-layout {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 320px;
@@ -800,7 +862,7 @@
 
     .work-list {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
@@ -890,6 +952,7 @@
       .field-grid,
       .works-head,
       .certificate-showcase,
+      .tutorial-section,
       .work-layout {
         grid-template-columns: 1fr;
       }
@@ -936,6 +999,11 @@
       .certificate-frame {
         min-height: auto;
       }
+      .tutorial-frame,
+      .tutorial-frame iframe {
+        min-height: 560px;
+        height: 560px;
+      }
       .node {
         width: 104px;
         height: 104px;
@@ -974,6 +1042,7 @@
         <a href="#field">现场</a>
         <a href="#words">判断</a>
         <a href="#certificate">证书</a>
+        <a href="#typeless">教程</a>
         <a href="#works">作品</a>
         <a href="#contact">联系</a>
       </div>
@@ -1081,7 +1150,7 @@
       <div class="works-head">
         <div>
           <div class="chapter">04 / visible proof</div>
-          <h2>作品链接与联系方式</h2>
+          <h2>教程、作品与联系方式</h2>
         </div>
         <p class="lead">
           作品不是装饰，它是我把个人经历、工具能力和表达能力变成可见结果的证据。
@@ -1101,29 +1170,38 @@
         </figure>
       </article>
 
+      <section class="tutorial-section" id="typeless">
+        <div class="tutorial-copy">
+          <span class="work-meta">工具教程</span>
+          <h3>TYPELESS 小白安装闯关课</h3>
+          <p>
+            这份教程已经嵌入在个人介绍页里，可以直接往下看。它面向微信朋友和 Windows 新手，覆盖官网入口、下载安装、麦克风权限和第一次语音输入。
+          </p>
+          <a href="https://superk060319.github.io/typeless-wechat-guide/" target="_blank" rel="noopener">打开完整教程</a>
+        </div>
+        <div class="tutorial-frame">
+          <iframe
+            src="https://superk060319.github.io/typeless-wechat-guide/"
+            title="TYPELESS 小白安装闯关课"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
+
       <div class="work-layout">
         <div class="work-list">
           <article class="work-card">
             <div>
-              <span class="work-meta">个人报告</span>
-              <h3>SuperKing 个人介绍页</h3>
-              <p>当前这份长期更新的个人网页，用来展示我的能力结构、经历材料、审美方向和作品入口。</p>
+              <span class="work-meta">教程源码</span>
+              <h3>Typeless 教程仓库</h3>
+              <p>这份内嵌教程的源码仓库，方便后续继续修改内容、补充排障步骤和同步公开页面。</p>
             </div>
-            <a href="https://superk060319.github.io/superking/" target="_blank" rel="noopener">打开报告</a>
+            <a href="https://github.com/SuperK060319/typeless-wechat-guide" target="_blank" rel="noopener">查看源码</a>
           </article>
 
           <article class="work-card">
             <div>
-              <span class="work-meta">工具教程</span>
-              <h3>TYPELESS 小白安装闯关课</h3>
-              <p>面向微信朋友和 Windows 新手的 Typeless 安装教程，覆盖官网入口、下载安装、麦克风权限和第一次语音输入。</p>
-            </div>
-            <a href="https://superk060319.github.io/typeless-wechat-guide/" target="_blank" rel="noopener">打开教程</a>
-          </article>
-
-          <article class="work-card">
-            <div>
-              <span class="work-meta">源码托管</span>
+              <span class="work-meta">个人页源码</span>
               <h3>GitHub Pages 发布仓库</h3>
               <p>当前网页的托管仓库，后续可继续补充作品、案例页、教程页和项目 Demo。</p>
             </div>
@@ -1288,7 +1366,7 @@
       installPointerEffects();
     }
 
-    document.querySelectorAll(".section .copy, .system-map, .field-grid, .statement, .proof-grid div, .works-head, .certificate-showcase, .work-card, .contact-card, .end h2, .end p").forEach((el) => {
+    document.querySelectorAll(".section .copy, .system-map, .field-grid, .statement, .proof-grid div, .works-head, .certificate-showcase, .tutorial-section, .work-card, .contact-card, .end h2, .end p").forEach((el) => {
       el.classList.add("motion-ready");
     });
 

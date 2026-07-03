@@ -745,6 +745,53 @@
       line-height: 1.08;
     }
 
+    .certificate-showcase {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(300px, 1.1fr);
+      gap: clamp(18px, 3vw, 36px);
+      align-items: center;
+      margin: 0 0 34px;
+      padding: clamp(18px, 3vw, 28px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(238, 91, 47, .15), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,.048), rgba(255,255,255,.014));
+    }
+
+    .certificate-copy h3 {
+      margin: 14px 0;
+      color: #f1dca9;
+      font-family: var(--display);
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.1;
+    }
+
+    .certificate-copy p {
+      max-width: 500px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .certificate-frame {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(240,193,90,.22);
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 28px 90px rgba(0,0,0,.38);
+    }
+
+    .certificate-frame img {
+      width: 100%;
+      max-height: 560px;
+      object-fit: contain;
+      display: block;
+      background: #f7f7f7;
+    }
+
     .work-layout {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 320px;
@@ -842,6 +889,7 @@
       .section,
       .field-grid,
       .works-head,
+      .certificate-showcase,
       .work-layout {
         grid-template-columns: 1fr;
       }
@@ -885,6 +933,9 @@
       .work-list {
         grid-template-columns: 1fr;
       }
+      .certificate-frame {
+        min-height: auto;
+      }
       .node {
         width: 104px;
         height: 104px;
@@ -922,6 +973,7 @@
         <a href="#system">系统</a>
         <a href="#field">现场</a>
         <a href="#words">判断</a>
+        <a href="#certificate">证书</a>
         <a href="#works">作品</a>
         <a href="#contact">联系</a>
       </div>
@@ -1035,6 +1087,19 @@
           作品不是装饰，它是我把个人经历、工具能力和表达能力变成可见结果的证据。
         </p>
       </div>
+
+      <article class="certificate-showcase" id="certificate">
+        <div class="certificate-copy">
+          <span class="work-meta">校园项目证书</span>
+          <h3>滴滴租车校园大使</h3>
+          <p>
+            参与滴滴租车“星火计划第 2 期实战营”的运营及推广活动，在用户增长与校园市场执行中完成真实项目验证。
+          </p>
+        </div>
+        <figure class="certificate-frame">
+          <img class="zoomable" src="assets/personal/didi-campus-ambassador.png" alt="滴滴租车校园大使证书" />
+        </figure>
+      </article>
 
       <div class="work-layout">
         <div class="work-list">
@@ -1223,7 +1288,7 @@
       installPointerEffects();
     }
 
-    document.querySelectorAll(".section .copy, .system-map, .field-grid, .statement, .proof-grid div, .works-head, .work-card, .contact-card, .end h2, .end p").forEach((el) => {
+    document.querySelectorAll(".section .copy, .system-map, .field-grid, .statement, .proof-grid div, .works-head, .certificate-showcase, .work-card, .contact-card, .end h2, .end p").forEach((el) => {
       el.classList.add("motion-ready");
     });
 

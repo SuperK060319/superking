@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SuperKing个人介绍</title>
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23030305'/%3E%3Cpath d='M50 13 60 40l28 10-28 10-10 27-10-27-28-10 28-10z' fill='%23f0c15a'/%3E%3C/svg%3E"
+  />
   <style>
     :root {
       --black: #030305;
@@ -377,27 +381,40 @@
     }
 
     .film-card.large {
-      width: 76%;
-      height: 54%;
-      top: 4%;
+      z-index: 1;
+      width: 58%;
+      height: 86%;
+      top: 2%;
       right: 0;
       animation: floatLarge 9.5s ease-in-out infinite;
     }
 
     .film-card.mid {
-      width: 48%;
-      height: 44%;
+      z-index: 3;
+      width: 42%;
+      height: 50%;
       left: 0;
-      bottom: 10%;
+      top: 10%;
       animation: floatMid 11s ease-in-out infinite;
     }
 
     .film-card.small {
-      width: 38%;
-      height: 30%;
-      right: 8%;
-      bottom: 0;
+      z-index: 2;
+      width: 46%;
+      height: 34%;
+      left: 8%;
+      bottom: 2%;
       animation: floatSmall 8.8s ease-in-out infinite;
+    }
+
+    .film-card.large img {
+      object-position: 50% 52%;
+      filter: brightness(.74) contrast(1.12) saturate(.9);
+    }
+
+    .film-card.mid img {
+      object-position: 50% 38%;
+      filter: brightness(.8) contrast(1.08) saturate(.84);
     }
 
     .film-label {
@@ -981,16 +998,23 @@
         min-height: 470px;
       }
       .film-card.large {
-        width: 86%;
-        height: 46%;
+        width: 64%;
+        height: 76%;
+        top: 0;
+        right: 0;
       }
       .film-card.mid {
-        width: 62%;
-        height: 38%;
+        width: 48%;
+        height: 44%;
+        left: 0;
+        top: 5%;
       }
       .film-card.small {
-        width: 48%;
-        height: 28%;
+        width: 54%;
+        height: 30%;
+        left: 8%;
+        right: auto;
+        bottom: 0;
       }
       .proof-grid,
       .work-list {
@@ -1064,16 +1088,16 @@
       <div class="cinema-board" aria-label="个人视觉素材">
         <div class="signal-ring" aria-hidden="true"></div>
         <figure class="film-card large">
-          <img class="zoomable" src="assets/personal/city_night_01.jpg" alt="城市夜景" />
-          <figcaption class="film-label">未来感 / 城市夜色</figcaption>
+          <img class="zoomable" src="assets/personal/superking-city-portrait-01.jpg" alt="SuperKing 在城市夜景中的低机位照片" />
+          <figcaption class="film-label">本人现场 / 城市夜色</figcaption>
         </figure>
         <figure class="film-card mid">
-          <img class="zoomable" src="assets/personal/city_observer_01.jpg" alt="展馆空间" />
-          <figcaption class="film-label">输入 / 展馆观察</figcaption>
+          <img class="zoomable" src="assets/personal/superking-portrait-01.jpg" alt="严匡正的个人肖像" />
+          <figcaption class="film-label">严匡正 / SuperKing</figcaption>
         </figure>
         <figure class="film-card small">
-          <img class="zoomable" src="assets/personal/artifact_01.jpg" alt="器物细节" />
-          <figcaption class="film-label">时间感 / 器物</figcaption>
+          <img class="zoomable" src="assets/personal/city_observer_01.jpg" alt="展馆空间" />
+          <figcaption class="film-label">输入 / 展馆观察</figcaption>
         </figure>
       </div>
     </header>
@@ -1100,7 +1124,7 @@
         <div class="chapter">02 / field material</div>
         <h2>生活素材不做相册，而做现场感。</h2>
         <p>
-          城市、展馆、山水、夜路，是我的输入场。它们不负责证明我去过哪里，而是提醒我：判断力不能只在屏幕里训练，要回到真实环境、真实人群和真实反馈。
+          城市、展馆、山水、夜路，还有镜头里的我，是我的输入场。它们不负责证明我去过哪里，而是提醒我：判断力不能只在屏幕里训练，要回到真实环境、真实人群和真实反馈。
         </p>
       </div>
       <div class="field-grid">

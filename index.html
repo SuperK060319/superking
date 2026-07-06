@@ -578,11 +578,12 @@
     #field {
       display: block;
       min-height: auto;
+      padding-bottom: 58px;
     }
 
     #field .copy {
-      max-width: 820px;
-      margin-bottom: 18px;
+      max-width: 1040px;
+      margin-bottom: 12px;
     }
 
     .copy h2,
@@ -613,84 +614,177 @@
 
     .system-map {
       position: relative;
-      min-height: 540px;
+      min-height: 620px;
       overflow: hidden;
       border: 1px solid var(--line);
-      border-radius: 28px;
+      border-radius: 34px;
       background:
-        radial-gradient(circle at 50% 52%, rgba(226,59,34,.13), transparent 28%),
-        radial-gradient(circle at 78% 20%, rgba(216,170,88,.10), transparent 34%),
-        linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+        radial-gradient(circle at 50% 50%, rgba(226,59,34,.18), transparent 24%),
+        radial-gradient(circle at 28% 42%, rgba(216,170,88,.14), transparent 36%),
+        radial-gradient(circle at 76% 34%, rgba(244,236,218,.07), transparent 28%),
+        linear-gradient(145deg, rgba(244,236,218,.04), rgba(10,8,7,.28));
+      box-shadow: inset 0 0 120px rgba(0,0,0,.38), 0 30px 110px rgba(0,0,0,.32);
       animation: mapFloat 10s ease-in-out infinite;
+      isolation: isolate;
     }
 
     .system-map::before {
       content: "";
       position: absolute;
-      inset: 14%;
-      z-index: 1;
-      border: 1px solid rgba(216,170,88,.2);
-      border-radius: 50%;
-      box-shadow: 0 0 0 72px rgba(226,59,34,.035), 0 0 0 144px rgba(216,170,88,.025);
+      inset: 0;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, rgba(244,236,218,.92) 0 1px, transparent 1.8px),
+        radial-gradient(circle, rgba(216,170,88,.45) 0 1px, transparent 1.6px);
+      background-size: 82px 82px, 137px 137px;
+      background-position: 0 0, 34px 22px;
+      opacity: .62;
+      animation: starDrift 42s linear infinite;
     }
 
     .system-map::after {
       content: "";
       position: absolute;
-      inset: -40%;
-      background: conic-gradient(from 0deg, transparent, rgba(226,59,34,.16), rgba(216,170,88,.10), transparent 30%);
-      animation: mapScanner 12s linear infinite;
+      inset: -18%;
+      z-index: 0;
+      background:
+        conic-gradient(from 0deg, transparent, rgba(226,59,34,.18), transparent 26%, rgba(216,170,88,.10), transparent 58%),
+        radial-gradient(circle at 50% 50%, transparent 0 22%, rgba(226,59,34,.12) 23% 24%, transparent 25% 42%, rgba(216,170,88,.10) 43% 44%, transparent 45%);
+      filter: blur(.2px);
+      animation: galaxySpin 32s linear infinite;
+      opacity: .9;
     }
 
     .node {
       position: absolute;
-      z-index: 2;
       display: grid;
       place-items: center;
-      width: 132px;
-      height: 132px;
-      padding: 14px;
-      border: 1px solid rgba(216,170,88,.24);
+      z-index: 3;
       border-radius: 50%;
       color: #f4ecda;
-      background: rgba(0,0,0,.36);
       text-align: center;
       font-weight: 900;
-      animation: nodePulse 4.8s ease-in-out infinite;
     }
 
     .node.center {
-      left: calc(50% - 76px);
-      top: calc(50% - 76px);
-      width: 152px;
-      height: 152px;
-      color: #050505;
-      background: linear-gradient(135deg, #e23b22, #d8aa58);
+      left: 50%;
+      top: 50%;
+      width: clamp(142px, 16vw, 190px);
+      height: clamp(142px, 16vw, 190px);
+      color: #130807;
+      background:
+        radial-gradient(circle at 32% 24%, rgba(255,236,176,.96), transparent 18%),
+        radial-gradient(circle at 62% 72%, rgba(216,170,88,.94), transparent 34%),
+        linear-gradient(135deg, #e23b22, #d8aa58);
+      box-shadow:
+        0 0 48px rgba(226,59,34,.55),
+        0 0 120px rgba(216,170,88,.25),
+        inset -18px -24px 42px rgba(81,21,10,.28);
+      transform: translate(-50%, -50%);
+      animation: sunBreath 4.8s ease-in-out infinite;
     }
 
-    .node.n1 { left: 42%; top: 9%; }
-    .node.n2 { right: 8%; top: 40%; animation-delay: .6s; }
-    .node.n3 { left: 42%; bottom: 8%; animation-delay: 1.2s; }
-    .node.n4 { left: 8%; top: 40%; animation-delay: 1.8s; }
+    .orbit {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      width: var(--orbit-size);
+      height: calc(var(--orbit-size) * .62);
+      border: 1px solid rgba(216,170,88,.18);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) rotate(var(--tilt));
+      animation: orbitSpin var(--duration) linear infinite;
+      transform-origin: center;
+    }
+
+    .orbit::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, transparent, rgba(244,236,218,.18), transparent);
+      opacity: .36;
+      mask-image: linear-gradient(90deg, transparent, #000 42%, transparent 72%);
+    }
+
+    .planet {
+      left: calc(100% - var(--planet-size) / 2);
+      top: 50%;
+      width: var(--planet-size);
+      height: var(--planet-size);
+      padding: 12px;
+      border: 1px solid rgba(216,170,88,.22);
+      background:
+        radial-gradient(circle at 32% 28%, rgba(244,236,218,.2), transparent 22%),
+        radial-gradient(circle at 72% 78%, rgba(226,59,34,.18), transparent 38%),
+        linear-gradient(145deg, rgba(19,16,14,.92), rgba(3,3,3,.96));
+      box-shadow:
+        0 0 34px rgba(0,0,0,.55),
+        0 0 44px rgba(216,170,88,.10),
+        inset -12px -14px 28px rgba(0,0,0,.62);
+      transform: translate(-50%, -50%) rotate(calc(var(--tilt) * -1));
+      animation: planetCounter var(--duration) linear infinite;
+    }
+
+    .planet::after {
+      content: "";
+      position: absolute;
+      inset: 18%;
+      border-radius: 50%;
+      border-top: 1px solid rgba(216,170,88,.24);
+      transform: rotate(-18deg);
+      opacity: .75;
+    }
+
+    .planet b {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(13px, 1.4vw, 17px);
+      line-height: 1.2;
+      text-shadow: 0 0 18px rgba(0,0,0,.88);
+    }
+
+    .orbit.o1 { --orbit-size: min(88%, 560px); --planet-size: 116px; --tilt: -14deg; --duration: 18s; }
+    .orbit.o2 { --orbit-size: min(102%, 650px); --planet-size: 132px; --tilt: 18deg; --duration: 25s; animation-direction: reverse; }
+    .orbit.o3 { --orbit-size: min(74%, 470px); --planet-size: 104px; --tilt: 42deg; --duration: 15s; }
+    .orbit.o4 { --orbit-size: min(116%, 740px); --planet-size: 126px; --tilt: -36deg; --duration: 31s; animation-direction: reverse; }
+
+    .orbit.o2 .planet { background: radial-gradient(circle at 30% 24%, rgba(244,236,218,.18), transparent 20%), linear-gradient(145deg, rgba(36,15,10,.94), rgba(5,5,5,.96)); }
+    .orbit.o3 .planet { background: radial-gradient(circle at 32% 26%, rgba(216,170,88,.24), transparent 22%), linear-gradient(145deg, rgba(17,17,17,.94), rgba(3,3,3,.98)); }
+    .orbit.o4 .planet { background: radial-gradient(circle at 34% 22%, rgba(226,59,34,.22), transparent 24%), linear-gradient(145deg, rgba(26,19,13,.94), rgba(3,3,3,.96)); }
 
     @keyframes mapFloat {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-12px); }
     }
-    @keyframes mapScanner { to { transform: rotate(360deg); } }
-    @keyframes nodePulse {
-      0%, 100% { box-shadow: 0 0 28px rgba(216,170,88,.08); transform: scale(1); }
-      50% { box-shadow: 0 0 54px rgba(226,59,34,.20); transform: scale(1.035); }
+    @keyframes starDrift { to { background-position: 82px 82px, -103px 137px; } }
+    @keyframes galaxySpin { to { transform: rotate(360deg); } }
+    @keyframes orbitSpin {
+      to { transform: translate(-50%, -50%) rotate(calc(var(--tilt) + 360deg)); }
+    }
+    @keyframes planetCounter {
+      to { transform: translate(-50%, -50%) rotate(calc((var(--tilt) + 360deg) * -1)); }
+    }
+    @keyframes sunBreath {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); filter: brightness(1); }
+      50% { transform: translate(-50%, -50%) scale(1.035); filter: brightness(1.12); }
     }
 
     .showcase-shell {
       position: relative;
       width: 100vw;
-      margin-left: 50%;
-      padding: 18px 0 24px;
+      margin-left: calc(50% - 50vw);
+      min-height: 0;
+      display: block;
+      padding: 14px 0 20px;
       overflow: hidden;
-      transform: translateX(-50%);
       cursor: grab;
+      background:
+        radial-gradient(circle at 18% 28%, rgba(226,59,34,.13), transparent 28rem),
+        radial-gradient(circle at 82% 76%, rgba(216,170,88,.10), transparent 30rem),
+        linear-gradient(180deg, rgba(10,8,7,0), rgba(10,8,7,.54) 18%, rgba(10,8,7,.54) 82%, rgba(10,8,7,0));
+      border-block: 1px solid rgba(244,236,218,.07);
     }
 
     .showcase-shell::before,
@@ -700,7 +794,7 @@
       top: 0;
       bottom: 0;
       z-index: 4;
-      width: min(15vw, 190px);
+      width: min(7vw, 86px);
       pointer-events: none;
     }
 
@@ -717,9 +811,11 @@
     .showcase-track {
       display: flex;
       width: max-content;
-      gap: 18px;
-      padding: 10px max(18px, calc((100vw - 1220px) / 2));
+      gap: clamp(10px, 1.1vw, 16px);
+      padding: 10px 0;
+      margin-left: -8px;
       animation: playbackSlide 42s linear infinite;
+      transform: translate3d(0, 0, 0);
       will-change: transform;
     }
 
@@ -728,7 +824,7 @@
     }
 
     .showcase-shell.reverse .showcase-track {
-      animation-direction: reverse;
+      animation-name: playbackSlideReverse;
       animation-duration: 46s;
     }
 
@@ -739,8 +835,8 @@
     .show-card {
       position: relative;
       flex: 0 0 auto;
-      width: clamp(230px, 22vw, 310px);
-      aspect-ratio: .78;
+      width: clamp(210px, 18.5vw, 280px);
+      aspect-ratio: .76;
       overflow: hidden;
       border: 1px solid rgba(216,170,88,.22);
       border-radius: 8px;
@@ -840,8 +936,8 @@
     }
 
     .show-card.work {
-      width: clamp(260px, 26vw, 360px);
-      aspect-ratio: .88;
+      width: clamp(250px, 22vw, 340px);
+      aspect-ratio: .95;
     }
 
     .show-card.work .show-cover {
@@ -887,7 +983,12 @@
     }
 
     @keyframes playbackSlide {
+      from { transform: translate3d(0, 0, 0); }
       to { transform: translate3d(-50%, 0, 0); }
+    }
+    @keyframes playbackSlideReverse {
+      from { transform: translate3d(-50%, 0, 0); }
+      to { transform: translate3d(0, 0, 0); }
     }
 
     .field-photo,
@@ -1300,7 +1401,8 @@
         overflow-wrap: anywhere;
       }
       .showcase-shell {
-        width: calc(100vw + 8px);
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
         padding: 8px 0 18px;
       }
       .showcase-track {
@@ -1361,16 +1463,16 @@
         min-height: 560px;
         height: 560px;
       }
-      .node {
-        width: 104px;
-        height: 104px;
-        font-size: 14px;
+      .system-map {
+        min-height: 520px;
+        border-radius: 24px;
       }
-      .node.center {
-        left: calc(50% - 62px);
-        top: calc(50% - 62px);
-        width: 124px;
-        height: 124px;
+      .orbit.o1 { --orbit-size: 82%; --planet-size: 92px; }
+      .orbit.o2 { --orbit-size: 98%; --planet-size: 98px; }
+      .orbit.o3 { --orbit-size: 68%; --planet-size: 86px; }
+      .orbit.o4 { --orbit-size: 112%; --planet-size: 94px; }
+      .planet b {
+        font-size: 12px;
       }
     }
 
@@ -1458,10 +1560,10 @@
       </div>
       <div class="system-map">
         <div class="node center">个人系统</div>
-        <div class="node n1">静态页面</div>
-        <div class="node n2">动态交互</div>
-        <div class="node n3">3D 粒子</div>
-        <div class="node n4">视频网页</div>
+        <div class="orbit o1"><div class="node planet"><b>静态页面</b></div></div>
+        <div class="orbit o2"><div class="node planet"><b>动态交互</b></div></div>
+        <div class="orbit o3"><div class="node planet"><b>3D 粒子</b></div></div>
+        <div class="orbit o4"><div class="node planet"><b>视频网页</b></div></div>
       </div>
     </section>
 
@@ -1634,6 +1736,26 @@
 
       <div class="showcase-shell reverse work-playback" aria-label="作品播放式作品集">
         <div class="showcase-track">
+          <article class="show-card work">
+            <div class="show-cover"><small>AI Website Generator</small><strong>IP Website Craft</strong><em>静态 / 动态 / 3D 粒子 / 视频型网页</em></div>
+            <div class="show-caption"><b>一键生成网站</b><span>审美样本持续迭代</span><a href="https://ip-website-craft.pages.dev/" target="_blank" rel="noopener">打开网站</a></div>
+          </article>
+          <article class="show-card work">
+            <img class="zoomable" src="assets/personal/didi-campus-ambassador.png" alt="滴滴租车校园大使证书" />
+            <div class="show-caption"><b>滴滴校园大使</b><span>校园市场 / 用户增长 / 项目验证</span></div>
+          </article>
+          <article class="show-card work">
+            <div class="show-cover"><small>Tool Tutorial</small><strong>TYPELESS 闯关课</strong><em>给微信朋友和 Windows 新手的安装教程</em></div>
+            <div class="show-caption"><b>工具教程</b><span>安装 / 权限 / 第一次语音输入</span><a href="https://superk060319.github.io/typeless-wechat-guide/" target="_blank" rel="noopener">打开教程</a></div>
+          </article>
+          <article class="show-card work">
+            <div class="show-cover"><small>GitHub Pages</small><strong>SuperKing 个人页</strong><em>个人介绍、作品证据与生成系统的公开页面</em></div>
+            <div class="show-caption"><b>发布仓库</b><span>持续补充案例页和 Demo</span><a href="https://github.com/SuperK060319/superking" target="_blank" rel="noopener">查看源码</a></div>
+          </article>
+          <article class="show-card work">
+            <img class="zoomable" src="assets/personal/city_observer_02.jpg" alt="城市观察素材" />
+            <div class="show-caption"><b>审美样本库</b><span>城市 / 展馆 / 人群 / 结构输入</span></div>
+          </article>
           <article class="show-card work">
             <div class="show-cover"><small>AI Website Generator</small><strong>IP Website Craft</strong><em>静态 / 动态 / 3D 粒子 / 视频型网页</em></div>
             <div class="show-caption"><b>一键生成网站</b><span>审美样本持续迭代</span><a href="https://ip-website-craft.pages.dev/" target="_blank" rel="noopener">打开网站</a></div>
@@ -1895,7 +2017,7 @@
       installPointerEffects();
     }
 
-    document.querySelectorAll(".section .copy, .system-map, .showcase-shell, .statement, .proof-grid div, .works-head, .certificate-showcase, .tutorial-section, .work-card, .contact-card, .end h2, .end p").forEach((el) => {
+    document.querySelectorAll(".section .copy, .system-map, .statement, .proof-grid div, .works-head, .certificate-showcase, .tutorial-section, .work-card, .contact-card, .end h2, .end p").forEach((el) => {
       el.classList.add("motion-ready");
     });
 

@@ -6,19 +6,23 @@
   <title>SuperKing个人介绍</title>
   <link
     rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23030305'/%3E%3Cpath d='M50 13 60 40l28 10-28 10-10 27-10-27-28-10 28-10z' fill='%23f0c15a'/%3E%3C/svg%3E"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0807'/%3E%3Cpath d='M50 13 60 40l28 10-28 10-10 27-10-27-28-10 28-10z' fill='%23e23b22'/%3E%3C/svg%3E"
   />
   <style>
     :root {
-      --black: #030305;
-      --ash: #0d0d10;
-      --ink: #e8e0cf;
-      --muted: #9b927f;
-      --gold: #f0c15a;
-      --amber: #a86a2c;
-      --blue: #6f9fd8;
-      --line: rgba(240, 193, 90, .18);
-      --glass: rgba(8, 8, 12, .58);
+      --black: #0a0807;
+      --ash: #120e0c;
+      --ink: #f4ecda;
+      --muted: #bdb09a;
+      --faint: #7a6f5e;
+      --gold: #d8aa58;
+      --gold-warm: #c9a86a;
+      --amber: #e23b22;
+      --red: #e23b22;
+      --red-deep: #9b2a18;
+      --blue: #8fb1c7;
+      --line: rgba(244, 236, 218, .13);
+      --glass: rgba(10, 8, 7, .62);
       --display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
       --body: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
     }
@@ -44,9 +48,10 @@
       width: 100%;
       height: 100%;
       background:
-        radial-gradient(circle at 22% 74%, rgba(28, 66, 108, .38), transparent 34%),
-        radial-gradient(circle at 74% 28%, rgba(91, 54, 121, .42), transparent 38%),
-        linear-gradient(145deg, #030305, #091022 48%, #020204);
+        radial-gradient(ellipse 80% 60% at 18% 8%, rgba(226,59,34,.24), transparent 60%),
+        radial-gradient(ellipse 70% 60% at 92% 100%, rgba(216,170,88,.12), transparent 65%),
+        radial-gradient(ellipse 90% 70% at 50% 50%, rgba(20,12,8,.55), transparent 70%),
+        linear-gradient(145deg, #0a0807, #120e0c 52%, #060504);
     }
 
     .nebula,
@@ -59,8 +64,8 @@
     .nebula {
       z-index: -3;
       background:
-        radial-gradient(circle at 74% 22%, rgba(118, 65, 146, .24), transparent 34%),
-        radial-gradient(circle at 18% 78%, rgba(23, 62, 102, .28), transparent 38%),
+        radial-gradient(circle at 74% 22%, rgba(226,59,34,.18), transparent 36%),
+        radial-gradient(circle at 18% 78%, rgba(216,170,88,.16), transparent 42%),
         linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.78));
       mix-blend-mode: screen;
       animation: nebulaPan 22s ease-in-out infinite alternate;
@@ -68,11 +73,12 @@
 
     .grain {
       z-index: 1;
-      opacity: .14;
+      opacity: .18;
       background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 42px 42px;
+        url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+        linear-gradient(rgba(244,236,218,.024) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244,236,218,.018) 1px, transparent 1px);
+      background-size: 200px 200px, 38px 38px, 38px 38px;
       mask-image: radial-gradient(circle at 50% 45%, black, transparent 78%);
       animation: gridDrift 18s linear infinite;
     }
@@ -99,7 +105,7 @@
     .cursor-core {
       width: 10px;
       height: 10px;
-      background: var(--gold);
+      background: #f0c15a;
       box-shadow: 0 0 18px rgba(240,193,90,.9);
     }
 
@@ -109,7 +115,7 @@
       z-index: 3000;
       border-radius: 50%;
       pointer-events: none;
-      background: var(--gold);
+      background: #f0c15a;
     }
 
     .spark {
@@ -184,14 +190,14 @@
       z-index: 50;
       width: 100%;
       height: 3px;
-      background: rgba(240,193,90,.08);
+      background: rgba(244,236,218,.08);
     }
 
     .progress span {
       display: block;
       width: 0;
       height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--blue), var(--gold));
+      background: linear-gradient(90deg, var(--red), var(--gold), var(--gold-warm));
     }
 
     .page {
@@ -241,12 +247,85 @@
     }
 
     .hero {
+      position: relative;
       min-height: 100vh;
       display: grid;
       grid-template-columns: minmax(0, .92fr) minmax(360px, 1.08fr);
       gap: clamp(28px, 6vw, 76px);
       align-items: center;
       padding: 80px 0 54px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-copy,
+    .cinema-board {
+      position: relative;
+      z-index: 2;
+    }
+
+    .kinetic-words {
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      z-index: 1;
+      width: 140vw;
+      pointer-events: none;
+      transform: translate3d(-50%, -50%, 0) rotate(-1.5deg);
+      opacity: .92;
+      filter: blur(.15px);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 13%, #000 87%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 13%, #000 87%, transparent);
+    }
+
+    .kinetic-row {
+      display: flex;
+      width: max-content;
+      color: rgba(232, 224, 207, .105);
+      font-family: var(--display);
+      font-size: clamp(76px, 13vw, 178px);
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: .78;
+      white-space: nowrap;
+      text-transform: uppercase;
+      text-shadow: 0 0 30px rgba(226,59,34,.15), 0 0 70px rgba(216,170,88,.12);
+      -webkit-text-stroke: 1px rgba(216,170,88,.08);
+      animation: kineticSlide 30s linear infinite;
+      will-change: transform;
+    }
+
+    .kinetic-row span {
+      display: inline-block;
+      padding-right: .22em;
+    }
+
+    .kinetic-row.alt {
+      color: rgba(226, 59, 34, .15);
+      animation-duration: 38s;
+      animation-direction: reverse;
+    }
+
+    .kinetic-row.soft {
+      color: rgba(216, 170, 88, .115);
+      animation-duration: 34s;
+      opacity: .78;
+    }
+
+    .vertical-cue {
+      position: absolute;
+      left: 52%;
+      top: 2%;
+      display: grid;
+      gap: 2px;
+      color: rgba(244, 236, 218, .34);
+      font-family: var(--body);
+      font-size: 20px;
+      font-weight: 900;
+      line-height: .95;
+      text-align: center;
+      text-shadow: 0 0 18px rgba(226,59,34,.22);
+      animation: cueDrop 3.8s ease-in-out infinite;
     }
 
     .chapter {
@@ -286,12 +365,12 @@
     em,
     .gold {
       color: transparent;
-      background: linear-gradient(100deg, #7a4b1f, #f0c15a 38%, #fff0ba 50%, #b8792e 64%, #f0c15a);
+      background: linear-gradient(100deg, #7a2a18, #e23b22 24%, #d8aa58 45%, #fff0c8 53%, #c9a86a 66%, #e23b22);
       background-size: 240% 100%;
       -webkit-background-clip: text;
       background-clip: text;
       font-style: normal;
-      text-shadow: 0 0 26px rgba(240,193,90,.24);
+      text-shadow: 0 0 26px rgba(226,59,34,.22);
       animation: goldTextFlow 5.2s ease-in-out infinite;
     }
 
@@ -316,8 +395,8 @@
 
     .hero-actions a,
     .work-card a {
-      color: #090909;
-      background: linear-gradient(135deg, #f3d076, #a86a2c);
+      color: #100906;
+      background: linear-gradient(135deg, #e23b22, #d8aa58);
       border-radius: 999px;
       padding: 10px 14px;
       font-size: 13px;
@@ -332,12 +411,19 @@
     }
 
     @keyframes chapterGlow {
-      0%, 100% { opacity: .72; text-shadow: 0 0 0 rgba(240,193,90,0); }
-      50% { opacity: 1; text-shadow: 0 0 20px rgba(240,193,90,.42); }
+      0%, 100% { opacity: .72; text-shadow: 0 0 0 rgba(226,59,34,0); }
+      50% { opacity: 1; text-shadow: 0 0 20px rgba(226,59,34,.42); }
     }
 
     @keyframes titleRise { to { opacity: 1; transform: translateY(0); } }
     @keyframes softRise { to { opacity: 1; transform: translateY(0); } }
+    @keyframes kineticSlide {
+      to { transform: translate3d(-50%, 0, 0); }
+    }
+    @keyframes cueDrop {
+      0%, 100% { opacity: .28; transform: translateY(-5px); }
+      50% { opacity: .72; transform: translateY(6px); }
+    }
     @keyframes goldTextFlow {
       0%, 100% { background-position: 0% 50%; filter: brightness(.94); }
       50% { background-position: 100% 50%; filter: brightness(1.18); }
@@ -361,7 +447,7 @@
     .film-card {
       position: absolute;
       overflow: hidden;
-      border: 1px solid rgba(240,193,90,.22);
+      border: 1px solid rgba(216,170,88,.22);
       border-radius: 22px;
       background: #090909;
       box-shadow: 0 32px 100px rgba(0,0,0,.55);
@@ -433,7 +519,7 @@
       top: 44%;
       width: 210px;
       height: 210px;
-      border: 1px solid rgba(240,193,90,.24);
+      border: 1px solid rgba(216,170,88,.24);
       border-radius: 50%;
       animation: slowSpin 24s linear infinite;
     }
@@ -443,13 +529,13 @@
       content: "";
       position: absolute;
       inset: 34px;
-      border: 1px solid rgba(111,159,216,.18);
+      border: 1px solid rgba(226,59,34,.18);
       border-radius: 50%;
     }
 
     .signal-ring::after {
       inset: 74px;
-      background: radial-gradient(circle, rgba(240,193,90,.36), transparent 58%);
+      background: radial-gradient(circle, rgba(226,59,34,.28), rgba(216,170,88,.16), transparent 58%);
       animation: signalPulse 2.8s ease-in-out infinite;
     }
 
@@ -489,11 +575,21 @@
       max-width: 430px;
     }
 
+    #field {
+      display: block;
+      min-height: auto;
+    }
+
+    #field .copy {
+      max-width: 820px;
+      margin-bottom: 18px;
+    }
+
     .copy h2,
     .end h2 {
       margin: 14px 0;
       color: transparent;
-      background: linear-gradient(100deg, #b9aa8c, #ead9b6 34%, #f0c15a 50%, #ead9b6 66%, #8c806e);
+      background: linear-gradient(100deg, #bdb09a, #f4ecda 32%, #e23b22 48%, #d8aa58 60%, #8a7c68);
       background-size: 220% 100%;
       -webkit-background-clip: text;
       background-clip: text;
@@ -522,7 +618,8 @@
       border: 1px solid var(--line);
       border-radius: 28px;
       background:
-        radial-gradient(circle at 50% 52%, rgba(240,193,90,.16), transparent 28%),
+        radial-gradient(circle at 50% 52%, rgba(226,59,34,.13), transparent 28%),
+        radial-gradient(circle at 78% 20%, rgba(216,170,88,.10), transparent 34%),
         linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
       animation: mapFloat 10s ease-in-out infinite;
     }
@@ -532,16 +629,16 @@
       position: absolute;
       inset: 14%;
       z-index: 1;
-      border: 1px solid rgba(240,193,90,.2);
+      border: 1px solid rgba(216,170,88,.2);
       border-radius: 50%;
-      box-shadow: 0 0 0 72px rgba(111,159,216,.03), 0 0 0 144px rgba(240,193,90,.025);
+      box-shadow: 0 0 0 72px rgba(226,59,34,.035), 0 0 0 144px rgba(216,170,88,.025);
     }
 
     .system-map::after {
       content: "";
       position: absolute;
       inset: -40%;
-      background: conic-gradient(from 0deg, transparent, rgba(240,193,90,.16), transparent 28%);
+      background: conic-gradient(from 0deg, transparent, rgba(226,59,34,.16), rgba(216,170,88,.10), transparent 30%);
       animation: mapScanner 12s linear infinite;
     }
 
@@ -553,9 +650,9 @@
       width: 132px;
       height: 132px;
       padding: 14px;
-      border: 1px solid rgba(240,193,90,.24);
+      border: 1px solid rgba(216,170,88,.24);
       border-radius: 50%;
-      color: #f4dfb0;
+      color: #f4ecda;
       background: rgba(0,0,0,.36);
       text-align: center;
       font-weight: 900;
@@ -568,7 +665,7 @@
       width: 152px;
       height: 152px;
       color: #050505;
-      background: linear-gradient(135deg, #f4cf70, #9b642f);
+      background: linear-gradient(135deg, #e23b22, #d8aa58);
     }
 
     .node.n1 { left: 42%; top: 9%; }
@@ -582,14 +679,215 @@
     }
     @keyframes mapScanner { to { transform: rotate(360deg); } }
     @keyframes nodePulse {
-      0%, 100% { box-shadow: 0 0 28px rgba(240,193,90,.08); transform: scale(1); }
-      50% { box-shadow: 0 0 54px rgba(240,193,90,.22); transform: scale(1.035); }
+      0%, 100% { box-shadow: 0 0 28px rgba(216,170,88,.08); transform: scale(1); }
+      50% { box-shadow: 0 0 54px rgba(226,59,34,.20); transform: scale(1.035); }
     }
 
-    .field-grid {
+    .showcase-shell {
+      position: relative;
+      width: 100vw;
+      margin-left: 50%;
+      padding: 18px 0 24px;
+      overflow: hidden;
+      transform: translateX(-50%);
+      cursor: grab;
+    }
+
+    .showcase-shell::before,
+    .showcase-shell::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 4;
+      width: min(15vw, 190px);
+      pointer-events: none;
+    }
+
+    .showcase-shell::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--black), rgba(10,8,7,0));
+    }
+
+    .showcase-shell::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--black), rgba(10,8,7,0));
+    }
+
+    .showcase-track {
+      display: flex;
+      width: max-content;
+      gap: 18px;
+      padding: 10px max(18px, calc((100vw - 1220px) / 2));
+      animation: playbackSlide 42s linear infinite;
+      will-change: transform;
+    }
+
+    .showcase-shell:hover .showcase-track {
+      animation-play-state: paused;
+    }
+
+    .showcase-shell.reverse .showcase-track {
+      animation-direction: reverse;
+      animation-duration: 46s;
+    }
+
+    .photo-playback .showcase-track {
+      animation-duration: 72s;
+    }
+
+    .show-card {
+      position: relative;
+      flex: 0 0 auto;
+      width: clamp(230px, 22vw, 310px);
+      aspect-ratio: .78;
+      overflow: hidden;
+      border: 1px solid rgba(216,170,88,.22);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(226,59,34,.16), transparent 34%),
+        #100e0d;
+      box-shadow: 0 24px 70px rgba(0,0,0,.34);
+      transform: translateZ(0);
+      transition: transform .32s ease, border-color .32s ease, box-shadow .32s ease;
+    }
+
+    .show-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(216,170,88,.52);
+      box-shadow: 0 30px 90px rgba(0,0,0,.48), 0 0 0 1px rgba(226,59,34,.18);
+    }
+
+    .show-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(.74) contrast(1.08) saturate(.9);
+      transform: scale(1.04);
+      transition: transform .7s ease, filter .7s ease;
+    }
+
+    .show-card:hover img {
+      filter: brightness(.9) contrast(1.12) saturate(1.02);
+      transform: scale(1.09);
+    }
+
+    .show-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(120deg, transparent 18%, rgba(244,236,218,.14), transparent 42%),
+        linear-gradient(180deg, transparent 42%, rgba(0,0,0,.88));
+      opacity: .82;
+      pointer-events: none;
+    }
+
+    .show-card::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 52%;
+      z-index: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(244,236,218,.28), transparent);
+      opacity: .55;
+      box-shadow: 0 0 24px rgba(226,59,34,.18);
+      pointer-events: none;
+    }
+
+    .show-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      padding: 58px 16px 16px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.9));
+    }
+
+    .show-caption b,
+    .show-caption span,
+    .show-caption a {
+      display: block;
+    }
+
+    .show-caption b {
+      color: #f4ecda;
+      font-family: var(--display);
+      font-size: 20px;
+      line-height: 1.12;
+    }
+
+    .show-caption span {
+      margin-top: 6px;
+      color: rgba(244,236,218,.62);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .show-caption a {
+      position: relative;
+      width: fit-content;
+      margin-top: 12px;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .show-card.work {
+      width: clamp(260px, 26vw, 360px);
+      aspect-ratio: .88;
+    }
+
+    .show-card.work .show-cover {
+      position: absolute;
+      inset: 0;
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 16px;
+      align-content: start;
+      padding: 22px;
+      color: rgba(244,236,218,.9);
+      background:
+        radial-gradient(circle at 20% 16%, rgba(226,59,34,.34), transparent 34%),
+        radial-gradient(circle at 80% 82%, rgba(216,170,88,.16), transparent 36%),
+        linear-gradient(145deg, rgba(244,236,218,.08), rgba(244,236,218,.012));
+    }
+
+    .show-cover small {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .show-cover strong {
+      margin-top: 18px;
+      font-family: var(--display);
+      font-size: clamp(32px, 3.4vw, 48px);
+      line-height: .98;
+      color: #f4ecda;
+    }
+
+    .show-cover em {
+      margin-top: 12px;
+      color: rgba(244,236,218,.58);
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+      font-family: var(--body);
+      font-size: 13px;
+      font-style: normal;
+      text-shadow: none;
+      animation: none;
+    }
+
+    @keyframes playbackSlide {
+      to { transform: translate3d(-50%, 0, 0); }
     }
 
     .field-photo,
@@ -629,7 +927,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(240,193,90,.12), transparent);
+      background: linear-gradient(120deg, transparent, rgba(226,59,34,.10), rgba(216,170,88,.10), transparent);
       transform: translateX(-120%);
       animation: noteSweep 6s ease-in-out infinite;
     }
@@ -795,7 +1093,7 @@
       display: grid;
       place-items: center;
       overflow: hidden;
-      border: 1px solid rgba(240,193,90,.22);
+      border: 1px solid rgba(216,170,88,.22);
       border-radius: 18px;
       background: rgba(255,255,255,.08);
       box-shadow: 0 28px 90px rgba(0,0,0,.38);
@@ -819,7 +1117,8 @@
       border: 1px solid var(--line);
       border-radius: 24px;
       background:
-        radial-gradient(circle at 82% 12%, rgba(130, 200, 216, .13), transparent 30%),
+        radial-gradient(circle at 82% 12%, rgba(226,59,34,.13), transparent 30%),
+        radial-gradient(circle at 20% 88%, rgba(216,170,88,.08), transparent 36%),
         linear-gradient(135deg, rgba(255,255,255,.048), rgba(255,255,255,.014));
     }
 
@@ -845,8 +1144,8 @@
       display: inline-flex;
       width: fit-content;
       margin-top: 18px;
-      color: #090909;
-      background: linear-gradient(135deg, #f3d076, #a86a2c);
+      color: #100906;
+      background: linear-gradient(135deg, #e23b22, #d8aa58);
       border-radius: 999px;
       padding: 10px 14px;
       font-size: 13px;
@@ -857,7 +1156,7 @@
     .tutorial-frame {
       min-height: 640px;
       overflow: hidden;
-      border: 1px solid rgba(240,193,90,.22);
+      border: 1px solid rgba(216,170,88,.22);
       border-radius: 18px;
       background: #09090b;
       box-shadow: 0 28px 90px rgba(0,0,0,.38);
@@ -966,7 +1265,6 @@
       .nav-links { justify-content: flex-start; }
       .hero,
       .section,
-      .field-grid,
       .works-head,
       .certificate-showcase,
       .tutorial-section,
@@ -978,6 +1276,20 @@
         min-height: auto;
         padding-top: 56px;
       }
+      .kinetic-words {
+        top: 37%;
+        width: 180vw;
+        transform: translate3d(-50%, -50%, 0) rotate(-2deg);
+      }
+      .kinetic-row {
+        font-size: clamp(58px, 21vw, 112px);
+      }
+      .vertical-cue {
+        left: auto;
+        right: 12px;
+        top: 30px;
+        font-size: 15px;
+      }
       .hero h1 {
         font-size: clamp(32px, 9.8vw, 42px);
         line-height: 1.12;
@@ -986,6 +1298,27 @@
         max-width: 100%;
         font-size: 14.5px;
         overflow-wrap: anywhere;
+      }
+      .showcase-shell {
+        width: calc(100vw + 8px);
+        padding: 8px 0 18px;
+      }
+      .showcase-track {
+        gap: 12px;
+        padding-inline: 14px;
+        animation-duration: 54s;
+      }
+      .show-card {
+        width: min(72vw, 250px);
+      }
+      .show-card.work {
+        width: min(78vw, 288px);
+      }
+      .show-caption {
+        padding: 46px 13px 13px;
+      }
+      .show-cover strong {
+        font-size: 32px;
       }
       .copy h2,
       .end h2 {
@@ -1073,11 +1406,24 @@
     </nav>
 
     <header class="hero" id="top">
-      <div>
-        <div class="chapter">Personal system / AI + Content + Growth</div>
-        <h1>把真实生活，炼成一个<em>可迁移的个人系统</em>。</h1>
+      <div class="kinetic-words" aria-hidden="true">
+        <div class="vertical-cue"><span>N</span><span>E</span><span>X</span><span>T</span></div>
+        <div class="kinetic-row">
+          <span>SUPERKING&nbsp;</span><span>AI WEBSITE CRAFT&nbsp;</span><span>FROM IDEA TO PAGE&nbsp;</span><span>SUPERKING&nbsp;</span><span>AI WEBSITE CRAFT&nbsp;</span><span>FROM IDEA TO PAGE&nbsp;</span>
+        </div>
+        <div class="kinetic-row alt">
+          <span>CREATE ITERATE PUBLISH&nbsp;</span><span>PERSONAL IP SYSTEM&nbsp;</span><span>VISIBLE PROOF&nbsp;</span><span>CREATE ITERATE PUBLISH&nbsp;</span><span>PERSONAL IP SYSTEM&nbsp;</span><span>VISIBLE PROOF&nbsp;</span>
+        </div>
+        <div class="kinetic-row soft">
+          <span>审美 标准 生成 系统&nbsp;</span><span>AI 内容 网站 作品&nbsp;</span><span>审美 标准 生成 系统&nbsp;</span><span>AI 内容 网站 作品&nbsp;</span>
+        </div>
+      </div>
+
+      <div class="hero-copy">
+        <div class="chapter">Personal system / AI website craft</div>
+        <h1>把审美、AI 和真实项目，炼成一个<em>可复制的作品系统</em>。</h1>
         <p class="lead">
-          我是严匡正，SuperKing。机器人工程背景，做过销售和校园市场，现在正在把 AI 工作流、内容表达、组织成长和真实反馈，沉淀成长期可更新的作品系统。
+          我是严匡正，SuperKing。机器人工程背景，做过销售和校园市场，现在把优秀网站当作审美样本，用 AI 工作流反复迭代，把想法快速变成静态页、动态页、3D 粒子页和视频型网页作品。
         </p>
         <div class="hero-actions">
           <a href="#system">看系统结构</a>
@@ -1105,17 +1451,17 @@
     <section class="section" id="system">
       <div class="copy">
         <div class="chapter">01 / system</div>
-        <h2>我不想只做一个会用工具的人。</h2>
+        <h2>我不只是在用工具，我在训练一套生成标准。</h2>
         <p>
-          AI、内容、组织、成长不是平铺标签，而是围绕“个人系统”的四个方向。我更关心工具如何进入真实流程，表达如何接受反馈，经验如何变成可复用资产。
+          AI、内容、审美、交互不是平铺标签，而是围绕“作品生成”的四个方向。我更关心工具如何进入真实流程，优秀案例如何变成判断标准，生成器如何从静态页面一路迭代到动态、3D 粒子和可控时长的视频体验。
         </p>
       </div>
       <div class="system-map">
         <div class="node center">个人系统</div>
-        <div class="node n1">AI 工作流</div>
-        <div class="node n2">内容产品</div>
-        <div class="node n3">组织成长</div>
-        <div class="node n4">真实反馈</div>
+        <div class="node n1">静态页面</div>
+        <div class="node n2">动态交互</div>
+        <div class="node n3">3D 粒子</div>
+        <div class="node n4">视频网页</div>
       </div>
     </section>
 
@@ -1127,23 +1473,128 @@
           城市、展馆、山水、夜路，还有镜头里的我，是我的输入场。它们不负责证明我去过哪里，而是提醒我：判断力不能只在屏幕里训练，要回到真实环境、真实人群和真实反馈。
         </p>
       </div>
-      <div class="field-grid">
-        <figure class="field-photo">
-          <img class="zoomable" src="assets/personal/forest_path_01.jpg" alt="树林路径" />
-          <figcaption class="caption">
-            <b>FIELD 01</b>
-            <h3>成长不是口号，是一次次走出去。</h3>
-          </figcaption>
-        </figure>
-        <div class="field-stack">
-          <div class="note">
-            <h3>城市</h3>
-            <p>观察人群、商业、传播和组织关系。</p>
-          </div>
-          <div class="note">
-            <h3>展馆</h3>
-            <p>训练审美、结构和长期感。</p>
-          </div>
+      <div class="showcase-shell photo-playback" aria-label="照片播放式作品集">
+        <div class="showcase-track">
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/superking-city-portrait-01.jpg" alt="SuperKing 城市夜景肖像" />
+            <figcaption class="show-caption"><b>城市夜色</b><span>本人现场 / 低机位 / 电影感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/superking-portrait-01.jpg" alt="严匡正个人肖像" />
+            <figcaption class="show-caption"><b>个人肖像</b><span>SuperKing / 视觉入口 / 身份感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/forest_path_01.jpg" alt="树林路径" />
+            <figcaption class="show-caption"><b>树林路径</b><span>成长 / 行走 / 真实环境</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/city_observer_01.jpg" alt="展馆空间观察" />
+            <figcaption class="show-caption"><b>展馆观察</b><span>审美输入 / 结构 / 长期感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/night_walk_01.jpg" alt="夜路行走" />
+            <figcaption class="show-caption"><b>夜路</b><span>城市 / 路径 / 独处判断</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/mountain_lake_01.jpg" alt="山湖景色" />
+            <figcaption class="show-caption"><b>山湖</b><span>自然 / 远景 / 空间感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/river_city_01.jpg" alt="江边城市景色" />
+            <figcaption class="show-caption"><b>江边城市</b><span>水面 / 建筑 / 开阔感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/city_night_01.jpg" alt="城市夜景一" />
+            <figcaption class="show-caption"><b>城市夜景 01</b><span>霓虹 / 行走 / 都市输入</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/city_night_02.jpg" alt="城市夜景二" />
+            <figcaption class="show-caption"><b>城市夜景 02</b><span>街区 / 光线 / 观察</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/city_observer_02.jpg" alt="城市观察素材二" />
+            <figcaption class="show-caption"><b>城市观察</b><span>空间 / 人群 / 样本</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/garden_frame_01.jpg" alt="园林框景" />
+            <figcaption class="show-caption"><b>园林框景</b><span>框景 / 层次 / 东方秩序</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/garden_water_01.jpg" alt="园林水景" />
+            <figcaption class="show-caption"><b>园林水景</b><span>水面 / 静气 / 结构感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/stone_path_01.jpg" alt="石径路径" />
+            <figcaption class="show-caption"><b>石径</b><span>路径 / 材质 / 方向感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/wood_arch_01.jpg" alt="木拱结构" />
+            <figcaption class="show-caption"><b>木拱</b><span>结构 / 入口 / 纵深</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/artifact_01.jpg" alt="展品器物" />
+            <figcaption class="show-caption"><b>器物</b><span>展品 / 纹理 / 时间感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/superking-city-portrait-01.jpg" alt="SuperKing 城市夜景肖像" />
+            <figcaption class="show-caption"><b>城市夜色</b><span>本人现场 / 低机位 / 电影感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/superking-portrait-01.jpg" alt="严匡正个人肖像" />
+            <figcaption class="show-caption"><b>个人肖像</b><span>SuperKing / 视觉入口 / 身份感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/forest_path_01.jpg" alt="树林路径" />
+            <figcaption class="show-caption"><b>树林路径</b><span>成长 / 行走 / 真实环境</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/city_observer_01.jpg" alt="展馆空间观察" />
+            <figcaption class="show-caption"><b>展馆观察</b><span>审美输入 / 结构 / 长期感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/night_walk_01.jpg" alt="夜路行走" />
+            <figcaption class="show-caption"><b>夜路</b><span>城市 / 路径 / 独处判断</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/mountain_lake_01.jpg" alt="山湖景色" />
+            <figcaption class="show-caption"><b>山湖</b><span>自然 / 远景 / 空间感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/river_city_01.jpg" alt="江边城市景色" />
+            <figcaption class="show-caption"><b>江边城市</b><span>水面 / 建筑 / 开阔感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/city_night_01.jpg" alt="城市夜景一" />
+            <figcaption class="show-caption"><b>城市夜景 01</b><span>霓虹 / 行走 / 都市输入</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/city_night_02.jpg" alt="城市夜景二" />
+            <figcaption class="show-caption"><b>城市夜景 02</b><span>街区 / 光线 / 观察</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/city_observer_02.jpg" alt="城市观察素材二" />
+            <figcaption class="show-caption"><b>城市观察</b><span>空间 / 人群 / 样本</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/garden_frame_01.jpg" alt="园林框景" />
+            <figcaption class="show-caption"><b>园林框景</b><span>框景 / 层次 / 东方秩序</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/garden_water_01.jpg" alt="园林水景" />
+            <figcaption class="show-caption"><b>园林水景</b><span>水面 / 静气 / 结构感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/stone_path_01.jpg" alt="石径路径" />
+            <figcaption class="show-caption"><b>石径</b><span>路径 / 材质 / 方向感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/wood_arch_01.jpg" alt="木拱结构" />
+            <figcaption class="show-caption"><b>木拱</b><span>结构 / 入口 / 纵深</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/artifact_01.jpg" alt="展品器物" />
+            <figcaption class="show-caption"><b>器物</b><span>展品 / 纹理 / 时间感</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -1151,21 +1602,21 @@
     <section class="section" id="words">
       <div class="copy">
         <div class="chapter">03 / judgement</div>
-        <h2>文字不要多，但每一句都要有重量。</h2>
+        <h2>我更关心结果有没有作品感。</h2>
         <p>
-          我希望别人认识我时，不只是看到经历列表，而是看到我如何理解成长、工具、作品和组织。
+          我希望别人认识我时，不只是看到经历列表，而是看到我如何把工具、审美、反馈和交付串成一个闭环。
         </p>
       </div>
       <div>
         <div class="statements">
-          <div class="statement">输入不是目的，<em>输出和反馈</em>才是成长发生的地方。</div>
-          <div class="statement">作品不是装饰，它是抽象能力变成<em>可见结果</em>的证据。</div>
-          <div class="statement">我希望无论进入任何组织，都能带着<em>自己的系统</em>离开。</div>
+          <div class="statement">输入不是目的，<em>生成、对照、迭代</em>才是能力增长的地方。</div>
+          <div class="statement">作品不是装饰，它是抽象审美变成<em>可见结果</em>的证据。</div>
+          <div class="statement">我希望每一次项目之后，都能留下<em>更准的标准</em>。</div>
         </div>
         <div class="proof-grid">
-          <div><b>AI</b>把工具放进真实流程，而不是停留在炫技。</div>
-          <div><b>内容</b>让表达接受播放、互动和真实评价。</div>
-          <div><b>组织</b>在协作里训练判断、责任和服务意识。</div>
+          <div><b>AI</b>把生成放进真实流程，而不是停留在炫技。</div>
+          <div><b>审美</b>用模范级网站校准色调、动效和结构。</div>
+          <div><b>作品</b>用发布结果接受浏览、反馈和继续迭代。</div>
         </div>
       </div>
     </section>
@@ -1174,11 +1625,56 @@
       <div class="works-head">
         <div>
           <div class="chapter">04 / visible proof</div>
-          <h2>教程、作品与联系方式</h2>
+          <h2>作品集像一段播放中的页面。</h2>
         </div>
         <p class="lead">
-          作品不是装饰，它是我把个人经历、工具能力和表达能力变成可见结果的证据。
+          作品不是装饰，它是我把个人经历、工具能力、审美训练和表达能力变成可见结果的证据。这里先像播放作品集一样经过，再进入具体证书、教程和仓库。
         </p>
+      </div>
+
+      <div class="showcase-shell reverse work-playback" aria-label="作品播放式作品集">
+        <div class="showcase-track">
+          <article class="show-card work">
+            <div class="show-cover"><small>AI Website Generator</small><strong>IP Website Craft</strong><em>静态 / 动态 / 3D 粒子 / 视频型网页</em></div>
+            <div class="show-caption"><b>一键生成网站</b><span>审美样本持续迭代</span><a href="https://ip-website-craft.pages.dev/" target="_blank" rel="noopener">打开网站</a></div>
+          </article>
+          <article class="show-card work">
+            <img class="zoomable" src="assets/personal/didi-campus-ambassador.png" alt="滴滴租车校园大使证书" />
+            <div class="show-caption"><b>滴滴校园大使</b><span>校园市场 / 用户增长 / 项目验证</span></div>
+          </article>
+          <article class="show-card work">
+            <div class="show-cover"><small>Tool Tutorial</small><strong>TYPELESS 闯关课</strong><em>给微信朋友和 Windows 新手的安装教程</em></div>
+            <div class="show-caption"><b>工具教程</b><span>安装 / 权限 / 第一次语音输入</span><a href="https://superk060319.github.io/typeless-wechat-guide/" target="_blank" rel="noopener">打开教程</a></div>
+          </article>
+          <article class="show-card work">
+            <div class="show-cover"><small>GitHub Pages</small><strong>SuperKing 个人页</strong><em>个人介绍、作品证据与生成系统的公开页面</em></div>
+            <div class="show-caption"><b>发布仓库</b><span>持续补充案例页和 Demo</span><a href="https://github.com/SuperK060319/superking" target="_blank" rel="noopener">查看源码</a></div>
+          </article>
+          <article class="show-card work">
+            <img class="zoomable" src="assets/personal/city_observer_02.jpg" alt="城市观察素材" />
+            <div class="show-caption"><b>审美样本库</b><span>城市 / 展馆 / 人群 / 结构输入</span></div>
+          </article>
+          <article class="show-card work">
+            <div class="show-cover"><small>AI Website Generator</small><strong>IP Website Craft</strong><em>静态 / 动态 / 3D 粒子 / 视频型网页</em></div>
+            <div class="show-caption"><b>一键生成网站</b><span>审美样本持续迭代</span><a href="https://ip-website-craft.pages.dev/" target="_blank" rel="noopener">打开网站</a></div>
+          </article>
+          <article class="show-card work">
+            <img class="zoomable" src="assets/personal/didi-campus-ambassador.png" alt="滴滴租车校园大使证书" />
+            <div class="show-caption"><b>滴滴校园大使</b><span>校园市场 / 用户增长 / 项目验证</span></div>
+          </article>
+          <article class="show-card work">
+            <div class="show-cover"><small>Tool Tutorial</small><strong>TYPELESS 闯关课</strong><em>给微信朋友和 Windows 新手的安装教程</em></div>
+            <div class="show-caption"><b>工具教程</b><span>安装 / 权限 / 第一次语音输入</span><a href="https://superk060319.github.io/typeless-wechat-guide/" target="_blank" rel="noopener">打开教程</a></div>
+          </article>
+          <article class="show-card work">
+            <div class="show-cover"><small>GitHub Pages</small><strong>SuperKing 个人页</strong><em>个人介绍、作品证据与生成系统的公开页面</em></div>
+            <div class="show-caption"><b>发布仓库</b><span>持续补充案例页和 Demo</span><a href="https://github.com/SuperK060319/superking" target="_blank" rel="noopener">查看源码</a></div>
+          </article>
+          <article class="show-card work">
+            <img class="zoomable" src="assets/personal/city_observer_02.jpg" alt="城市观察素材" />
+            <div class="show-caption"><b>审美样本库</b><span>城市 / 展馆 / 人群 / 结构输入</span></div>
+          </article>
+        </div>
       </div>
 
       <article class="certificate-showcase" id="certificate">
@@ -1225,9 +1721,18 @@
 
           <article class="work-card">
             <div>
+              <span class="work-meta">AI 网站生成</span>
+              <h3>IP Website Craft</h3>
+              <p>把群里优秀网站作为审美样本，持续迭代一键生成网站。现在已经覆盖静态、动态、3D 粒子和视频型网页，还能选择视频时间和长度。</p>
+            </div>
+            <a href="https://ip-website-craft.pages.dev/" target="_blank" rel="noopener">打开网站</a>
+          </article>
+
+          <article class="work-card">
+            <div>
               <span class="work-meta">个人页源码</span>
               <h3>GitHub Pages 发布仓库</h3>
-              <p>当前网页的托管仓库，后续可继续补充作品、案例页、教程页和项目 Demo。</p>
+              <p>当前网页的托管仓库，后续会继续补充作品、案例页、教程页和生成式网站 Demo，把每次迭代留下来。</p>
             </div>
             <a href="https://github.com/SuperK060319/superking" target="_blank" rel="noopener">查看源码</a>
           </article>
@@ -1237,7 +1742,7 @@
           <div>
             <div class="chapter">contact</div>
             <h3>微信联系</h3>
-            <p>适合继续聊 AI、内容、成长、组织、教育、校园项目或个人系统。</p>
+            <p>适合继续聊 AI 网站、内容表达、审美训练、校园项目或个人 IP 生成系统。</p>
           </div>
           <div class="qr-frame">
             <img class="zoomable" src="wechat-qrcode.png" alt="SuperKing 微信二维码" />
@@ -1250,7 +1755,7 @@
     <footer class="end">
       <div>
         <div class="chapter">long term</div>
-        <h2>我希望未来无论进入任何组织，都能带着<em>自己的系统、作品和判断力</em>离开。</h2>
+        <h2>我希望未来无论进入任何项目，都能带着<em>自己的审美标准、生成系统和作品证据</em>继续升级。</h2>
       </div>
     </footer>
   </main>
@@ -1390,7 +1895,7 @@
       installPointerEffects();
     }
 
-    document.querySelectorAll(".section .copy, .system-map, .field-grid, .statement, .proof-grid div, .works-head, .certificate-showcase, .tutorial-section, .work-card, .contact-card, .end h2, .end p").forEach((el) => {
+    document.querySelectorAll(".section .copy, .system-map, .showcase-shell, .statement, .proof-grid div, .works-head, .certificate-showcase, .tutorial-section, .work-card, .contact-card, .end h2, .end p").forEach((el) => {
       el.classList.add("motion-ready");
     });
 

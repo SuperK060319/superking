@@ -832,6 +832,22 @@
       animation-duration: 72s;
     }
 
+    .work-playback {
+      padding: 10px 0 26px;
+    }
+
+    .work-playback .showcase-track {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(clamp(210px, 18vw, 260px), 1fr));
+      gap: 14px;
+      padding: 12px clamp(12px, 2vw, 26px);
+      margin-left: 0;
+      animation: none;
+      transform: none;
+      will-change: auto;
+    }
+
     .show-card {
       position: relative;
       flex: 0 0 auto;
@@ -938,6 +954,12 @@
     .show-card.work {
       width: clamp(250px, 22vw, 340px);
       aspect-ratio: .95;
+    }
+
+    .work-playback .show-card.work {
+      width: auto;
+      min-width: 0;
+      min-height: min(32vw, 330px);
     }
 
     .show-card.work .show-cover {

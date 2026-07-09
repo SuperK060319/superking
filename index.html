@@ -750,6 +750,11 @@
     .orbit.o3 { --orbit-size: min(74%, 470px); --planet-size: 104px; --tilt: 42deg; --duration: 15s; }
     .orbit.o4 { --orbit-size: min(116%, 740px); --planet-size: 126px; --tilt: -36deg; --duration: 31s; animation-direction: reverse; }
 
+    .orbit.o2 .planet,
+    .orbit.o4 .planet {
+      animation-direction: reverse;
+    }
+
     .orbit.o2 .planet { background: radial-gradient(circle at 30% 24%, rgba(244,236,218,.18), transparent 20%), linear-gradient(145deg, rgba(36,15,10,.94), rgba(5,5,5,.96)); }
     .orbit.o3 .planet { background: radial-gradient(circle at 32% 26%, rgba(216,170,88,.24), transparent 22%), linear-gradient(145deg, rgba(17,17,17,.94), rgba(3,3,3,.98)); }
     .orbit.o4 .planet { background: radial-gradient(circle at 34% 22%, rgba(226,59,34,.22), transparent 24%), linear-gradient(145deg, rgba(26,19,13,.94), rgba(3,3,3,.96)); }

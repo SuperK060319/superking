@@ -837,15 +837,14 @@
     }
 
     .work-playback .showcase-track {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(clamp(210px, 18vw, 260px), 1fr));
-      gap: 14px;
-      padding: 12px clamp(12px, 2vw, 26px);
+      width: max-content;
+      display: flex;
+      gap: clamp(18px, 2.2vw, 32px);
+      padding: 14px clamp(20px, 3vw, 42px);
       margin-left: 0;
-      animation: none;
-      transform: none;
-      will-change: auto;
+      animation: workPlayback 68s linear infinite;
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
     }
 
     .show-card {
@@ -957,9 +956,9 @@
     }
 
     .work-playback .show-card.work {
-      width: auto;
-      min-width: 0;
-      min-height: min(32vw, 330px);
+      width: clamp(260px, 23vw, 350px);
+      min-width: clamp(260px, 23vw, 350px);
+      min-height: 320px;
     }
 
     .show-card.work .show-cover {
@@ -1011,6 +1010,10 @@
     @keyframes playbackSlideReverse {
       from { transform: translate3d(-50%, 0, 0); }
       to { transform: translate3d(0, 0, 0); }
+    }
+    @keyframes workPlayback {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-50%, 0, 0); }
     }
 
     .field-photo,
@@ -1592,9 +1595,9 @@
     <section class="section" id="field">
       <div class="copy">
         <div class="chapter">02 / field material</div>
-        <h2>生活素材不做相册，而做现场感。</h2>
+        <h2>生活素材和接单作品，都要有现场感。</h2>
         <p>
-          城市、展馆、山水、夜路，还有镜头里的我，是我的输入场。它们不负责证明我去过哪里，而是提醒我：判断力不能只在屏幕里训练，要回到真实环境、真实人群和真实反馈。
+          城市、展馆、山水、夜路、镜头里的我，还有给别人做过的电商视觉单子，都是我的输入场和交付证据。它们不负责装饰页面，而是提醒我：判断力不能只在屏幕里训练，要回到真实环境、真实人群和真实反馈。
         </p>
       </div>
       <div class="showcase-shell photo-playback" aria-label="照片播放式作品集">
@@ -1660,6 +1663,30 @@
             <figcaption class="show-caption"><b>器物</b><span>展品 / 纹理 / 时间感</span></figcaption>
           </figure>
           <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-01.avif" alt="客户电商视觉单子一" />
+            <figcaption class="show-caption"><b>客户电商视觉</b><span>接单作品 / 产品海报 / 商业质感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-02.jpg" alt="肽精华产品海报" />
+            <figcaption class="show-caption"><b>精华液海报</b><span>护肤品 / 水光 / 高级感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-03.png" alt="维 C 精华产品海报" />
+            <figcaption class="show-caption"><b>维 C 精华</b><span>电商详情 / 光影 / 品牌感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-04.jpg" alt="护肤品 campaign 海报" />
+            <figcaption class="show-caption"><b>护肤 Campaign</b><span>客户单子 / 海报排版 / 质感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-05.jpg" alt="美妆精华广告图" />
+            <figcaption class="show-caption"><b>美妆广告图</b><span>电商图 / 强对比 / 视觉冲击</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-06.png" alt="护肤套组产品图" />
+            <figcaption class="show-caption"><b>套组产品图</b><span>客户单子 / 护肤套装 / 场景搭建</span></figcaption>
+          </figure>
+          <figure class="show-card">
             <img class="zoomable" src="assets/personal/superking-city-portrait-01.jpg" alt="SuperKing 城市夜景肖像" />
             <figcaption class="show-caption"><b>城市夜色</b><span>本人现场 / 低机位 / 电影感</span></figcaption>
           </figure>
@@ -1719,6 +1746,30 @@
             <img class="zoomable" src="assets/personal/artifact_01.jpg" alt="展品器物" />
             <figcaption class="show-caption"><b>器物</b><span>展品 / 纹理 / 时间感</span></figcaption>
           </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-01.avif" alt="客户电商视觉单子一" />
+            <figcaption class="show-caption"><b>客户电商视觉</b><span>接单作品 / 产品海报 / 商业质感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-02.jpg" alt="肽精华产品海报" />
+            <figcaption class="show-caption"><b>精华液海报</b><span>护肤品 / 水光 / 高级感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-03.png" alt="维 C 精华产品海报" />
+            <figcaption class="show-caption"><b>维 C 精华</b><span>电商详情 / 光影 / 品牌感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-04.jpg" alt="护肤品 campaign 海报" />
+            <figcaption class="show-caption"><b>护肤 Campaign</b><span>客户单子 / 海报排版 / 质感</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-05.jpg" alt="美妆精华广告图" />
+            <figcaption class="show-caption"><b>美妆广告图</b><span>电商图 / 强对比 / 视觉冲击</span></figcaption>
+          </figure>
+          <figure class="show-card">
+            <img class="zoomable" src="assets/personal/ecommerce-client-06.png" alt="护肤套组产品图" />
+            <figcaption class="show-caption"><b>套组产品图</b><span>客户单子 / 护肤套装 / 场景搭建</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -1756,7 +1807,7 @@
         </p>
       </div>
 
-      <div class="showcase-shell reverse work-playback" aria-label="作品播放式作品集">
+      <div class="showcase-shell work-playback" aria-label="作品播放式作品集">
         <div class="showcase-track">
           <article class="show-card work">
             <div class="show-cover"><small>AI Website Generator</small><strong>IP Website Craft</strong><em>静态 / 动态 / 3D 粒子 / 视频型网页</em></div>
@@ -1779,44 +1830,28 @@
             <div class="show-caption"><b>审美样本库</b><span>城市 / 展馆 / 人群 / 结构输入</span></div>
           </article>
           <article class="show-card work">
-            <div class="show-cover"><small>AI Website Generator</small><strong>IP Website Craft</strong><em>静态 / 动态 / 3D 粒子 / 视频型网页</em></div>
-            <div class="show-caption"><b>一键生成网站</b><span>审美样本持续迭代</span><a href="https://ip-website-craft.pages.dev/" target="_blank" rel="noopener">打开网站</a></div>
+            <img class="zoomable" src="assets/personal/ecommerce-client-02.jpg" alt="客户护肤品精华液电商海报" />
+            <div class="show-caption"><b>客户电商视觉</b><span>接单作品 / 精华液海报 / 商业质感</span></div>
           </article>
           <article class="show-card work">
-            <img class="zoomable" src="assets/personal/didi-campus-ambassador.png" alt="滴滴租车校园大使证书" />
-            <div class="show-caption"><b>滴滴校园大使</b><span>校园市场 / 用户增长 / 项目验证</span></div>
+            <img class="zoomable" src="assets/personal/ecommerce-client-03.png" alt="客户维 C 精华电商详情图" />
+            <div class="show-caption"><b>维 C 精华图</b><span>接单作品 / 电商详情 / 光影搭建</span></div>
           </article>
           <article class="show-card work">
-            <div class="show-cover"><small>Tool Tutorial</small><strong>TYPELESS 闯关课</strong><em>给微信朋友和 Windows 新手的安装教程</em></div>
-            <div class="show-caption"><b>工具教程</b><span>安装 / 权限 / 第一次语音输入</span><a href="https://superk060319.github.io/typeless-wechat-guide/" target="_blank" rel="noopener">打开教程</a></div>
+            <img class="zoomable" src="assets/personal/ecommerce-client-04.jpg" alt="客户护肤 campaign 海报" />
+            <div class="show-caption"><b>护肤 Campaign</b><span>接单作品 / 海报排版 / 品牌感</span></div>
           </article>
           <article class="show-card work">
-            <div class="show-cover"><small>GitHub Pages</small><strong>SuperKing 个人页</strong><em>个人介绍、作品证据与生成系统的公开页面</em></div>
-            <div class="show-caption"><b>发布仓库</b><span>持续补充案例页和 Demo</span><a href="https://github.com/SuperK060319/superking" target="_blank" rel="noopener">查看源码</a></div>
+            <img class="zoomable" src="assets/personal/ecommerce-client-05.jpg" alt="客户美妆精华广告图" />
+            <div class="show-caption"><b>美妆广告图</b><span>接单作品 / 强对比 / 视觉冲击</span></div>
           </article>
           <article class="show-card work">
-            <img class="zoomable" src="assets/personal/city_observer_02.jpg" alt="城市观察素材" />
-            <div class="show-caption"><b>审美样本库</b><span>城市 / 展馆 / 人群 / 结构输入</span></div>
+            <img class="zoomable" src="assets/personal/ecommerce-client-06.png" alt="客户护肤套组产品图" />
+            <div class="show-caption"><b>护肤套组图</b><span>接单作品 / 产品组合 / 场景搭建</span></div>
           </article>
           <article class="show-card work">
-            <div class="show-cover"><small>AI Website Generator</small><strong>IP Website Craft</strong><em>静态 / 动态 / 3D 粒子 / 视频型网页</em></div>
-            <div class="show-caption"><b>一键生成网站</b><span>审美样本持续迭代</span><a href="https://ip-website-craft.pages.dev/" target="_blank" rel="noopener">打开网站</a></div>
-          </article>
-          <article class="show-card work">
-            <img class="zoomable" src="assets/personal/didi-campus-ambassador.png" alt="滴滴租车校园大使证书" />
-            <div class="show-caption"><b>滴滴校园大使</b><span>校园市场 / 用户增长 / 项目验证</span></div>
-          </article>
-          <article class="show-card work">
-            <div class="show-cover"><small>Tool Tutorial</small><strong>TYPELESS 闯关课</strong><em>给微信朋友和 Windows 新手的安装教程</em></div>
-            <div class="show-caption"><b>工具教程</b><span>安装 / 权限 / 第一次语音输入</span><a href="https://superk060319.github.io/typeless-wechat-guide/" target="_blank" rel="noopener">打开教程</a></div>
-          </article>
-          <article class="show-card work">
-            <div class="show-cover"><small>GitHub Pages</small><strong>SuperKing 个人页</strong><em>个人介绍、作品证据与生成系统的公开页面</em></div>
-            <div class="show-caption"><b>发布仓库</b><span>持续补充案例页和 Demo</span><a href="https://github.com/SuperK060319/superking" target="_blank" rel="noopener">查看源码</a></div>
-          </article>
-          <article class="show-card work">
-            <img class="zoomable" src="assets/personal/city_observer_02.jpg" alt="城市观察素材" />
-            <div class="show-caption"><b>审美样本库</b><span>城市 / 展馆 / 人群 / 结构输入</span></div>
+            <img class="zoomable" src="assets/personal/ecommerce-client-01.avif" alt="客户电商视觉单子" />
+            <div class="show-caption"><b>电商交付图</b><span>接单作品 / 产品视觉 / 客户交付</span></div>
           </article>
         </div>
       </div>
@@ -2059,6 +2094,22 @@
 
     window.addEventListener("scroll", updateProgress, { passive: true });
     updateProgress();
+
+    function clonePlaybackTrack(selector) {
+      const track = document.querySelector(selector);
+      if (!track || track.dataset.cloned === "true") return;
+      Array.from(track.children).forEach((item) => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        clone.querySelectorAll("a").forEach((link) => {
+          link.tabIndex = -1;
+        });
+        track.appendChild(clone);
+      });
+      track.dataset.cloned = "true";
+    }
+
+    clonePlaybackTrack(".work-playback .showcase-track");
 
     function closeLightbox() {
       lightbox.classList.remove("is-open");

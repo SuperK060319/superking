@@ -993,6 +993,26 @@
       min-height: 320px;
     }
 
+    .work-playback .show-card.work.poster-work {
+      width: clamp(190px, 16vw, 240px);
+      min-width: clamp(190px, 16vw, 240px);
+      min-height: 0;
+      aspect-ratio: 941 / 1672;
+      background: #080706;
+    }
+
+    .show-card.poster-work img,
+    .show-card.poster-work:hover img {
+      object-fit: contain;
+      filter: none;
+      transform: none;
+    }
+
+    .show-card.poster-work::before,
+    .show-card.poster-work::after {
+      display: none;
+    }
+
     .show-card.work .show-cover {
       position: absolute;
       inset: 0;
@@ -1902,7 +1922,7 @@
           <h2>我目前能拿出来的作品和证据。</h2>
         </div>
         <p class="lead">
-          这里有我正在迭代的网站生成器、工具教程、校园项目证书、个人页源码，还有几张商业视觉图。它们不代表我已经很成熟，但至少说明我不是只在讲概念。
+          这里有我正在迭代的网站生成器、工具教程、校园项目证书、个人页源码，以及商业视觉和系列海报。它们不代表我已经很成熟，但至少说明我不是只在讲概念。
         </p>
       </div>
 
@@ -1955,6 +1975,18 @@
           <article class="show-card work">
             <img class="zoomable" src="assets/personal/ecommerce-client-01.avif" alt="客户电商视觉单子" />
             <div class="show-caption"><b>电商交付图</b><span>产品视觉</span></div>
+          </article>
+          <article class="show-card work poster-work">
+            <img class="zoomable" src="assets/personal/ai-era-poster-path.webp" alt="迎接 AI 时代系列海报，红黑空间与通往光门的路径" />
+          </article>
+          <article class="show-card work poster-work">
+            <img class="zoomable" src="assets/personal/ai-era-poster-horizon.webp" alt="迎接 AI 时代系列海报，人物沿光路走向未来城市" />
+          </article>
+          <article class="show-card work poster-work">
+            <img class="zoomable" src="assets/personal/ai-era-poster-puzzle.webp" alt="迎接 AI 时代系列海报，人形拼图与缺失模块" />
+          </article>
+          <article class="show-card work poster-work">
+            <img class="zoomable" src="assets/personal/ai-era-poster-breakthrough.webp" alt="迎接 AI 时代系列海报，断裂锁链与飞鸟" />
           </article>
         </div>
       </div>
